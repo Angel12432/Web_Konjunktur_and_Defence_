@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Industrie und die Konjunkturhoffnung Defense</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#start">Defense Economy</a>
+    <nav aria-label="Navigation">
+      <a href="#konflikte">Konflikte</a>
+      <a href="#europa">Europa</a>
+      <a href="#deutschland">Deutschland</a>
+      <a href="#rheinmetall">Rheinmetall</a>
+      <a href="#startups">Startups</a>
+      <a href="#survey">Survey</a>
+      <a href="#quellen">Quellen</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="start" class="section hero">
+      <p class="eyebrow">Industrie und Konjunktur</p>
+      <h1>Die Konjunkturhoffnung <span>Defense</span></h1>
+      <p class="lead">Globale Konflikte verändern politische Prioritäten. In Europa steigen Verteidigungsbudgets, Unternehmen erhalten größere Aufträge und Defence-Tech wird für Investoren attraktiver.</p>
+      <div class="kpi-row">
+        <article><strong>9</strong><span>Konflikträume im Überblick</span></article>
+        <article><strong>+52%</strong><span>Anstieg europäischer Verteidigungsausgaben</span></article>
+        <article><strong>2,2%</strong><span>deutsche Verteidigungsausgaben relativ zum BIP</span></article>
+      </div>
+      <a class="start-link" href="#ueberblick">Story starten ↓</a>
+    </section>
+
+    <section id="ueberblick" class="section split reveal">
+      <div>
+        <p class="eyebrow">Kurzer Themenüberblick</p>
+        <h2>Vom Sicherheitsdruck zur Industriehoffnung</h2>
+        <p>Defense wird nicht nur als Kostenblock diskutiert, sondern zunehmend als möglicher Stabilitätsanker für Industrie, Beschäftigung und technologische Entwicklung.</p>
+        <p>Die Story führt von globalen Konflikten über europäische und deutsche Verteidigungsausgaben hin zu etablierten Unternehmen, Startups und einem Survey-Blick in die Breite der Industrie.</p>
+      </div>
+      <div class="flow-cards" aria-label="Story Ablauf">
+        <article><span>1</span><b>Konflikte</b><p>Unsicherheit schafft politischen Handlungsdruck.</p></article>
+        <article><span>2</span><b>Budgets</b><p>Staaten planen mehr Geld für Verteidigung ein.</p></article>
+        <article><span>3</span><b>Industrie</b><p>Aufträge, Umsatz und Beschäftigung steigen.</p></article>
+        <article><span>4</span><b>Survey</b><p>Unternehmen zeigen Chancen, Hürden und Investitionspläne.</p></article>
+      </div>
+    </section>
+
+    <section id="konflikte" class="section conflicts reveal">
+      <div class="section-title">
+        <p class="eyebrow">Weltkarte mit Konflikten</p>
+        <h2>Globale Konfliktlage als Ausgangspunkt</h2>
+        <p>Mehrere Konflikträume verdichten sich zu einem sicherheitspolitischen Umfeld, in dem Verteidigungsfähigkeit wieder als dauerhafte Staatsaufgabe erscheint. Die Größe der Totenköpfe skaliert mit der Opferzahl.</p>
+      </div>
+      <div class="conflict-layout">
+        <aside class="conflict-panel">
+          <h3 id="conflictTitle">Phase 1: Brennpunkte</h3>
+          <p id="conflictText">Zunächst erscheinen die größten Konflikträume. Sie bilden den narrativen Einstieg: Sicherheitsrisiken wirken konkret und geografisch greifbar.</p>
+          <div class="step-buttons" role="group" aria-label="Konfliktphase wählen">
+            <button class="active" data-step="0">1 Brennpunkte</button>
+            <button data-step="1">2 Verdichtung</button>
+            <button data-step="2">3 Budgetdruck</button>
+          </div>
+          <div id="casualtyList" class="casualty-list"></div>
+        </aside>
+        <div class="map-card">
+          <svg id="conflictMap" viewBox="0 0 1280 720" role="img" aria-label="Schematische Weltkarte mit Konfliktmarkern"></svg>
+          <p class="map-note">☠ Markergröße = Opferzahl · Puls = akute Eskalation</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="europa" class="section split reveal">
+      <div>
+        <p class="eyebrow">Rüstungsausgaben der Länder</p>
+        <h2>Europäische Staaten erhöhen ihre Verteidigungsbudgets</h2>
+        <p>In mehreren europäischen Ländern steigen die Ausgaben gleichzeitig. Das erzeugt eine neue Nachfragebasis für Hersteller von Munition, Fahrzeugen, Sensorik, Kommunikation und Wartung.</p>
+        <p>Der Effekt ist nicht nur militärisch, sondern auch industriell: Planungssicherheit, Produktionskapazität und Zuliefernetzwerke werden zu strategischen Faktoren.</p>
+      </div>
+      <div class="chart-card">
+        <h3>Rüstungsausgaben in Europa</h3>
+        <div id="europeChart" class="svg-chart"></div>
+      </div>
+    </section>
+
+    <section id="deutschland" class="section reveal">
+      <div class="section-title">
+        <p class="eyebrow">Politik Deutschland → Mehr Geld in Rüstung</p>
+        <h2>Bundeswehr-Ausgaben relativ zum BIP</h2>
+        <p>Deutschland steht im Mittelpunkt der Erzählung, weil sicherheitspolitische Zusagen, Haushaltsfragen und industriepolitische Erwartungen hier besonders sichtbar zusammenlaufen.</p>
+      </div>
+      <div class="kpi-row small">
+        <article><strong>1,4%</strong><span>2021 · niedriger Ausgangspunkt</span></article>
+        <article><strong>2,0%</strong><span>2024 · symbolische NATO-Marke</span></article>
+        <article><strong>2,2%</strong><span>2025 · neuer politischer Referenzpunkt</span></article>
+      </div>
+      <div class="chart-card wide">
+        <h3>Bundeswehr-Ausgaben relativ zum BIP</h3>
+        <div id="germanyChart" class="svg-chart"></div>
+      </div>
+      <div class="category-grid">
+        <article><span>✈</span><b>Drohnen</b><p>Aufklärung, Wirkung und schnellere Lagebilder.</p></article>
+        <article><span>▣</span><b>Fahrzeuge</b><p>Geschützte Mobilität und Ersatz alter Systeme.</p></article>
+        <article><span>⚓</span><b>Schiffe</b><p>Maritime Sicherheit und Bündnisfähigkeit.</p></article>
+        <article><span>⌁</span><b>Munition</b><p>Produktionskapazität wird selbst zum Engpass.</p></article>
+      </div>
+    </section>
+
+    <section id="rheinmetall" class="section split reveal">
+      <div>
+        <p class="eyebrow">Auswirkung des Rüstungsbooms</p>
+        <h2>Rheinmetall als Beispiel für etablierte Industrie</h2>
+        <p>Das Balken-/Liniendiagramm verbindet zwei Signale: steigenden Umsatz und wachsende Mitarbeiterzahl. Dadurch wird sichtbar, wie politische Nachfrage in Unternehmenswachstum übersetzt werden kann.</p>
+        <div class="step-buttons" role="group" aria-label="Rheinmetall Ansicht">
+          <button class="active" data-rhein="both">Beides</button>
+          <button data-rhein="revenue">Nur Umsatz</button>
+          <button data-rhein="employees">Nur Mitarbeiter</button>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3>Rheinmetall: Umsatz und Beschäftigung</h3>
+        <div id="rheinChart" class="svg-chart"></div>
+      </div>
+    </section>
+
+    <section id="startups" class="section reveal">
+      <div class="section-title">
+        <p class="eyebrow">Startups allgemein + Beispiel Helsing</p>
+        <h2>Defense-Tech wird zur eigenen Startup-Erzählung</h2>
+        <p>Neben klassischen Herstellern entstehen neue Wachstumsfelder: Software, KI, Sensorfusion, Drohnen und Cyber Defense. Helsing steht dabei stellvertretend für eine europäische Defence-Tech-Logik, in der Geschwindigkeit und Datenkompetenz wichtiger werden.</p>
+      </div>
+      <div class="startup-grid">
+        <article><b>KI-Lagebilder</b><p>Sensoren, Satelliten und Drohnen liefern Daten; Software macht daraus schneller nutzbare Informationen.</p></article>
+        <article><b>Drohnen & Autonomie</b><p>Günstigere Systeme können in größerer Stückzahl beschafft und schneller weiterentwickelt werden.</p></article>
+        <article><b>Cyber Defense</b><p>Digitale Infrastruktur wird selbst zum Verteidigungsraum.</p></article>
+        <article><b>Beschaffung</b><p>Startups versprechen kürzere Entwicklungszyklen als klassische Großprojekte.</p></article>
+      </div>
+    </section>
+
+    <section id="survey" class="section survey reveal">
+      <div class="section-title">
+        <p class="eyebrow">Defence Survey</p>
+        <h2>Was die Industrie im Fragebogen sichtbar macht</h2>
+        <p>Der Fragebogen trennt Unternehmen nach drei Pfaden: bereits aktiv, Einstieg geplant oder aktuell kein Einstieg. Dadurch lassen sich Marktpotenzial, konkrete Einstiegshürden und politische Hebel getrennt auswerten.</p>
+      </div>
+
+      <div class="kpi-row small survey-kpis">
+        <article><strong>214</strong><span>auswertbare Unternehmensantworten</span></article>
+        <article><strong>77%</strong><span>bereits aktiv oder Einstieg ernsthaft geprüft</span></article>
+        <article><strong>4,4 / 5</strong><span>Marktausblick der nächsten fünf Jahre</span></article>
+      </div>
+
+      <div class="survey-grid two">
+        <article class="chart-card">
+          <h3>Einordnung der Unternehmen</h3>
+          <p class="chart-copy">Der größte Block ist bereits im Defence-, Sicherheits- oder Dual-Use-Bereich aktiv. Gleichzeitig ist der Einstiegspfad groß genug, um von einem breiteren industriellen Suchprozess zu sprechen.</p>
+          <div id="routeChart" class="svg-chart compact-chart"></div>
+        </article>
+        <article class="insight-card accent-card">
+          <p class="eyebrow">Zentrale Lesart</p>
+          <h3>Der Boom ist kein Selbstläufer</h3>
+          <p>Viele Unternehmen sehen Marktchancen, aber der Übergang in Defence-Geschäft wird als institutionell anspruchsvoll beschrieben: Regulierung, Beschaffung, Sicherheitsfreigaben und Finanzierung entscheiden darüber, ob Potenzial tatsächlich in Aufträge übersetzt wird.</p>
+          <div class="mini-stack">
+            <span><b>Aktive Anbieter</b> kämpfen vor allem mit Vergabeprozessen und Skalierung.</span>
+            <span><b>Einsteiger</b> brauchen Zugang zu Netzwerken, Zertifizierung und Finanzierung.</span>
+            <span><b>Nicht-Einsteiger</b> nennen Strategie-Fit, Reputation und Informationsdefizite.</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="survey-grid two reveal nested">
+        <article class="chart-card">
+          <h3>Hürden beim Einstieg und Ausbau</h3>
+          <p class="chart-copy">Die stärksten Reibungspunkte liegen nicht in der Technologie selbst, sondern im institutionellen Umfeld.</p>
+          <div id="barrierChart" class="svg-chart compact-chart"></div>
+        </article>
+        <article class="chart-card">
+          <h3>Vergabe- und Regulierungserfahrung</h3>
+          <p class="chart-copy">Beschaffung wird als langsam und bürokratisch wahrgenommen. Für neue Anbieter entsteht dadurch ein Vorteil etablierter Unternehmen.</p>
+          <div id="procurementChart" class="svg-chart compact-chart"></div>
+        </article>
+      </div>
+
+      <div class="survey-grid three reveal nested">
+        <article class="chart-card">
+          <h3>Investitionsfelder</h3>
+          <div id="investmentChart" class="svg-chart small-chart"></div>
+        </article>
+        <article class="chart-card">
+          <h3>Technologiefelder</h3>
+          <div id="technologyChart" class="svg-chart small-chart"></div>
+        </article>
+        <article class="chart-card">
+          <h3>Wachstumsregionen</h3>
+          <div id="regionChart" class="svg-chart small-chart"></div>
+        </article>
+      </div>
+
+      <div class="survey-grid two reveal nested">
+        <article class="insight-card">
+          <p class="eyebrow">ESG, Personal, Standort</p>
+          <h3>Der Engpass verschiebt sich vom Produkt zur Organisation</h3>
+          <p>Die Antworten deuten darauf hin, dass Defence-Fähigkeit mehr verlangt als ein geeignetes Produkt. Unternehmen müssen Compliance, Geheimschutz, Finanzierung, Fachkräfte und Kommunikation gleichzeitig aufbauen.</p>
+          <div class="pill-list">
+            <span>Geheimschutz</span><span>Exportkontrolle</span><span>Fachkräfte</span><span>ESG-Kommunikation</span><span>Lieferketten</span><span>Zertifizierungen</span>
+          </div>
+        </article>
+        <article class="chart-card">
+          <h3>Politische Prioritäten</h3>
+          <p class="chart-copy">Die häufigsten Wünsche richten sich auf schnellere Verfahren, bessere KMU-Unterstützung und planbarere Entscheidungen.</p>
+          <div id="policyChart" class="svg-chart compact-chart"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="quellen" class="section sources reveal">
+      <p class="eyebrow">Literatur/Quellen</p>
+      <h2>Quellenbereich für die finale Fassung</h2>
+      <p>Für die finale Abgabe können hier die verwendeten Datenquellen und Literaturangaben gebündelt werden.</p>
+      <div class="source-grid">
+        <span>NATO Defense Expenditure Reports</span>
+        <span>SIPRI Military Expenditure Database</span>
+        <span>Bundeshaushalt / Einzelplan 14</span>
+        <span>Rheinmetall Geschäftsberichte</span>
+        <span>Defence-Survey Fragebogen v4.3</span>
+        <span>BAAINBw / Beschaffung</span>
+        <span>European Defence Fund</span>
+        <span>Defence-Tech Marktberichte</span>
+      </div>
+      <div class="team">
+        <h3>Team</h3>
+        <p>Finn Dütsch · Janis Müller · Marc Schmidt · Philipp Engel · Taner Yasadur</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
