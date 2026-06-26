@@ -1,0 +1,17 @@
+/*Farbpalette ist aus alter Datei überommen, können wir ändern*/
+
+:root {
+  --bg: #050814;
+  --panel: #0b1223;
+  --card: #101a2f;
+  --text: #f2f7ff;
+  --soft: #d7e2f3;
+  --muted: #b9c6da;
+  --line: rgba(255, 255, 255, 0.16);
+  --accent: #8bd7ff;
+  --accent2: #ffc56f;
+  --danger: #ff667f;
+  --ok: #9df6ca;
+  --purple: #c9b2ff;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+}

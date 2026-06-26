@@ -1,0 +1,19 @@
+{
+  "name": "defence_new",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.1.0"
+  },
+  "dependencies": {
+    "highcharts": "^13.0.0",
+    "install": "^0.13.0",
+    "npm": "^11.17.0"
+  }
+}
