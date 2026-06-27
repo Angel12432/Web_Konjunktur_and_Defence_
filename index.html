@@ -11,13 +11,45 @@
 
 <body>
   <main>
-    <section class = "main_content">
+
+    <section class="main_content">
       <h1>Konjunkturhoffnung Defence</h1>
-      <p>Die Verteidigungsindustrie ist ein wichtiger Wirtschaftsfaktor in Deutschland. In diesem Projekt werden die wirtschaftlichen Auswirkungen der Verteidigungsindustrie auf
-         die <i>deutsche</i> Wirtschaft untersucht.</p>
-    <h2>Testdiagramm</h2>
-    <div id="container" style="width:100%; height:400px;"></div>
+      <p>Die Verteidigungsindustrie ist ein wichtiger Wirtschaftsfaktor in Deutschland. In diesem Projekt werden
+        die wirtschaftlichen Auswirkungen der Verteidigungsindustrie auf die <i>deutsche</i> Wirtschaft untersucht.</p>
+      <h2>Testdiagramm</h2>
+      <div id="container" style="width:100%; height:400px;"></div>
     </section>
+
+    <section class="main_content">
+      <h2>Konfliktbedingte Todesfälle weltweit</h2>
+
+      <!-- Karte -->
+      <div id="kartenContainer">
+        <div class="karte-laden">
+          <div class="spinner"></div>
+          Daten werden geladen …
+        </div>
+      </div>
+
+      <!-- Slider -->
+      <div class="slider-bereich">
+        <div class="slider-kopf">
+          <span class="slider-titel">Jahr auswählen</span>
+          <span id="jahrLabel">2020</span>
+        </div>
+        <input type="range" id="jahrSlider" min="2020" max="2025" step="1" value="2020" />
+        <div class="slider-ticks">
+          <span class="slider-tick aktiv" data-jahr="2020">2020</span>
+          <span class="slider-tick" data-jahr="2021">2021</span>
+          <span class="slider-tick" data-jahr="2022">2022</span>
+          <span class="slider-tick" data-jahr="2023">2023</span>
+          <span class="slider-tick" data-jahr="2024">2024</span>
+          <span class="slider-tick" data-jahr="2025">2025</span>
+        </div>
+      </div>
+
+    </section>
+
   </main>
 </body>
 

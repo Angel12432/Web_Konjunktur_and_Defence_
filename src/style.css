@@ -1,4 +1,4 @@
-/*Farbpalette ist aus alter Datei überommen, können wir ändern*/
+/* Farbpalette ist aus alter Datei übernommen, können wir ändern */
 
 :root {
   --bg: #050814;
@@ -53,21 +53,153 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Kleinere Unterüberschriften */
+/* Kleinere Unterüberschriften *//* Kleinere Unterüberschriften */
 h3 {
   font-size: clamp(1.375rem, 3vw, 1.75rem);
 }
 
+
+
+/* ─── Weltkarte ─────────────────────────────────────────────────────────── */
+
+#kartenContainer {
+  width: 100%;
+  height: 560px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.karte-laden {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--muted);
+  font-size: 15px;
+  gap: 12px;
+}
+
+.karte-fehler {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--danger);
+  font-size: 14px;
+  text-align: center;
+  padding: 32px;
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--line);
+  border-top-color: var(--danger);
+  border-radius: 50%;
+  animation: drehen 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes drehen {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ─── Slider ─────────────────────────────────────────────────────────────── */
+
+.slider-bereich {
+  margin-top: 20px;
+  padding: 0 4px;
+}
+
+.slider-kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.slider-titel {
+  color: var(--muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--font-family);
+}
+
+#jahrLabel {
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-family: var(--font-family);
+}
+
+#jahrSlider {
+  width: 100%;
+  height: 5px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(to right, var(--danger) 0%, var(--line) 0%);
+}
+
+#jahrSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--text);
+  border: 3px solid var(--danger);
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 102, 127, 0.4);
+}
+
+#jahrSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--text);
+  border: 3px solid var(--danger);
+  cursor: pointer;
+}
+
+.slider-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.slider-tick {
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+  font-family: var(--font-family);
+}
+
+.slider-tick.aktiv {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.slider-tick:hover {
+  color: var(--soft);
+}
+
+
+
 /*Lokales Einbinden von zwei Schriften*/
 @font-face {
   font-family: 'Roboto';
-  src: url('assets/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf')  format('truetype');
+  src: url('assets/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Merriweather_sans';
-  src: url('assets/fonts/Merriweather/Merriweather-VariableFont_wght.ttf')  format('truetype');
+  src: url('assets/fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf')  format('truetype');
   font-display: swap;
 }
-
