@@ -47,10 +47,17 @@ h1 {
   
 }
 
+
+
 /* Große Sektions-Überschriften */
 h2 {
   font-size: clamp(1.625rem, 4vw, 2.5rem);
   margin-bottom: 20px;
+}
+
+/* Große Sektions-Überschriften */
+h2.worldmap {
+  color: red;
 }
 
 /* Kleinere Unterüberschriften *//* Kleinere Unterüberschriften */
