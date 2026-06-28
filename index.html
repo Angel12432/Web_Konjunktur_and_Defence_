@@ -1,24 +1,163 @@
 <!doctype html>
 <html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Konjunkturhoffnung Defense ist das die Hoffnung für die Industrie?"
+    />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon/favicon.ico" />
+    <script type="module" src="/src/main.js"></script>
+    <title>Konjunktur Hoffnung Defense</title>
+  </head>
+  <body data-theme="light">
+    <header class="topbar">
+      <div class="topbar__inner">
+        <span class="brand">Konjunktur &amp; Defense</span>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Theme wechseln">
+          <span class="theme-toggle__icon">🌙</span>
+        </button>
+      </div>
+      <div class="scroll-progress" aria-hidden="true"></div>
+    </header>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="/src/main.js"></script>
-  <title>Konjunkturhoffnung Defence</title>
-</head>
+    <main>
+      <section class="hero section reveal">
+        <div class="hero__content">
+          <p class="eyebrow">Europa rüstet auf – Wirtschaft und Sicherheit verschränken sich</p>
+          <h1 class="hero-title">Konjunktur Hoffnung Defense</h1>
+          <p class="hero-text">
+            Steigende Konflikte, neue Sicherheitspläne und staatliche Aufrüsteprogramme tragen die Rüstungsindustrie
+            in den Mittelpunkt der wirtschaftlichen Debatte.
+          </p>
+        </div>
+        <div class="hero__media">
+          <div class="battle-card">
+            <div class="battle-card__header">
+              <h2>Battle Deaths</h2>
+              <div class="timeline-controls">
+                <button id="battle-rewind" type="button">↺</button>
+                <button id="battle-play" type="button">▶</button>
+              </div>
+            </div>
+            <div id="battle-chart" class="chart-card"></div>
+            <input id="battle-slider" type="range" min="0" max="0" value="0" />
+            <p id="battle-info" class="chart-caption"></p>
+          </div>
+        </div>
+      </section>
 
-<body>
-  <main>
-    <section class = "main_content">
-      <h1>Konjunkturhoffnung Defence</h1>
-      <p>Die Verteidigungsindustrie ist ein wichtiger Wirtschaftsfaktor in Deutschland. In diesem Projekt werden die wirtschaftlichen Auswirkungen der Verteidigungsindustrie auf
-         die <i>deutsche</i> Wirtschaft untersucht.</p>
-    <h2>Testdiagramm</h2>
-    <div id="container" style="width:100%; height:400px;"></div>
-    </section>
-  </main>
-</body>
+      <section class="section reveal">
+        <div class="section-grid">
+          <div class="section-copy">
+            <p class="eyebrow">Europa erhöht die Verteidigungsausgaben</p>
+            <h2>Durch steigende Konflikte rüstet Europa auf</h2>
+            <p>
+              Der EU-Defence-Plan für 2025 sieht rund 800 Milliarden Euro für Verteidigung vor. Davon kommen 650
+              Milliarden Euro aus einer temporären Anhebung des Zielwerts von 2 % auf 3,5 % des BIP. Weitere 150
+              Milliarden Euro werden über das SAFE-Programm als Kreditinstrument bereitgestellt.
+            </p>
+          </div>
+          <div class="chart-panel">
+            <div id="military-chart" class="chart-card"></div>
+            <div id="military-legend" class="legend"></div>
+          </div>
+        </div>
+      </section>
 
+      <section class="section reveal">
+        <div class="section-grid">
+          <div class="section-copy">
+            <p class="eyebrow">Deutschland im Fokus</p>
+            <h2>Wehrpflicht seit dem 1. Januar 2026 – mehr Mittel für die Bundeswehr</h2>
+            <p>
+              In Deutschland werden Verteidigungsausgaben und Infrastrukturvorhaben neu ausgerichtet. Die Debatte um
+              Wehrpflicht, Modernisierung und Wirtschaftskraft macht die Branche zum Motor für Industrie, Forschung und
+              Beschäftigung.
+            </p>
+          </div>
+          <div class="chart-panel">
+            <div id="germany-chart" class="chart-card"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="section-heading">
+          <p class="eyebrow">Rheinmetall</p>
+          <h2>Ein zentraler Akteur der Verteidigungs- und Technologiewirtschaft</h2>
+          <p>
+            Rheinmetall bündelt Kompetenz in Fahrzeugen, Waffen und Munition, Luftverteidigung, digitalen
+            Gefechts- und Sensorsystemen sowie Marine-Systemen.
+          </p>
+        </div>
+        <div class="rheinmetall-controls" role="tablist" aria-label="Rheinmetall-Daten">
+          <button class="metric-btn is-active" type="button" data-metric="umsatz">Umsatz</button>
+          <button class="metric-btn" type="button" data-metric="aktienkurs">Aktienkurs &amp; Dividende</button>
+          <button class="metric-btn" type="button" data-metric="mitarbeiter">Mitarbeiter</button>
+        </div>
+        <div class="chart-panel chart-panel--single">
+          <div id="rheinmetall-chart" class="chart-card"></div>
+          <p id="rheinmetall-info" class="info-text"></p>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="section-grid">
+          <div class="section-copy">
+            <p class="eyebrow">Startups</p>
+            <h2>Nur 2 % der Deals – aber 17 % des Geldes</h2>
+            <p>
+              Start-ups erhalten selten die großen Vollverträge, aber wenn sie in Förderprogramme oder Spezialtechnologien
+              hineinwachsen, wird ihr Anteil am Gesamtbudget deutlich größer.
+            </p>
+          </div>
+          <div class="startup-stack">
+            <div class="grid-card">
+              <h3>2 % der Deals</h3>
+              <div id="deals-grid" class="dot-grid"></div>
+            </div>
+            <div class="grid-card">
+              <h3>17 % des Funding</h3>
+              <div id="funding-grid" class="dot-grid"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="section-heading">
+          <p class="eyebrow">Venture Capital</p>
+          <h2>Investoren reagieren schneller auf Sicherheits- und Rüstungsinnovation</h2>
+          <p>
+            Venture-Capital-Player richten ihren Fokus zunehmend auf cyber- und sensorbasierte Technologien, autonome
+            Systeme und digitale Logistik.
+          </p>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="section-heading">
+          <p class="eyebrow">Umfrage</p>
+          <h2>Die Stimmung ist auf dem Weg von Skepsis zu Planungssicherheit</h2>
+          <p>
+            Unternehmen und Bürgerinnen erwarten langfristig mehr öffentliche Aufträge, aber auch strengere Standards,
+            mehr Transparenz und eine klare europäische Strategie.
+          </p>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="section-heading">
+          <p class="eyebrow">Quellen</p>
+          <h2>Datenbasis und Referenzpunkte</h2>
+          <p>
+            Die Darstellung basiert auf SIPRI-Militärdaten, Eurostat- und Bundesdaten, dem Battle Deaths-Datensatz und
+            Unternehmenszahlen von Rheinmetall.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
