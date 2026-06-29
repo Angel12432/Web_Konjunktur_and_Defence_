@@ -19,8 +19,8 @@ const LAND_ZU_KEY = {
   "Yemen (North Yemen)": "ye",
 };
 
-//Daten ausgeschlossen aufgrund unklarer Datenlage oder unvollständiger darstellung
-const AUSGESCHLOSSENE_LAENDER = new Set(["gb", "ne", "td", "ml"]);
+// Daten ausgeschlossen aufgrund unklarer Datenlage oder unvollständiger Darstellung
+const AUSGESCHLOSSENE_LAENDER = new Set([]);
 
 const LAND_DE = {
   "af": "Afghanistan", "dz": "Algerien", "ao": "Angola", "au": "Australien",
@@ -38,6 +38,9 @@ const LAND_DE = {
   "tr": "Türkei", "ug": "Uganda", "ua": "Ukraine", "gb": "Ver. Königreich",
   "us": "USA", "ye": "Jemen",
 };
+
+const JAHRE = ["2020", "2021", "2022", "2023", "2024", "2025"];
+const ANIMATIONS_INTERVALL_MS = 1800; // Zeit pro Jahr in der Animation
 
 // ─── CSV laden und parsen ──────────────────────────────────────────────────
 async function ladeCSV() {
@@ -57,7 +60,6 @@ async function ladeCSV() {
   const datenNachJahr = {};
 
   for (let i = 1; i < zeilen.length; i++) {
-    // RFC-4180-sicheres Splitten (Kommas in Anführungszeichen werden ignoriert)
     const felder = [];
     let aktuell = "";
     let inAnfuehrung = false;
@@ -108,32 +110,34 @@ async function ladeCSV() {
   return ergebnis;
 }
 
-// ─── Karte rendern ────────────────────────────────────────────────────────; TODO: KARTE NATIV EINBINDEN
+// ─── Karte rendern ────────────────────────────────────────────────────────
+const StandardMapView = {projection: { name: "Miller" }, center: [15, 42], zoom: 4.0}
+
 async function erstelleKarte(datenNachJahr) {
   const topologie = await fetch(
     "https://code.highcharts.com/mapdata/custom/world.topo.json"
   ).then((r) => r.json());
 
   let aktuellesJahr = "2020";
+  let animationsTimer = null;   // setInterval-Handle
+  let laeuft = false;           // Animations-Zustand
 
   const chart = Highcharts.mapChart("kartenContainer", {
     chart: {
       map: topologie,
       backgroundColor: "transparent",
       style: { fontFamily: "var(--font-family)" },
+      zooming: { mouseWheel: { enabled: false } },
+      panning: { enabled: true },
     },
     title: {
-      text: null,  // Titel kommt aus dem HTML-H2
+      text: null,
     },
     subtitle: {
       text: "Quelle: UCDP Battle-Related Deaths Dataset v26.1 · Bester Schätzwert (bd_best)",
       style: { color: "var(--muted)", fontSize: "11px" },
     },
-    mapView: {
-      projection: { name: "Miller" },
-      center: [15, 42],
-      zoom: 4.0,
-    },
+    mapView: StandardMapView,
     colorAxis: {
       min: 1,
       max: 99000,
@@ -141,11 +145,10 @@ async function erstelleKarte(datenNachJahr) {
       minColor: "#fef9c3",
       maxColor: "#7f1d1d",
       tickAmount: 6,
-      //minRange: 1,
       stops: [
         [0,    "#fef9c3"],
         [0.2,  "#fde68a"],
-        [0.65,  "#f97316"],
+        [0.65, "#f97316"],
         [0.95, "#dc2626"],
         [1,    "#7f1d1d"],
       ],
@@ -159,7 +162,7 @@ async function erstelleKarte(datenNachJahr) {
       },
     },
     legend: {
-      title: { text: "Todesfälle<br> (logarithmish)", style: { color: "var(--muted)" } },
+      title: { text: "Todesfälle<br>(logarithmisch)", style: { color: "var(--muted)" } },
       align: "right",
       verticalAlign: "bottom",
       layout: "vertical",
@@ -192,7 +195,6 @@ async function erstelleKarte(datenNachJahr) {
         name: "Länder",
         data: datenNachJahr[aktuellesJahr] ?? [],
         joinBy: "hc-key",
-        // allAreas true lässt alle Kartenflächen zeichnen, damit Grenzen erhalten bleiben
         nullColor: "var(--panel)",
         borderColor: "var(--line)",
         states: {
@@ -201,26 +203,136 @@ async function erstelleKarte(datenNachJahr) {
         dataLabels: { enabled: false },
       },
     ],
+    mapNavigation: {
+      enabled: true,
+      enableMouseWheelZoom: false,
+      buttonOptions: {
+        verticalAlign: 'top',
+        align: 'left',
+        theme: {
+          fill: 'var(--card)',
+          stroke: 'var(--line)',
+          style: { color: 'var(--text)', fontSize: '16px' },
+          states: {
+            hover: { fill: 'var(--panel)', stroke: 'var(--danger)' },
+            select: { fill: 'var(--panel)' },
+          },
+        },
+      },
+    },
     credits: { enabled: false },
   });
 
-  // ─── Slider-Steuerung ────────────────────────────────────────────────────
-  const slider    = document.getElementById("jahrSlider");
-  const jahrLabel = document.getElementById("jahrLabel");
+  // ─── DOM-Referenzen ───────────────────────────────────────────────────────
+  const slider      = document.getElementById("jahrSlider");
+  const jahrLabel   = document.getElementById("jahrLabel");
+  const playBtn     = document.getElementById("playButton");
+  const playIcon    = document.getElementById("playIcon");
+  const pauseIcon   = document.getElementById("pauseIcon");
+
+  // ─── Lookup-Map: hc-key → Dateneintrag für ein gegebenes Jahr ───────────
+  function baueKeyMap(jahrStr) {
+    const map = {};
+    for (const eintrag of (datenNachJahr[jahrStr] ?? [])) {
+      map[eintrag["hc-key"]] = eintrag;
+    }
+    return map;
+  }
+
+  // ─── Karte auf ein Jahr setzen ────────────────────────────────────────────
+  // point.update() statt setData(): Highcharts interpoliert den Farbwert im
+  // colorAxis-Raum und erzeugt so einen echten Übergang zwischen den Jahren.
+  const ANIMATIONS_DAUER_MS = 600;
 
   function aktualisiereKarte(jahr) {
     aktuellesJahr = String(jahr);
     jahrLabel.textContent = aktuellesJahr;
-    chart.series[0].setData(datenNachJahr[aktuellesJahr] ?? [], true, { duration: 400 });
+    slider.value = aktuellesJahr;
+
+    const neueMap = baueKeyMap(aktuellesJahr);
+    const serie   = chart.series[0];
+
+    serie.points.forEach((punkt) => {
+      const key       = punkt["hc-key"] ?? punkt.properties?.["hc-key"];
+      const neueDaten = neueMap[key];
+      punkt.update(
+        {
+          value:            neueDaten?.value            ?? null,
+          num_conflicts:    neueDaten?.num_conflicts    ?? null,
+          type_of_conflict: neueDaten?.type_of_conflict ?? null,
+        },
+        false,  // kein sofortiges Redraw nach jedem Punkt
+        { duration: ANIMATIONS_DAUER_MS }
+      );
+    });
+
+    // Einmal gemeinsam neu zeichnen – performanter als ein Redraw pro Punkt
+    serie.chart.redraw({ duration: ANIMATIONS_DAUER_MS });
+
     document.querySelectorAll(".slider-tick").forEach((el) => {
       el.classList.toggle("aktiv", el.dataset.jahr === aktuellesJahr);
     });
-    const pct = ((parseInt(jahr) - 2020) / 5) * 100;
+
+    const pct = ((parseInt(aktuellesJahr) - 2020) / 5) * 100;
     slider.style.background =
       `linear-gradient(to right, var(--danger) ${pct}%, var(--line) ${pct}%)`;
   }
 
-  slider.addEventListener("input", (e) => aktualisiereKarte(e.target.value));
+  // ─── Animation stoppen ────────────────────────────────────────────────────
+  function stoppeAnimation() {
+    clearInterval(animationsTimer);
+    animationsTimer = null;
+    laeuft = false;
+    playIcon.style.display  = "block";
+    pauseIcon.style.display = "none";
+    playBtn.setAttribute("aria-label", "Animation abspielen");
+  }
+
+  // ─── Animation starten ────────────────────────────────────────────────────
+  function starteAnimation() {
+    // Wenn bereits am Ende → von vorne beginnen
+    if (aktuellesJahr === "2025") aktualisiereKarte(2020);
+
+    laeuft = true;
+    playIcon.style.display  = "none";
+    pauseIcon.style.display = "block";
+    playBtn.setAttribute("aria-label", "Animation pausieren");
+
+    animationsTimer = setInterval(() => {
+      const naechstesJahr = parseInt(aktuellesJahr) + 1;
+
+      if (naechstesJahr > 2025) {
+        stoppeAnimation();
+        return;
+      }
+
+      aktualisiereKarte(naechstesJahr);
+    }, ANIMATIONS_INTERVALL_MS);
+  }
+
+  // ─── Play/Pause-Button ────────────────────────────────────────────────────
+  playBtn.addEventListener("click", () => {
+    if (laeuft) {
+      stoppeAnimation();
+    } else {
+      starteAnimation();
+    }
+  });
+
+  // Manuelle Slider-Bedienung stoppt laufende Animation
+  slider.addEventListener("input", (e) => {
+    if (laeuft) stoppeAnimation();
+    aktualisiereKarte(e.target.value);
+  });
+
+    //Slider Ticks klickbar
+  document.querySelectorAll(".slider-tick").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (laeuft) stoppeAnimation();
+      aktualisiereKarte(btn.dataset.jahr);
+    });
+  });
+
   aktualisiereKarte(2020);
 }
 

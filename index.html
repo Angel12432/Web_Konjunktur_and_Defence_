@@ -34,19 +34,34 @@
       <!-- Slider -->
       <div class="slider-bereich">
         <div class="slider-kopf">
-          <span class="slider-titel">Jahr auswählen</span>
-          <span id="jahrLabel">2020</span>
+          <div class="slider-titel">Jahr auswählen</div>
+          <div class="play-bereich">
+            <!-- Play/Pause-Button -->
+            <button id="playButton" class="play-btn" aria-label="Animation abspielen">
+              <!-- Play-Icon (sichtbar im Ruhezustand) -->
+              <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                aria-hidden="true">
+                <path d="M8 5.14v14l11-7-11-7z" />
+              </svg>
+              <!-- Pause-Icon (sichtbar während Animation) -->
+              <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                aria-hidden="true" style="display:none">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+              </svg>
+            </button>
+            <span id="jahrLabel">2020</span>
+          </div>
+
+          <input type="range" id="jahrSlider" min="2020" max="2025" step="1" value="2020" />
+          <div class="slider-ticks">
+            <button class="slider-tick aktiv" data-jahr="2020">2020</button>
+            <button class="slider-tick" data-jahr="2021">2021</button>
+            <button class="slider-tick" data-jahr="2022">2022</button>
+            <button class="slider-tick" data-jahr="2023">2023</button>
+            <button class="slider-tick" data-jahr="2024">2024</button>
+            <button class="slider-tick" data-jahr="2025">2025</button>
+          </div>
         </div>
-        <input type="range" id="jahrSlider" min="2020" max="2025" step="1" value="2020" />
-        <div class="slider-ticks">
-          <span class="slider-tick aktiv" data-jahr="2020">2020</span>
-          <span class="slider-tick" data-jahr="2021">2021</span>
-          <span class="slider-tick" data-jahr="2022">2022</span>
-          <span class="slider-tick" data-jahr="2023">2023</span>
-          <span class="slider-tick" data-jahr="2024">2024</span>
-          <span class="slider-tick" data-jahr="2025">2025</span>
-        </div>
-      </div>
 
     </section>
 

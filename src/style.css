@@ -133,6 +133,7 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-family: var(--font-family);
+  margin-right: 10px;
 }
 
 #jahrLabel {
@@ -175,27 +176,75 @@ h3 {
 .slider-ticks {
   display: flex;
   justify-content: space-between;
-  margin-top: 8px;
+  margin-left: 10px;
 }
-
+ 
 .slider-tick {
-  color: var(--muted);
-  font-size: 12px;
-  cursor: pointer;
-  transition: color 0.2s;
-  user-select: none;
+  flex: 1;
+  text-align: center;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 4px 2px;
   font-family: var(--font-family);
+  font-size: 15px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  user-select: none;
 }
-
+ 
+.slider-tick:hover {
+  color: var(--soft);
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+ 
 .slider-tick.aktiv {
   color: var(--text);
   font-weight: 600;
+  border-color: var(--danger);
+  background: rgba(255, 102, 127, 0.08);
 }
 
-.slider-tick:hover {
-  color: var(--soft);
-}
 
+
+/* ── Play/Pause-Button ─────────────────────────────────────────────────── */
+/* In style.css ergänzen (z.B. im Block "Slider") */
+ 
+.play-bereich {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+ 
+.play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--danger);
+  background: transparent;
+  color: var(--danger);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+ 
+.play-btn:hover {
+  background: var(--danger);
+  color: var(--text);
+  box-shadow: 0 0 10px rgba(255, 102, 127, 0.4);
+}
+ 
+.play-btn svg {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
 
 
 /*Lokales Einbinden von zwei Schriften*/
