@@ -195,7 +195,6 @@ async function erstelleKarte(datenNachJahr) {
         // allAreas true lässt alle Kartenflächen zeichnen, damit Grenzen erhalten bleiben
         nullColor: "var(--panel)",
         borderColor: "var(--line)",
-        borderWidth: 0.5,
         states: {
           hover: { borderColor: "var(--text)", borderWidth: 1.5 },
         },
@@ -226,7 +225,7 @@ async function erstelleKarte(datenNachJahr) {
 }
 
 // ─── Einstiegspunkt (wird von main.js aufgerufen) ─────────────────────────
-export async function initialisiere() {
+export async function initialisiere_Weltkarte() {
   const kartenContainer = document.getElementById("kartenContainer");
   if (!kartenContainer) {
     console.error("Element #kartenContainer nicht gefunden.");
@@ -245,4 +244,4 @@ export async function initialisiere() {
   }
 }
 
-export default initialisiere;
+export default initialisiere_Weltkarte;
