@@ -1,4 +1,5 @@
 import Highcharts from "highcharts/highmaps";
+import topologie from "@highcharts/map-collection/custom/world.topo.json";
 
 // ─── Ländername (UCDP) → ISO-2-Code (Highcharts hc-key) ──────────────────
 const LAND_ZU_KEY = {
@@ -19,7 +20,7 @@ const LAND_ZU_KEY = {
   "Yemen (North Yemen)": "ye",
 };
 
-// Daten ausgeschlossen aufgrund unklarer Datenlage oder unvollständiger Darstellung
+// Möglichkeit Daten auszuschließen
 const AUSGESCHLOSSENE_LAENDER = new Set([]);
 
 const LAND_DE = {
@@ -114,9 +115,7 @@ async function ladeCSV() {
 const StandardMapView = {projection: { name: "Miller" }, center: [15, 42], zoom: 4.0}
 
 async function erstelleKarte(datenNachJahr) {
-  const topologie = await fetch(
-    "https://code.highcharts.com/mapdata/custom/world.topo.json"
-  ).then((r) => r.json());
+
 
   let aktuellesJahr = "2020";
   let animationsTimer = null;   // setInterval-Handle
