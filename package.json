@@ -13,8 +13,6 @@
   },
   "dependencies": {
     "@highcharts/map-collection": "^2.3.3",
-    "highcharts": "^13.0.0",
-    "install": "^0.13.0",
-    "npm": "^11.17.0"
+    "highcharts": "^13.0.0"
   }
 }
