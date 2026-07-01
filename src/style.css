@@ -263,9 +263,6 @@ h3 {
 
 /* ─── Charts & Graphiken ────────────────────────────────────────────────── */
 
-section {
-  margin-bottom: 60px;
-}
 
 .charts-row {
   display: grid;
@@ -346,17 +343,5 @@ section {
   color: var(--text) !important;
 }
 
-/* Container wird responsive */
-@media (max-width: 1024px) {
-  .charts-row {
-    grid-template-columns: 1fr;
-  }
-  
-  .chart-container.wide {
-    grid-column: 1;
-  }
-  
-  h1 {
-    font-size: 1.8em;
-  }
-}
+
+
