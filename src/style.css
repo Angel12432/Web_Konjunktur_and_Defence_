@@ -259,3 +259,104 @@ h3 {
   src: url('assets/fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf')  format('truetype');
   font-display: swap;
 }
+
+
+/* ─── Charts & Graphiken ────────────────────────────────────────────────── */
+
+section {
+  margin-bottom: 60px;
+}
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.charts-row-vertical {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.chart-container {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  min-height: 400px;
+}
+
+.chart-container.wide {
+  grid-column: 1;
+  min-height: 500px;
+}
+
+.chart-container.horizontal {
+  min-height: 600px;
+}
+
+.section-verticals .charts-row-vertical {
+  grid-template-columns: 1fr 1fr;
+}
+
+.source {
+  text-align: center;
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-top: 15px;
+  font-style: italic;
+}
+
+/* Animation für Bars von links */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Highcharts Anpassungen */
+.highcharts-title {
+  font-weight: 600 !important;
+}
+
+.highcharts-axis-labels {
+  color: var(--muted) !important;
+}
+
+.highcharts-grid-line {
+  stroke: var(--line) !important;
+}
+
+.highcharts-axis-line {
+  stroke: var(--line) !important;
+}
+
+.highcharts-legend-item text {
+  color: var(--text) !important;
+}
+
+/* Container wird responsive */
+@media (max-width: 1024px) {
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-container.wide {
+    grid-column: 1;
+  }
+  
+  h1 {
+    font-size: 1.8em;
+  }
+}
