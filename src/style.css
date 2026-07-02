@@ -45,7 +45,7 @@ body {
   min-width: 320px;
   max-width: 100vw;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -65,8 +65,8 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Große Sektions-Überschriften */
-h2.worldmap {
+/*Überschrift Worldmap*/
+h2.worldmaph {
   color: red;
 }
 
