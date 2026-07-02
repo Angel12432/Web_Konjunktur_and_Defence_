@@ -16,7 +16,15 @@
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
   --font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font2: Merriweather_sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* --- Ergänzt für Klassen von BIP_prozent --- */
+  --surface: var(--panel);
+  --surface-strong: var(--card);
+  --border: var(--line);
+  --accent-soft: #38bdf8;
+  --progress: var(--accent);
 }
+
 
 html {
   font-size: 1rem;
@@ -29,9 +37,22 @@ body {
   color: var(--text);
   font-family: var(--font2);
   min-height: 100vh;
+  line-height: 1.6;
 }
 
-.main_content {
+
+.main {
+  min-width: 320px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.world_content {
   min-width: 320px;
   max-width: 1400px;
   margin: 0 auto;
@@ -54,10 +75,7 @@ body {
 h1 {
   /* Mindestens 2rem, idealerweise 5vw, maximal 4rem */
   font-size: clamp(2rem, 5vw, 4rem);
-  
 }
-
-
 
 /* Große Sektions-Überschriften */
 h2 {
@@ -70,11 +88,10 @@ h2.worldmaph {
   color: red;
 }
 
-/* Kleinere Unterüberschriften *//* Kleinere Unterüberschriften */
+/* Kleinere Unterüberschriften */
 h3 {
   font-size: clamp(1.375rem, 3vw, 1.75rem);
 }
-
 
 
 /* ─── Weltkarte ─────────────────────────────────────────────────────────── */
@@ -188,7 +205,7 @@ h3 {
   justify-content: space-between;
   margin-left: 10px;
 }
- 
+
 .slider-tick {
   flex: 1;
   text-align: center;
@@ -203,13 +220,13 @@ h3 {
   transition: color 0.2s, border-color 0.2s, background 0.2s;
   user-select: none;
 }
- 
+
 .slider-tick:hover {
   color: var(--soft);
   border-color: var(--line);
   background: rgba(255, 255, 255, 0.04);
 }
- 
+
 .slider-tick.aktiv {
   color: var(--text);
   font-weight: 600;
@@ -218,16 +235,14 @@ h3 {
 }
 
 
-
 /* ── Play/Pause-Button ─────────────────────────────────────────────────── */
-/* In style.css ergänzen (z.B. im Block "Slider") */
- 
+
 .play-bereich {
   display: flex;
   align-items: center;
   gap: 12px;
 }
- 
+
 .play-btn {
   display: flex;
   align-items: center;
@@ -243,13 +258,13 @@ h3 {
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   flex-shrink: 0;
 }
- 
+
 .play-btn:hover {
   background: var(--danger);
   color: var(--text);
   box-shadow: 0 0 10px rgba(255, 102, 127, 0.4);
 }
- 
+
 .play-btn svg {
   width: 18px;
   height: 18px;
@@ -257,7 +272,7 @@ h3 {
 }
 
 
-/*Lokales Einbinden von zwei Schriften*/
+/* Lokales Einbinden von zwei Schriften */
 @font-face {
   font-family: 'Roboto';
   src: url('assets/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
@@ -266,13 +281,12 @@ h3 {
 
 @font-face {
   font-family: 'Merriweather_sans';
-  src: url('assets/fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf')  format('truetype');
+  src: url('assets/fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf') format('truetype');
   font-display: swap;
 }
 
 
 /* ─── Charts & Graphiken ────────────────────────────────────────────────── */
-
 
 .charts-row {
   display: grid;
@@ -332,7 +346,7 @@ h3 {
   }
 }
 
-/* Highcharts Anpassungen */
+
 .highcharts-title {
   font-weight: 600 !important;
 }
@@ -354,4 +368,292 @@ h3 {
 }
 
 
+/* ══════════════════════════════════════════════════════════════════════════
+   CSS-Philipp_BIP
+   ══════════════════════════════════════════════════════════════════════════ */
 
+.topbar,
+.section,
+.chart-panel,
+.chart-legend,
+.legend-item,
+.checkbox-item,
+.country-pill,
+.region-filter,
+.vp-switch {
+  box-sizing: border-box;
+}
+
+
+
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 auto auto 0;
+  height: 0.25rem;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  z-index: 100;
+  transition: width 160ms ease-out;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(11, 18, 35, 0.88);
+  backdrop-filter: blur(16px);
+  z-index: 90;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-mark {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  box-shadow: var(--shadow);
+}
+
+.eyebrow {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.topbar h1 {
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.vp-switch {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.hero-text {
+  font-size: 1rem;
+  max-width: 60ch;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.hero-info {
+  display: grid;
+  gap: 0.75rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.hero-info strong {
+  color: var(--text);
+}
+
+.section-grid {
+  margin: 0 auto;
+  display: grid;
+  gap: 1.5rem;
+  max-width: 1400px;
+}
+
+.text-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  color: var(--accent);
+}
+
+.section-militaer h2,
+.section-bip h2 {
+  font-size: clamp(1.55rem, 2.2vw, 2rem);
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.filter-label,
+.region-filter {
+  display: block;
+  width: 100%;
+}
+
+.filter-label {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.region-filter {
+  border: none;
+  border-radius: 0.85rem;
+  padding: 0.95rem 1rem;
+  background: var(--surface-strong);
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.checkbox-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.95rem;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.checkbox-item input {
+  width: 1rem;
+  height: 1rem;
+}
+
+.country-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.country-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: transform 150ms ease, background 150ms ease;
+}
+
+.country-pill.active {
+  background: var(--accent);
+  color: #050814;
+  border-color: transparent;
+}
+
+.country-pill:hover {
+  transform: translateY(-1px);
+}
+
+/* Hinweis: .chart-panel ergänzt die bereits vorhandene .chart-container
+   (Konflikt zugunsten der style.css-Definition oben aufgelöst) */
+.chart-panel {
+  min-height: 40rem;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 0.75rem 0.5rem 0 0.5rem;
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-strong);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease, opacity 150ms ease;
+}
+
+.legend-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.legend-item.disabled {
+  opacity: 0.55;
+}
+
+.legend-swatch {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 0.35rem;
+  display: inline-block;
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+.legend-label {
+  white-space: nowrap;
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (min-width: 900px) {
+  .section-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .hero {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-text {
+    font-size: 0.98rem;
+  }
+
+  .section {
+    padding: 1.25rem;
+  }
+}

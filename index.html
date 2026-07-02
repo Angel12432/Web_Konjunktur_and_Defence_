@@ -10,9 +10,12 @@
 </head>
 
 <body>
-  <main>
+  <div class="scroll-progress" id="scroll-progress"></div>
 
-    <section class="main_content">
+
+
+  <main>
+    <section class="world_content">
       <h1>Konjunkturhoffnung Defence</h1>
       <p>Die Verteidigungsindustrie ist ein wichtiger Wirtschaftsfaktor in Deutschland. In diesem Projekt werden
         die wirtschaftlichen Auswirkungen der Verteidigungsindustrie auf die <i>deutsche</i> Wirtschaft untersucht.</p>
@@ -78,6 +81,60 @@
         <div id="growth-chart" class="chart-container horizontal"></div>
       </div>
       <p class="source">Dealroom.com 2025 data as of 1st Sept 2025</p>
+    </section>
+
+
+<!-- Charts Phillipp---------------------------------- -->
+    <section class="hero section">
+      <p class="hero-text">Europa rüstet auf: Der 2025 beschlossene Defence Plan der EU plant 800 Milliarden Euro für
+        Verteidigung.</p>
+    </section>
+
+    <section class="section section-militaer reveal-on-scroll">
+      <div class="section-grid">
+        <div class="text-panel">
+          <p class="section-label">Steigende Militärausgaben Europa</p>
+          <h2>Mehr Verteidigungsinvestitionen im Blick</h2>
+          <p>Durch steigende Konflikte und Kriege rüstet Europa auf. Die EU hat 2025 einen Defence Plan beschlossen, in
+            dem 800 Milliarden Euro für die Verteidigung eingeplant sind.</p>
+          <p><strong>650 Milliarden Euro</strong> kommen von der temporären Erhöhung des GDP von 2% auf 3,5%.</p>
+          <p><strong>150 Milliarden Euro</strong> kommen von loan instrument - Security Action for Europe (SAFE).</p>
+
+          <label class="filter-label" for="region-filter">Kategorie auswählen</label>
+          <select id="region-filter" class="region-filter" aria-label="Region auswählen">
+            <option value="top5eu" selected>Top 5 EU</option>
+            <option value="europe">Europa</option>
+            <option value="eu">EU</option>
+            <option value="nato">NATO</option>
+            <option value="asia">Asien</option>
+            <option value="africa">Afrika</option>
+            <option value="northamerica">Nordamerika</option>
+            <option value="southamerica">Südamerika</option>
+            <option value="oceania">Ozeanien</option>
+            <option value="all">Alle Länder</option>
+          </select>
+          <div id="military-legend" class="chart-legend" aria-label="Militärausgaben Legende"></div>
+        </div>
+
+        <div class="chart-panel">
+          <div id="military-chart" class="chart-container"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-bip reveal-on-scroll">
+      <div class="section-grid">
+        <div class="text-panel">
+          <p class="section-label">Änderungen in Deutschland</p>
+          <h2>Wehrpflicht und höhere Verteidigungsausgaben</h2>
+          <p>Seit dem 1.1.2026 ist die Wehrpflicht in Kraft. Deutschlands Haushalt reagiert mit erhöhten
+            Militärausgaben, während die wirtschaftliche Entwicklung neu bewertet wird.</p>
+        </div>
+
+        <div class="chart-panel">
+          <div id="bip-chart" class="chart-container"></div>
+        </div>
+      </div>
     </section>
 
   </main>

@@ -3,6 +3,7 @@ import './style.css'
 import './scripts/script.js'
 import { initialisiere_Weltkarte } from "./scripts/Weltkarte.js";
 import  initalisiereVCFinanzierung from './scripts/script.js';
+import "./scripts/BIP_prozent.js";
 
 initialisiere_Weltkarte();
 initalisiereVCFinanzierung();
