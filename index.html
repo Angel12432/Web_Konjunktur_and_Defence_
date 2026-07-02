@@ -3,33 +3,75 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="/src/main.js"></script>
+  <meta name="description" content="Konjunkturhoffnung Defense ist das die Hoffnung für die Industrie?" />
+  <link rel="icon" type="image/svg+xml" href="/src/assets/Favicon/favicon.svg" />
   <title>Konjunkturhoffnung Defence</title>
+  <script type="module" src="/src/main.js"></script>
 </head>
 
 <body>
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div>
+        <p class="eyebrow">Konjunktur & Defense</p>
+        <h1>Verteidigungsstrategie in Europa</h1>
+      </div>
+    </div>
+    <button class="vp-switch" id="theme-toggle" aria-label="Helligkeitsmodus umschalten">VP</button>
+  </header>
+
   <main>
-    <h1>VC-Finanzierung und Verteidigungstechnologie</h1>
-    
-    <!-- Deutschland Vergleich Section -->
-    <section class="section-deutschland">
-      <h2>Deutschland VC DefTech Finanzierung</h2>
-      <div class="charts-row">
-        <div id="deutschland-funding" class="chart-container"></div>
-        <div id="deutschland-share" class="chart-container"></div>
+    <section class="hero section">
+      <p class="hero-text">Europa rüstet auf: Der 2025 beschlossene Defence Plan der EU plant 800 Milliarden Euro für Verteidigung.</p>
+    </section>
+
+    <section class="section section-militaer reveal-on-scroll">
+      <div class="section-grid">
+        <div class="text-panel">
+          <p class="section-label">Steigende Militärausgaben Europa</p>
+          <h2>Mehr Verteidigungsinvestitionen im Blick</h2>
+          <p>Durch steigende Konflikte und Kriege rüstet Europa auf. Die EU hat 2025 einen Defence Plan beschlossen, in dem 800 Milliarden Euro für die Verteidigung eingeplant sind.</p>
+          <p><strong>650 Milliarden Euro</strong> kommen von der temporären Erhöhung des GDP von 2% auf 3,5%.</p>
+          <p><strong>150 Milliarden Euro</strong> kommen von loan instrument - Security Action for Europe (SAFE).</p>
+          
+          <label class="filter-label" for="region-filter">Kategorie auswählen</label>
+          <select id="region-filter" class="region-filter" aria-label="Region auswählen">
+            <option value="top5eu" selected>Top 5 EU</option>
+            <option value="europe">Europa</option>
+            <option value="eu">EU</option>
+            <option value="nato">NATO</option>
+            <option value="asia">Asien</option>
+            <option value="africa">Afrika</option>
+            <option value="northamerica">Nordamerika</option>
+            <option value="southamerica">Südamerika</option>
+            <option value="oceania">Ozeanien</option>
+            <option value="all">Alle Länder</option>
+          </select>
+          <div id="military-legend" class="chart-legend" aria-label="Militärausgaben Legende"></div>
+        </div>
+
+        <div class="chart-panel">
+          <div id="military-chart" class="chart-container"></div>
+        </div>
       </div>
     </section>
 
-    <!-- 2025 Funding & Growth Section -->
-    <section class="section-verticals">
-      <h2>2025 VC Funding nach Vertical</h2>
-      <div class="charts-row-vertical">
-        <div id="funding-chart" class="chart-container horizontal"></div>
-        <div id="growth-chart" class="chart-container horizontal"></div>
+    <section class="section section-bip reveal-on-scroll">
+      <div class="section-grid">
+        <div class="text-panel">
+          <p class="section-label">Änderungen in Deutschland</p>
+          <h2>Wehrpflicht und höhere Verteidigungsausgaben</h2>
+          <p>Seit dem 1.1.2026 ist die Wehrpflicht in Kraft. Deutschlands Haushalt reagiert mit erhöhten Militärausgaben, während die wirtschaftliche Entwicklung neu bewertet wird.</p>
+        </div>
+
+        <div class="chart-panel">
+          <div id="bip-chart" class="chart-container"></div>
+        </div>
       </div>
-      <p class="source">Dealroom.com 2025 data as of 1st Sept 2025</p>
     </section>
   </main>
 </body>

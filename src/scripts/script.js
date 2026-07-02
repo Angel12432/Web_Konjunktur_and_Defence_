@@ -1,258 +1,330 @@
-//Import aller Module
 import Highcharts from "highcharts"
 
-// Daten aus den CSV Dateien
-const deutschlandData = {
-  vcFinancing2019: 2000.0, // USD Mio
-  vcFinancing2024: 1500.0, // USD Mio
-  share2019: 2.9, // Prozent
-  share2024: 10.7 // Prozent
+const regionGroups = {
+  top5eu: ['Deutschland', 'Frankreich', 'Italien', 'Spanien', 'Polen'],
+  europe: ['Deutschland', 'Frankreich', 'Italien', 'Spanien', 'Portugal', 'Niederlande', 'Belgien', 'Luxemburg', 'Österreich', 'Schweiz', 'Dänemark', 'Schweden', 'Norwegen', 'Finnland', 'Polen', 'Tschechien', 'Slowakei', 'Ungarn', 'Rumänien', 'Bulgarien', 'Griechenland', 'Kroatien', 'Serbien', 'Slowenien', 'Bosnien und Herzegowina', 'Montenegro', 'Nordmazedonien', 'Albanien', 'Irland', 'Vereinigtes Königreich', 'Island', 'Ukraine', 'Belarus', 'Litauen', 'Lettland', 'Estland', 'Moldau', 'Russland'],
+  eu: ['Belgien','Bulgarien','Dänemark','Deutschland','Estland','Finnland','Frankreich','Griechenland','Irland','Italien','Kroatien','Lettland','Litauen','Luxemburg','Malta','Niederlande','Österreich','Polen','Portugal','Rumänien','Schweden','Slowakei','Slowenien','Spanien','Tschechien','Ungarn','Zypern'],
+  nato: ['Albanien','Belgien','Bulgarien','Dänemark','Deutschland','Estland','Finnland','Frankreich','Griechenland','Island','Italien','Kanada','Lettland','Litauen','Luxemburg','Montenegro','Niederlande','Nordmazedonien','Norwegen','Polen','Portugal','Rumänien','Slowakei','Slowenien','Spanien','Tschechien','Türkei','Ungarn','Vereinigtes Königreich','Vereinigte Staaten'],
+  asia: ['China', 'Japan', 'Südkorea', 'Nordkorea', 'Indien', 'Pakistan', 'Bangladesch', 'Sri Lanka', 'Nepal', 'Bhutan', 'Afghanistan', 'Iran', 'Irak', 'Türkei', 'Saudi-Arabien', 'Vereinigte Arabische Emirate', 'Katar', 'Kuwait', 'Oman', 'Israel', 'Jordanien', 'Syrien', 'Libanon', 'Indonesien', 'Malaysia', 'Thailand', 'Vietnam', 'Philippinen', 'Singapur', 'Myanmar', 'Kambodscha', 'Laos', 'Mongolei', 'Kasachstan'],
+  africa: ['Ägypten', 'Marokko', 'Algerien', 'Tunesien', 'Libyen', 'Sudan', 'Südafrika', 'Nigeria', 'Kenia', 'Äthiopien', 'Ghana', 'Tansania', 'Uganda', 'Angola', 'Kamerun', 'Senegal', 'Côte d’Ivoire', 'Demokratische Republik Kongo', 'Republik Kongo', 'Namibia', 'Botswana', 'Simbabwe'],
+  northamerica: ['Kanada', 'USA', 'Mexiko', 'Guatemala', 'Belize', 'Honduras', 'El Salvador', 'Nicaragua', 'Costa Rica', 'Panama', 'Kuba', 'Jamaika', 'Haiti', 'Dominikanische Republik'],
+  southamerica: ['Brasilien', 'Argentinien', 'Chile', 'Peru', 'Kolumbien', 'Venezuela', 'Ecuador', 'Bolivien', 'Paraguay', 'Uruguay', 'Guyana', 'Suriname'],
+  oceania: ['Australien', 'Neuseeland', 'Papua-Neuguinea', 'Fidschi', 'Samoa', 'Tonga', 'Vanuatu', 'Salomonen']
 }
 
-const verticalFunding2025 = [
-  { name: "Fintech", value: 10.6 },
-  { name: "Deep Tech", value: 9.9 },
-  { name: "Health", value: 8.1 },
-  { name: "Enterprise Software", value: 6.3 },
-  { name: "Defense security and resilience", value: 4.7 },
-  { name: "Energy", value: 4.3 },
-  { name: "Transportation", value: 3.2 },
-  { name: "Security", value: 2.2 },
-  { name: "Defence", value: 1.5 },
-  { name: "Marketing", value: 1.4 },
-  { name: "Robotics", value: 1.4 },
-  { name: "Travel", value: 1.4 },
-  { name: "Food", value: 1.2 },
-  { name: "Semiconductors", value: 1.2 },
-  { name: "Media", value: 0.836 }
-]
+let militaryChart = null
+let militaryCountries = []
 
-const verticalGrowth2025 = [
-  { name: "Fintech", value: 79 },
-  { name: "Deep Tech", value: -9 },
-  { name: "Health", value: 5 },
-  { name: "Enterprise Software", value: -8 },
-  { name: "Defense security and resilience", value: 32 },
-  { name: "Energy", value: -32 },
-  { name: "Transportation", value: -21 },
-  { name: "Security", value: 63 },
-  { name: "Defence", value: 132 },
-  { name: "Marketing", value: -12 },
-  { name: "Robotics", value: -8 },
-  { name: "Travel", value: 54 },
-  { name: "Food", value: -50 },
-  { name: "Semiconductors", value: 44 },
-  { name: "Media", value: 1 }
-]
+function toNumber(value) {
+  if (value === null || value === undefined) return null
+  const cleaned = String(value).trim().replace(/\./g, '').replace(',', '.')
+  if (cleaned === 'k.A.' || cleaned === 'k.A' || cleaned === '') return null
+  const number = Number(cleaned)
+  return Number.isNaN(number) ? null : number
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-  // 1. Deutschland VC Finanzierung 2019 vs 2024
-  Highcharts.chart('deutschland-funding', {
-    chart: {
-      type: 'column',
-      backgroundColor: 'rgba(0,0,0,0)',
-      style: { fontFamily: 'inherit' }
-    },
-    title: {
-      text: 'VC DefTech Finanzierung',
-      style: { color: '#8bd7ff', fontSize: '16px', fontWeight: 600 }
-    },
-    xAxis: {
-      categories: ['2019', '2024'],
-      labels: { style: { color: '#b9c6da' } },
-      lineColor: 'rgba(255,255,255,0.16)'
-    },
-    yAxis: {
-      title: { text: 'USD Millionen', style: { color: '#b9c6da' } },
-      labels: { style: { color: '#b9c6da' } },
-      gridLineColor: 'rgba(255,255,255,0.16)'
-    },
-    plotOptions: {
-      column: {
-        dataLabels: {
-          enabled: true,
-          format: '{point.y:.0f}',
-          style: { color: '#f2f7ff', fontWeight: 'bold' }
-        }
-      }
-    },
-    series: [{
-      name: 'Finanzierung',
-      data: [deutschlandData.vcFinancing2019, deutschlandData.vcFinancing2024],
-      color: '#8bd7ff'
-    }],
-    legend: { enabled: false },
-    credits: { enabled: false }
+function normalizeName(name) {
+  return String(name)
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(/[^\p{L}\p{N}]+/gu, '')
+    .toLowerCase()
+}
+
+function parseCSV(text) {
+  const lines = text
+    .trim()
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(line => line.length > 0)
+
+  const delimiter = lines[0].includes(';') ? ';' : ','
+  const header = lines[0].split(delimiter).map(h => h.trim())
+  const rows = []
+
+  for (let i = 1; i < lines.length; i += 1) {
+    const parts = lines[i].split(delimiter).map(part => part.trim())
+    rows.push(parts)
+  }
+
+  return { header, rows }
+}
+
+async function loadCSV(path) {
+  const response = await fetch(path)
+  if (!response.ok) {
+    throw new Error(`CSV konnte nicht geladen werden: ${path}`)
+  }
+  const text = await response.text()
+  return parseCSV(text)
+}
+
+function updateScrollProgress() {
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+  const progress = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0
+  const bar = document.getElementById('scroll-progress')
+  if (bar) {
+    bar.style.width = `${progress}%`
+  }
+}
+
+function initializeThemeToggle() {
+  const button = document.getElementById('theme-toggle')
+  const storedTheme = localStorage.getItem('theme')
+
+  if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.body.classList.add('dark')
+  }
+
+  if (!button) return
+  button.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  })
+}
+
+function getRegionCountries(region) {
+  if (region === 'all') return [...militaryCountries]
+
+  const group = regionGroups[region] || []
+  const normalizedGroup = group.map(normalizeName)
+  return militaryCountries.filter(country => normalizedGroup.includes(normalizeName(country)))
+}
+
+function updateSeriesVisibilityForCountries(countries) {
+  if (!militaryChart) return
+  militaryChart.series.forEach(series => {
+    const shouldShow = countries.includes(series.name)
+    series.update({ visible: shouldShow, showInLegend: shouldShow }, false)
+  })
+  militaryChart.redraw()
+  renderMilitaryLegend(currentRegion)
+}
+
+function renderMilitaryLegend(region = currentRegion) {
+  const container = document.getElementById('military-legend')
+  if (!container || !militaryChart) return
+
+  const selectedCountries = getRegionCountries(region)
+  container.innerHTML = ''
+
+  const legendList = document.createElement('div')
+  legendList.className = 'legend-items'
+
+  selectedCountries.forEach(country => {
+    const series = militaryChart.series.find(item => item.name === country)
+    if (!series) return
+
+    const item = document.createElement('button')
+    item.type = 'button'
+    item.className = 'legend-item'
+    if (!series.visible) item.classList.add('disabled')
+    item.innerHTML = `
+      <span class="legend-swatch" style="background: ${series.color || 'var(--accent)'}"></span>
+      <span class="legend-label">${country}</span>
+    `
+
+    item.addEventListener('click', () => {
+      const visible = !series.visible
+      series.update({ visible, showInLegend: visible }, false)
+      militaryChart.redraw()
+      item.classList.toggle('disabled', !visible)
+    })
+
+    legendList.appendChild(item)
   })
 
-  // 2. Deutschland Anteil an nationaler Finanzierung 2019 vs 2024
-  Highcharts.chart('deutschland-share', {
-    chart: {
-      type: 'column',
-      backgroundColor: 'rgba(0,0,0,0)',
-      style: { fontFamily: 'inherit' }
-    },
-    title: {
-      text: 'Anteil nationale Finanzierung',
-      style: { color: '#8bd7ff', fontSize: '16px', fontWeight: 600 }
-    },
-    xAxis: {
-      categories: ['2019', '2024'],
-      labels: { style: { color: '#b9c6da' } },
-      lineColor: 'rgba(255,255,255,0.16)'
-    },
-    yAxis: {
-      title: { text: 'Prozent (%)', style: { color: '#b9c6da' } },
-      labels: { style: { color: '#b9c6da' } },
-      gridLineColor: 'rgba(255,255,255,0.16)'
-    },
-    plotOptions: {
-      column: {
-        dataLabels: {
-          enabled: true,
-          format: '{point.y:.1f}%',
-          style: { color: '#f2f7ff', fontWeight: 'bold' }
-        }
-      }
-    },
-    series: [{
-      name: 'Anteil',
-      data: [deutschlandData.share2019, deutschlandData.share2024],
-      color: '#ffc56f'
-    }],
-    legend: { enabled: false },
-    credits: { enabled: false }
+  if (selectedCountries.length === 0) {
+    container.textContent = 'Keine Daten für diese Kategorie verfügbar.'
+  } else {
+    container.appendChild(legendList)
+  }
+}
+
+let currentRegion = 'top5eu'
+
+function buildCountryLegend(region = currentRegion) {
+  currentRegion = region
+  const filterSelect = document.getElementById('region-filter')
+  if (filterSelect) filterSelect.value = region
+  renderMilitaryLegend(region)
+}
+
+function initializeRegionFilter() {
+  const filterSelect = document.getElementById('region-filter')
+  if (!filterSelect) return
+  filterSelect.addEventListener('change', event => {
+    const region = event.target.value
+    currentRegion = region
+    updateSeriesVisibilityForCountries(getRegionCountries(region))
+  })
+}
+
+function createMilitaryChart(data) {
+  const yearIndex = data.header.findIndex(column => normalizeName(column) === normalizeName('Jahr'))
+  const countryIndex = data.header.findIndex(column => normalizeName(column) === normalizeName('Land'))
+  const valueIndex = data.header.findIndex(column => normalizeName(column).includes(normalizeName('Anteil_BIP_Prozent')))
+
+  const yearSet = new Set()
+  const countryMap = new Map()
+
+  data.rows.forEach(row => {
+    const country = row[countryIndex]
+    const year = row[yearIndex]
+    const value = toNumber(row[valueIndex])
+    if (!country || !year || value === null) return
+
+    yearSet.add(year)
+    if (!countryMap.has(country)) {
+      countryMap.set(country, new Map())
+    }
+    countryMap.get(country).set(year, value)
   })
 
-  // 3. 2025 VC Funding Horizontal Bar Chart - mit Animation von links
-  const fundingData = verticalFunding2025.map(item => item.value)
-  const fundingCategories = verticalFunding2025.map(item => item.name)
-  
-  Highcharts.chart('funding-chart', {
-    chart: {
-      type: 'column',
-      backgroundColor: 'rgba(0,0,0,0)',
-      style: { fontFamily: 'inherit' },
-      inverted: true,
-      marginLeft: 250
-    },
-    title: {
-      text: '2025 VC Funding (USD Billion)',
-      style: { color: '#8bd7ff', fontSize: '16px', fontWeight: 600 }
-    },
-    xAxis: {
-      categories: fundingCategories,
-      title: { text: null },
-      labels: { 
-        style: { color: '#b9c6da', fontSize: '12px' },
-        align: 'right'
-      },
-      lineColor: 'rgba(255,255,255,0.16)'
-    },
-    yAxis: {
-      title: { text: 'USD Billion', style: { color: '#b9c6da' } },
-      labels: { style: { color: '#b9c6da', fontSize: '11px' } },
-      gridLineColor: 'rgba(255,255,255,0.16)',
-      tickInterval: 2
-    },
-    plotOptions: {
-      column: {
-        pointPadding: 0.1,
-        borderWidth: 0,
-        animation: {
-          duration: 1500,
-          easing: 'easeOutQuad'
-        },
-        dataLabels: {
-          enabled: true,
-          format: '{point.y:.2f}B',
-          style: { color: '#f2f7ff', fontSize: '11px' }
-        }
-      }
-    },
-    series: [{
-      name: '2025 Funding',
-      data: fundingData,
-      color: {
-        linearGradient: { x1: 0, x2: 1, y1: 0, y2: 0 },
-        stops: [
-          [0, '#8bd7ff'],
-          [1, '#4a9fd8']
-        ]
-      }
-    }],
-    legend: { enabled: false },
-    credits: { enabled: false },
-    tooltip: {
-      formatter: function() {
-        return this.series.name + ': <b>$' + this.y.toFixed(2) + 'B</b>'
-      }
+  const categories = [...yearSet].sort((a, b) => a.localeCompare(b, 'de', { numeric: true }))
+  militaryCountries = [...countryMap.keys()].sort((a, b) => normalizeName(a).localeCompare(normalizeName(b)))
+
+  const series = militaryCountries.map(country => {
+    const countryYears = countryMap.get(country)
+    return {
+      name: country,
+      data: categories.map(year => countryYears.has(year) ? countryYears.get(year) : null),
+      visible: getRegionCountries(currentRegion).includes(country),
+      marker: { enabled: false }
     }
   })
 
-  // 4. Projected Growth 2025 vs 2024 Horizontal Bar Chart - mit positiven und negativen Werten
-  const growthData = verticalGrowth2025.map(item => item.value)
-  const growthCategories = verticalGrowth2025.map(item => item.name)
-  
-  Highcharts.chart('growth-chart', {
+  militaryChart = Highcharts.chart('military-chart', {
     chart: {
-      type: 'column',
-      backgroundColor: 'rgba(0,0,0,0)',
-      style: { fontFamily: 'inherit' },
-      inverted: true,
-      marginLeft: 0
+      type: 'spline',
+      backgroundColor: 'transparent',
+      animation: { duration: 1200 },
+      style: { fontFamily: 'inherit' }
     },
     title: {
-      text: 'Projected Growth 2025 vs 2024 (%)',
-      style: { color: '#8bd7ff', fontSize: '16px', fontWeight: 600 }
+      text: 'Militärausgaben als Anteil des BIP',
+      style: { color: 'var(--accent)', fontSize: '1rem', fontWeight: '700' }
     },
     xAxis: {
-      categories: growthCategories,
+      categories,
       title: { text: null },
-      labels: { enabled: false },
-      lineColor: 'rgba(255,255,255,0.16)'
+      labels: { style: { color: 'var(--muted)' } },
+      lineColor: 'rgba(107, 114, 128, 0.24)',
+      tickmarkPlacement: 'on'
     },
     yAxis: {
-      title: { text: 'Wachstum (%)', style: { color: '#b9c6da' } },
-      labels: { style: { color: '#b9c6da', fontSize: '11px' } },
-      gridLineColor: 'rgba(255,255,255,0.16)',
-      plotLines: [{
-        color: 'rgba(255,255,255,0.3)',
-        width: 1,
-        value: 0
-      }],
-      tickInterval: 20
+      title: { text: '% des BIP', style: { color: 'var(--muted)' } },
+      labels: { style: { color: 'var(--muted)' } },
+      gridLineColor: 'rgba(107, 114, 128, 0.18)' 
+    },
+    legend: {
+      enabled: false
     },
     plotOptions: {
-      column: {
-        pointPadding: 0.1,
-        borderWidth: 0,
-        animation: {
-          duration: 1500,
-          easing: 'easeOutQuad'
-        },
-        dataLabels: {
-          enabled: true,
-          format: '{point.y}%',
-          style: { color: '#f2f7ff', fontSize: '11px' }
-        },
-        colorByPoint: true
+      series: {
+        animation: { duration: 1000 },
+        turboThreshold: 500,
+        states: {
+          inactive: {
+            opacity: 0.25
+          }
+        }
       }
+    },
+    series,
+    credits: { enabled: false },
+    tooltip: {
+      valueSuffix: ' %',
+      backgroundColor: 'rgba(15, 23, 42, 0.94)',
+      style: { color: '#fff' }
+    }
+  })
+
+  // Use Highcharts legend; show only current region series
+  updateSeriesVisibilityForCountries(getRegionCountries(currentRegion))
+}
+
+function createBipChart(data) {
+  const years = data.rows.map(row => row[0])
+  const values = data.rows.map(row => toNumber(row[1]))
+
+  Highcharts.chart('bip-chart', {
+    chart: {
+      type: 'line',
+      backgroundColor: 'transparent',
+      style: { fontFamily: 'inherit' }
+    },
+    title: {
+      text: 'BIP-Wachstum Deutschland 1992–2025',
+      style: { color: 'var(--accent)', fontSize: '1rem', fontWeight: '700' }
+    },
+    xAxis: {
+      categories: years,
+      title: { text: null },
+      labels: { style: { color: 'var(--muted)' } },
+      lineColor: 'rgba(107, 114, 128, 0.24)'
+    },
+    yAxis: {
+      title: { text: 'Wachstum (%)', style: { color: 'var(--muted)' } },
+      labels: { style: { color: 'var(--muted)' } },
+      gridLineColor: 'rgba(107, 114, 128, 0.18)' 
     },
     series: [{
       name: 'Wachstum',
-      data: growthData,
-      colors: growthData.map(value => 
-        value >= 0 ? '#9df6ca' : '#ff667f'
-      )
+      data: values,
+      color: 'var(--accent)',
+      marker: { enabled: false }
     }],
-    legend: { enabled: false },
     credits: { enabled: false },
     tooltip: {
-      formatter: function() {
-        const prefix = this.y >= 0 ? '+' : ''
-        return this.series.name + ': <b>' + prefix + this.y + '%</b>'
-      }
+      valueSuffix: ' %',
+      backgroundColor: 'rgba(15, 23, 42, 0.94)',
+      style: { color: '#fff' }
     }
   })
+}
+
+function observeSections() {
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return
+        const target = entry.target
+        target.classList.add('is-visible')
+
+        if (target.classList.contains('section-militaer')) {
+          loadMilitarySection()
+          obs.unobserve(target)
+        }
+
+        if (target.classList.contains('section-bip')) {
+          loadBipSection()
+          obs.unobserve(target)
+        }
+      })
+    },
+    { threshold: 0.2 }
+  )
+
+  document.querySelectorAll('.reveal-on-scroll').forEach(section => observer.observe(section))
+}
+
+async function loadMilitarySection() {
+  if (militaryChart) return
+  const data = await loadCSV('/data_raw/Militaerausgaben/sipri_militaerausgaben_alle_laender_2015_2024_DE-1.csv')
+  createMilitaryChart(data)
+}
+
+async function loadBipSection() {
+  const data = await loadCSV('/data_raw/BIP_Deutschland/BIP_Wachstum_92_25.csv')
+  createBipChart(data)
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initializeThemeToggle()
+  initializeRegionFilter()
+  updateScrollProgress()
+  window.addEventListener('scroll', updateScrollProgress)
+  observeSections()
 })
