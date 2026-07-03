@@ -132,10 +132,6 @@ async function erstelleKarte(datenNachJahr) {
     title: {
       text: null,
     },
-    subtitle: {
-      text: "Quelle: UCDP Battle-Related Deaths Dataset v26.1 · Bester Schätzwert (bd_best)",
-      style: { color: "var(--muted)", fontSize: "11px" },
-    },
     mapView: StandardMapView,
     colorAxis: {
       min: 1,
