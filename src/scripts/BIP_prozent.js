@@ -72,16 +72,30 @@ function updateScrollProgress() {
 
 function initializeThemeToggle() {
   const button = document.getElementById('theme-toggle')
+  const iconSun = button?.querySelector('.icon-sun')
+  const iconMoon = button?.querySelector('.icon-moon')
   const storedTheme = localStorage.getItem('theme')
 
+  const applyTheme = (theme) => {
+    const isDark = theme === 'dark'
+    document.body.classList.toggle('dark', isDark)
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+    if (iconSun && iconMoon) {
+      iconSun.style.display = isDark ? 'none' : 'block'
+      iconMoon.style.display = isDark ? 'block' : 'none'
+    }
+  }
+
   if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.body.classList.add('dark')
+    applyTheme('dark')
+  } else {
+    applyTheme('light')
   }
 
   if (!button) return
   button.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('dark')
-    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+    const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark'
+    applyTheme(nextTheme)
   })
 }
 
