@@ -6,4 +6,3 @@ import  initalisiereVCFinanzierung from './scripts/script.js';
 
 initialisiere_Weltkarte();
 initalisiereVCFinanzierung();
-
