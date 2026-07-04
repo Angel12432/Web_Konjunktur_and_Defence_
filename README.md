@@ -1,38 +1,88 @@
 # Konjunkturhoffnung Defence
 
-Interaktive Vite-Webseite zur Einordnung von Defence als Konjunktur- und Investitionsthema. Die Seite kombiniert eine Highcharts-Weltkarte, mehrere VC-Diagramme und eine Euro-Multiplikator-Animation.
+Interaktive Vite-Webstory zur Frage, ob Defence seit der Zeitenwende als Konjunktur- und Investitionshoffnung gelesen werden kann. Die Seite verbindet eine Highmaps-Weltkarte zur globalen Konfliktlage, VC-DefTech-Diagramme und eine animierte Multiplikator-Kritik.
 
-## Lokal starten
+## Projektstruktur
+
+```text
+index.html
+src/
+  main.js
+  assets/
+    euro-coin.png
+  components/
+    mannheimerAnimation.js
+    vcCharts.js
+    worldMap.js
+  lib/
+    csv.js
+    highchartsTheme.js
+  styles/
+    main.css
+    tokens.css
+    base.css
+    layout.css
+    components.css
+    charts.css
+    mannheimer.css
+    responsive.css
+public/
+  data/
+    battle-deaths.csv
+    vc-country-comparison.csv
+    vc-vertical-comparison.csv
+data_raw/
+  ... Original-/Archivdaten ...
+```
+
+`src/styles/main.css` ist der zentrale CSS-Einstiegspunkt. Einzelne Style-Dateien sind nach Zuständigkeit getrennt, werden aber nur über diesen Master importiert. Die JavaScript-Komponenten enthalten keine größeren Style-Blöcke mehr.
+
+## Lokale Entwicklung
+
+Benötigt wird Node.js 20 oder neuer.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Danach die von Vite angezeigte lokale URL öffnen.
+Die lokale Vite-Adresse wird im Terminal angezeigt.
 
-## Produktionsbuild testen
+## Production Build
 
 ```bash
 npm run build
 npm run preview
 ```
 
-Der Build erzeugt den Ordner `dist/`. Daten, die im Browser per `fetch()` geladen werden, liegen unter `public/data_raw/`, damit Vite sie automatisch in `dist/data_raw/` kopiert.
+Der Build erzeugt `dist/`. Alle Browser-Daten liegen unter `public/data/` und werden dadurch automatisch nach `dist/data/` kopiert. Die Rohdaten in `data_raw/` dienen als Arbeits-/Archivstand und werden nicht direkt von der Website geladen.
 
-## Cross-platform Hinweise
+## Deployment auf GitHub Pages
 
-- `node_modules/` wird nicht mitgeliefert und soll nicht committed werden.
-- Abhängigkeiten werden über `package.json` und `package-lock.json` reproduzierbar installiert.
-- Empfohlen: Node.js 20 oder neuer.
-- Die Seite nutzt responsive CSS-Grids und Highcharts-Responsive-Rules für Desktop, Tablet und Mobile.
-
-## GitHub Pages
-
-Die Vite-Konfiguration enthält:
+`vite.config.js` enthält aktuell:
 
 ```js
-base: '/Web_Konjunktur_and_Defence_/'
+base: '/Web_Konjunktur_and_Defence_/',
 ```
 
-Das passt, wenn das Repository genau `Web_Konjunktur_and_Defence_` heißt. Bei einem anderen Repositorynamen muss `base` entsprechend angepasst werden.
+Das passt, wenn das GitHub-Repository exakt `Web_Konjunktur_and_Defence_` heißt. Bei einem anderen Repository-Namen muss dieser `base`-Pfad angepasst werden.
+
+Die GitHub-Actions-Workflow-Datei liegt unter:
+
+```text
+.github/workflows/jekyll-gh-pages.yml
+```
+
+## Architekturhinweise
+
+- `components/` enthält sichtbare Seitenelemente und deren Verhalten.
+- `lib/csv.js` enthält geteiltes CSV-Laden, Parsing und Zahlen-Normalisierung.
+- `lib/highchartsTheme.js` zentralisiert Farben und wiederverwendbare Highcharts-Optionen.
+- `styles/tokens.css` definiert Farben, Abstände, Radien, Schatten und Schrift-Stack.
+- `styles/responsive.css` bündelt Breakpoints für Desktop, Tablet und Mobile.
+
+## Wichtige Hinweise
+
+- `node_modules/` wird nicht versioniert und sollte nicht in ZIPs für Branches enthalten sein.
+- `dist/` wird lokal erzeugt, aber nicht als Quellcode benötigt.
+- Die Highcharts/Highmaps-Abhängigkeiten sind relativ groß; ein Build kann deshalb eine Bundle-Size-Warnung ausgeben. Das ist für dieses Projekt erwartbar.

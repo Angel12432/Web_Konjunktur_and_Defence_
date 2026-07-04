@@ -1,12 +1,13 @@
-import './style.css';
-import { initialisiereWeltkarte } from './scripts/Weltkarte.js';
-import { initialisiereVCCharts } from './scripts/script.js';
-import { initialisiereMannheimerAnimation } from './scripts/mannheimer.js';
+import './styles/main.css';
+
+import { initializeWorldMap } from './components/worldMap.js';
+import { initializeVcCharts } from './components/vcCharts.js';
+import { initializeMannheimerAnimation } from './components/mannheimerAnimation.js';
 
 function startApp() {
-  initialisiereWeltkarte();
-  initialisiereVCCharts();
-  initialisiereMannheimerAnimation();
+  initializeWorldMap();
+  initializeVcCharts();
+  initializeMannheimerAnimation();
 }
 
 if (document.readyState === 'loading') {

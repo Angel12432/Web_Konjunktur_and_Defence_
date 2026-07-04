@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Interaktive Webstory zur Konjunkturhoffnung Defence, Konfliktlage, DefTech-Finanzierung und ökonomischer Kritik." />
+  <meta name="description" content="Interaktive Webstory zur Konjunkturhoffnung Defence, Konfliktlage, DefTech-Finanzierung und makroökonomischer Kritik." />
   <script type="module" src="/src/main.js"></script>
   <title>Konjunkturhoffnung Defence</title>
 </head>
@@ -26,57 +26,59 @@
       <div class="hero-cards" aria-label="Zentrale Leitfragen">
         <article class="info-card">
           <span class="card-number">01</span>
-          <h2>Warum wächst die Aufmerksamkeit?</h2>
+          <h3>Warum wächst die Aufmerksamkeit?</h3>
           <p>Konflikte und sicherheitspolitische Unsicherheit erhöhen den politischen und wirtschaftlichen Druck.</p>
         </article>
         <article class="info-card">
           <span class="card-number">02</span>
-          <h2>Wo fließt Kapital hin?</h2>
+          <h3>Wo fließt Kapital hin?</h3>
           <p>VC-Daten zeigen, ob Defence und Resilience tatsächlich stärker als Investitionsfeld wahrgenommen werden.</p>
         </article>
         <article class="info-card">
           <span class="card-number">03</span>
-          <h2>Was bleibt volkswirtschaftlich?</h2>
+          <h3>Was bleibt volkswirtschaftlich?</h3>
           <p>Wachstumseffekte sind nicht automatisch hoch, nur weil die Ausgaben politisch dringlich erscheinen.</p>
         </article>
       </div>
     </section>
 
-    <section class="section-shell transition-section">
-      <p class="eyebrow">Ausgangspunkt</p>
-      <h2>Die Nachfrage entsteht nicht im luftleeren Raum</h2>
-      <p>
-        Die erste Visualisierung zeigt die räumliche und zeitliche Konzentration konfliktbedingter Todesfälle.
-        Sie ist keine direkte Marktprognose, aber sie erklärt, warum Sicherheitspolitik, Lieferketten und
-        Verteidigungsfähigkeit seit 2022 stärker in den Mittelpunkt rücken.
-      </p>
+    <section class="section-shell text-section">
+      <header class="section-header section-header--narrow">
+        <p class="eyebrow">Ausgangspunkt</p>
+        <h2>Nachfrage entsteht nicht im luftleeren Raum</h2>
+        <p>
+          Die erste Visualisierung zeigt die räumliche und zeitliche Konzentration konfliktbedingter Todesfälle.
+          Sie ist keine direkte Marktprognose, aber sie erklärt, warum Sicherheitspolitik, Lieferketten und
+          Verteidigungsfähigkeit seit 2022 stärker in den Mittelpunkt rücken.
+        </p>
+      </header>
     </section>
 
-    <section class="worldmap section-shell" aria-labelledby="worldmap-title">
-      <div class="section-heading-row">
+    <section class="section-shell visual-section" aria-labelledby="worldmap-title">
+      <header class="section-header section-header--row">
         <div>
           <p class="eyebrow">Globale Konfliktlage</p>
-          <h2 id="worldmap-title" class="worldmaph">Konfliktbedingte Todesfälle weltweit</h2>
+          <h2 id="worldmap-title" class="text-danger">Konfliktbedingte Todesfälle weltweit</h2>
         </div>
         <p class="section-note">Interaktiv: Jahr auswählen, Animation starten oder einzelne Länder antippen.</p>
-      </div>
+      </header>
 
-      <div id="kartenContainer" class="map-card">
-        <div class="karte-laden">
-          <div class="spinner"></div>
+      <div id="kartenContainer" class="map-card" aria-live="polite">
+        <div class="loading-state">
+          <div class="spinner" aria-hidden="true"></div>
           Daten werden geladen …
         </div>
       </div>
 
-      <div class="slider-bereich" aria-label="Jahresauswahl für die Weltkarte">
-        <div class="slider-kopf">
-          <div class="slider-titel">Jahr auswählen</div>
-          <div class="play-bereich">
-            <button id="playButton" class="play-btn" aria-label="Animation abspielen">
+      <div class="slider-panel" aria-label="Jahresauswahl für die Weltkarte">
+        <div class="slider-header">
+          <div class="slider-title">Jahr auswählen</div>
+          <div class="play-controls">
+            <button id="playButton" class="play-btn" type="button" aria-label="Animation abspielen">
               <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M8 5.14v14l11-7-11-7z" />
               </svg>
-              <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none">
+              <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden>
                 <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
               </svg>
             </button>
@@ -86,21 +88,21 @@
 
         <input type="range" id="jahrSlider" min="2020" max="2025" step="1" value="2020" aria-label="Jahr" />
         <div class="slider-ticks" aria-label="Direkte Jahresauswahl">
-          <button class="slider-tick aktiv" data-jahr="2020">2020</button>
-          <button class="slider-tick" data-jahr="2021">2021</button>
-          <button class="slider-tick" data-jahr="2022">2022</button>
-          <button class="slider-tick" data-jahr="2023">2023</button>
-          <button class="slider-tick" data-jahr="2024">2024</button>
-          <button class="slider-tick" data-jahr="2025">2025</button>
+          <button class="slider-tick is-active" type="button" data-year="2020">2020</button>
+          <button class="slider-tick" type="button" data-year="2021">2021</button>
+          <button class="slider-tick" type="button" data-year="2022">2022</button>
+          <button class="slider-tick" type="button" data-year="2023">2023</button>
+          <button class="slider-tick" type="button" data-year="2024">2024</button>
+          <button class="slider-tick" type="button" data-year="2025">2025</button>
         </div>
       </div>
     </section>
 
-    <section class="section-shell transition-section two-column-text">
-      <div>
+    <section class="section-shell text-section text-section--split">
+      <header class="section-header">
         <p class="eyebrow">Vom Konflikt zum Markt</p>
         <h2>Aus Sicherheitsdruck wird Investitionsinteresse</h2>
-      </div>
+      </header>
       <p>
         Wenn Staaten ihre Verteidigungsfähigkeit ausbauen, entstehen neue Absatzchancen für etablierte
         Unternehmen und Start-ups. Besonders sichtbar wird das in der Kapitalallokation: Welche Bereiche
@@ -108,53 +110,57 @@
       </p>
     </section>
 
-    <section class="section-deutschland section-shell" aria-labelledby="germany-title">
-      <div class="section-heading-row">
+    <section class="section-shell visual-section" aria-labelledby="germany-title">
+      <header class="section-header section-header--row">
         <div>
           <p class="eyebrow">Deutschland</p>
-          <h2 id="germany-title">VC DefTech Finanzierung</h2>
+          <h2 id="germany-title">VC-DefTech-Finanzierung</h2>
         </div>
         <p class="section-note">Der Betrag sinkt gegenüber 2019, der Anteil am nationalen VC-Markt steigt deutlich.</p>
-      </div>
-      <div class="charts-row">
-        <div id="deutschland-funding" class="chart-container"></div>
-        <div id="deutschland-share" class="chart-container"></div>
+      </header>
+      <div class="chart-grid chart-grid--two">
+        <div id="deutschland-funding" class="chart-card"></div>
+        <div id="deutschland-share" class="chart-card"></div>
       </div>
     </section>
 
-    <section class="section-shell transition-section">
-      <p class="eyebrow">Einordnung</p>
-      <h2>Defence ist wachstumsstark, aber nicht der ganze VC-Markt</h2>
-      <p>
-        Die nächsten Diagramme vergleichen Defence und angrenzende Resilience-Bereiche mit anderen Verticals.
-        Dadurch wird sichtbar, dass Defence zwar dynamisch wächst, aber im absoluten Finanzierungsvolumen
-        weiterhin neben größeren Feldern wie Fintech, Deep Tech oder Health steht.
-      </p>
+    <section class="section-shell text-section">
+      <header class="section-header section-header--narrow">
+        <p class="eyebrow">Einordnung</p>
+        <h2>Defence ist wachstumsstark, aber nicht der ganze VC-Markt</h2>
+        <p>
+          Die nächsten Diagramme vergleichen Defence und angrenzende Resilience-Bereiche mit anderen Verticals.
+          Dadurch wird sichtbar, dass Defence zwar dynamisch wächst, aber im absoluten Finanzierungsvolumen
+          weiterhin neben größeren Feldern wie Fintech, Deep Tech oder Health steht.
+        </p>
+      </header>
     </section>
 
-    <section class="section-verticals section-shell" aria-labelledby="vertical-title">
-      <div class="section-heading-row">
+    <section class="section-shell visual-section" aria-labelledby="vertical-title">
+      <header class="section-header section-header--row">
         <div>
           <p class="eyebrow">VC-Verticals</p>
-          <h2 id="vertical-title">2025 VC Funding nach Vertical</h2>
+          <h2 id="vertical-title">VC-Funding 2025 nach Vertical</h2>
         </div>
         <p class="section-note">Funding und Wachstum sollten zusammen gelesen werden: groß ist nicht automatisch dynamisch.</p>
-      </div>
-      <div class="charts-row-vertical">
-        <div id="funding-chart" class="chart-container horizontal"></div>
-        <div id="growth-chart" class="chart-container horizontal"></div>
+      </header>
+      <div class="chart-grid chart-grid--verticals">
+        <div id="funding-chart" class="chart-card chart-card--tall"></div>
+        <div id="growth-chart" class="chart-card chart-card--tall"></div>
       </div>
       <p class="source">Quelle: Dealroom.com, 2025 data as of 1st Sept 2025.</p>
     </section>
 
-    <section class="content-section section-shell transition-section">
-      <p class="eyebrow">Kritik</p>
-      <h2>Mehr Defence-Ausgaben sind nicht automatisch ein Konjunkturprogramm</h2>
-      <p>
-        Die Investitionsdaten erklären, warum Defence als Wachstumsfeld attraktiv wirkt. Die makroökonomische
-        Gegenfrage lautet aber: Wie viel zusätzliche Wirtschaftsleistung entsteht pro ausgegebenem Euro?
-        Genau hier setzt die Multiplikator-Kritik an.
-      </p>
+    <section class="section-shell text-section">
+      <header class="section-header section-header--narrow">
+        <p class="eyebrow">Kritik</p>
+        <h2>Mehr Defence-Ausgaben sind nicht automatisch ein Konjunkturprogramm</h2>
+        <p>
+          Die Investitionsdaten erklären, warum Defence als Wachstumsfeld attraktiv wirkt. Die makroökonomische
+          Gegenfrage lautet aber: Wie viel zusätzliche Wirtschaftsleistung entsteht pro ausgegebenem Euro?
+          Genau hier setzt die Multiplikator-Kritik an.
+        </p>
+      </header>
     </section>
 
     <section id="mannheimer-animation" class="section-shell" aria-label="Mannheimer Euro Animation"></section>

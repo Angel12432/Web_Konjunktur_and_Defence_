@@ -1,0 +1,271 @@
+.mannheimer-shell {
+  --coin-size: clamp(250px, 33vw, 380px);
+  --printed-width: min(46vw, 33rem);
+  width: min(100%, 1120px);
+  min-height: clamp(430px, 54vw, 590px);
+  margin: 48px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 50% 52%, rgba(213, 191, 99, 0.2), transparent 31%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(139, 215, 255, 0.04));
+  border: 1px solid var(--color-line);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  isolation: isolate;
+}
+
+.mannheimer-coin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--coin-size);
+  height: var(--coin-size);
+  z-index: 8;
+  cursor: pointer;
+  perspective: 900px;
+  filter: drop-shadow(0 26px 30px rgba(0, 0, 0, 0.25));
+  transform: translate(-50%, -50%);
+  animation: mannheimer-float 4.2s ease-in-out infinite;
+  transition:
+    left 900ms cubic-bezier(0.19, 1, 0.22, 1),
+    top 900ms cubic-bezier(0.19, 1, 0.22, 1),
+    filter 450ms ease;
+}
+
+.mannheimer-coin::before {
+  content: '';
+  position: absolute;
+  inset: -18%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 225, 112, 0.38), rgba(255, 225, 112, 0.13) 34%, transparent 68%);
+  opacity: 0.9;
+  transform: scale(0.98);
+  animation: mannheimer-aura 2.4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.mannheimer-coin::after {
+  content: 'Click';
+  position: absolute;
+  left: 50%;
+  bottom: -2.45rem;
+  transform: translateX(-50%);
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(60, 50, 20, 0.14);
+  color: rgba(32, 32, 32, 0.62);
+  font-size: 0.78rem;
+  font-weight: 780;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  opacity: 1;
+  transition: opacity 250ms ease, transform 250ms ease;
+  pointer-events: none;
+}
+
+.mannheimer-coin:hover {
+  filter:
+    drop-shadow(0 28px 32px rgba(0, 0, 0, 0.25))
+    drop-shadow(0 0 22px rgba(255, 213, 74, 0.46));
+}
+
+.mannheimer-half {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-image: var(--mannheimer-coin-image);
+  background-size: var(--coin-size) var(--coin-size);
+  background-repeat: no-repeat;
+  transition:
+    transform 1050ms cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 820ms ease,
+    filter 900ms ease;
+  backface-visibility: hidden;
+  will-change: transform, opacity, filter;
+}
+
+.mannheimer-half-left {
+  left: 0;
+  background-position: left center;
+  border-radius: var(--coin-size) 0 0 var(--coin-size);
+  transform-origin: right center;
+  z-index: 9;
+}
+
+.mannheimer-half-right {
+  right: 0;
+  background-position: right center;
+  border-radius: 0 var(--coin-size) var(--coin-size) 0;
+  transform-origin: left center;
+  z-index: 5;
+}
+
+.mannheimer-printer-slot {
+  position: absolute;
+  left: 50%;
+  top: 4%;
+  height: 92%;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.98), rgba(70, 60, 30, 0.2), transparent);
+  opacity: 0;
+  transform: translateX(-50%) scaleY(0.2);
+  transform-origin: center;
+  z-index: 12;
+  transition: opacity 260ms ease, transform 420ms ease;
+  pointer-events: none;
+}
+
+.mannheimer-flash {
+  position: absolute;
+  z-index: 7;
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 230, 130, 0.34), transparent 62%);
+  opacity: 0;
+  transform: scale(0.65);
+  transition: opacity 320ms ease, transform 600ms cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
+}
+
+.mannheimer-print-viewport {
+  position: absolute;
+  left: calc(31% + var(--coin-size) * 0.16);
+  top: 50%;
+  width: var(--printed-width);
+  transform: translateY(-50%);
+  z-index: 7;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.mannheimer-printed-text {
+  width: var(--printed-width);
+  opacity: 0;
+  transform: translateX(calc(var(--printed-width) * -1));
+  transition:
+    transform 1850ms cubic-bezier(0.18, 0.88, 0.34, 1) 560ms,
+    opacity 320ms ease 560ms;
+}
+
+.mannheimer-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
+  margin-bottom: 0.85rem;
+  padding: 0.4rem 0.68rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(60, 50, 20, 0.16);
+  color: rgba(32, 32, 32, 0.66);
+  font-size: 0.78rem;
+  font-weight: 780;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mannheimer-kicker::before {
+  content: '';
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: #d5bf63;
+  box-shadow: 0 0 0 4px rgba(213, 191, 99, 0.18);
+}
+
+.mannheimer-title {
+  margin: 0 0 0.8rem;
+  font-size: clamp(1.9rem, 4.1vw, 3.85rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  font-weight: 880;
+  color: var(--color-text);
+  white-space: pre-line;
+}
+
+.mannheimer-body {
+  margin: 0;
+  color: rgba(242, 247, 255, 0.72);
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  line-height: 1.62;
+  white-space: pre-line;
+}
+
+.mannheimer-shell.is-cutting .mannheimer-printer-slot {
+  opacity: 1;
+  transform: translateX(-50%) scaleY(1);
+}
+
+.mannheimer-shell.is-cutting .mannheimer-flash {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mannheimer-shell.is-open .mannheimer-coin {
+  left: 31%;
+  animation-play-state: paused;
+}
+
+.mannheimer-shell.is-open .mannheimer-coin::before {
+  opacity: 0.42;
+  animation-play-state: paused;
+}
+
+.mannheimer-shell.is-open .mannheimer-coin::after {
+  opacity: 0;
+  transform: translateX(-50%) translateY(4px);
+}
+
+.mannheimer-shell.is-open .mannheimer-half-left {
+  transform: translateX(-8%) rotateY(-5deg) rotateZ(-0.8deg);
+  filter: brightness(0.98);
+}
+
+.mannheimer-shell.is-open .mannheimer-half-right {
+  transform: translateX(calc(var(--coin-size) * 0.62)) translateY(-18px) rotateY(16deg) rotateZ(8deg) scale(0.86);
+  opacity: 0;
+  filter: blur(0.2px) saturate(0.76);
+  pointer-events: none;
+}
+
+.mannheimer-shell.is-open .mannheimer-printed-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mannheimer-shell.is-open .mannheimer-print-viewport {
+  pointer-events: auto;
+}
+
+.mannheimer-shell.is-open .mannheimer-flash {
+  opacity: 0;
+}
+
+.mannheimer-shell.is-closing .mannheimer-printed-text {
+  opacity: 0;
+  transform: translateX(calc(var(--printed-width) * -1));
+  transition:
+    transform 980ms cubic-bezier(0.18, 0.88, 0.34, 1) 80ms,
+    opacity 420ms ease 560ms;
+}
+
+.mannheimer-shell.is-closing .mannheimer-half {
+  transition-delay: 120ms;
+}
+
+@keyframes mannheimer-float {
+  0%, 100% { translate: 0 0; rotate: -0.35deg; }
+  25% { translate: 0 -9px; rotate: 0.8deg; }
+  50% { translate: 0 -4px; rotate: -0.5deg; }
+  75% { translate: 0 -12px; rotate: 0.45deg; }
+}
+
+@keyframes mannheimer-aura {
+  0%, 100% { opacity: 0.68; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1.07); }
+}
