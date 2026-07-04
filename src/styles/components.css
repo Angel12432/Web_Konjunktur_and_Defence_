@@ -12,8 +12,6 @@
 }
 
 .info-card,
-.chart-card,
-.map-card,
 .slider-panel {
   background: var(--panel-gradient);
   border: 1px solid var(--color-line);
@@ -55,6 +53,10 @@
   width: 100%;
   height: clamp(360px, 58vw, 620px);
   overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .loading-state,

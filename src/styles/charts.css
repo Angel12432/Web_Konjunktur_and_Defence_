@@ -11,7 +11,11 @@
 .chart-card {
   min-width: 0;
   min-height: clamp(320px, 45vw, 440px);
-  padding: clamp(0.5rem, 2vw, 1rem);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .chart-card--tall {

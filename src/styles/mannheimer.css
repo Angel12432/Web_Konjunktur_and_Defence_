@@ -1,17 +1,22 @@
+.critique-intro {
+  padding-bottom: clamp(0.75rem, 1.6vw, 1.4rem);
+}
+
+#mannheimer-animation {
+  padding-top: 0;
+}
+
 .mannheimer-shell {
-  --coin-size: clamp(250px, 33vw, 380px);
+  --coin-size: clamp(240px, 31vw, 360px);
   --printed-width: min(46vw, 33rem);
   width: min(100%, 1120px);
-  min-height: clamp(430px, 54vw, 590px);
-  margin: 48px auto;
+  min-height: clamp(360px, 46vw, 520px);
+  margin: 0 auto;
   position: relative;
-  overflow: hidden;
-  border-radius: 32px;
-  background:
-    radial-gradient(circle at 50% 52%, color-mix(in srgb, var(--color-accent-warm) 20%, transparent), transparent 31%),
-    linear-gradient(135deg, color-mix(in srgb, var(--color-text) 8%, transparent), color-mix(in srgb, var(--color-accent) 5%, transparent));
-  border: 1px solid var(--color-line);
-  box-shadow: var(--shadow-card);
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
   isolation: isolate;
 }
 
@@ -26,51 +31,31 @@
   perspective: 900px;
   filter: drop-shadow(0 26px 30px rgba(0, 0, 0, 0.25));
   transform: translate(-50%, -50%);
-  animation: mannheimer-float 4.2s ease-in-out infinite;
+  transform-origin: center;
+  animation: mannheimer-wiggle 0.92s ease-in-out infinite;
   transition:
     left 900ms cubic-bezier(0.19, 1, 0.22, 1),
     top 900ms cubic-bezier(0.19, 1, 0.22, 1),
-    filter 450ms ease;
+    filter 260ms ease,
+    scale 180ms ease;
 }
 
-.mannheimer-coin::before {
-  content: '';
-  position: absolute;
-  inset: -18%;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent-warm) 38%, transparent), color-mix(in srgb, var(--color-accent-warm) 14%, transparent) 34%, transparent 68%);
-  opacity: 0.9;
-  transform: scale(0.98);
-  animation: mannheimer-aura 2.4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: -2;
-}
-
-.mannheimer-coin::after {
-  content: 'Click';
-  position: absolute;
-  left: 50%;
-  bottom: -2.45rem;
-  transform: translateX(-50%);
-  padding: 0.42rem 0.72rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-surface-raised) 88%, transparent);
-  border: 1px solid var(--color-line);
-  color: var(--color-muted);
-  font-size: 0.78rem;
-  font-weight: 780;
-  letter-spacing: 0.035em;
-  text-transform: uppercase;
-  box-shadow: var(--shadow-soft);
-  opacity: 1;
-  transition: opacity 250ms ease, transform 250ms ease;
-  pointer-events: none;
-}
-
-.mannheimer-coin:hover {
+.mannheimer-coin:hover,
+.mannheimer-coin:focus-visible {
+  scale: 1.025;
+  animation: mannheimer-settle 220ms ease-out forwards;
   filter:
-    drop-shadow(0 28px 32px rgba(0, 0, 0, 0.25))
-    drop-shadow(0 0 22px color-mix(in srgb, var(--color-accent-warm) 48%, transparent));
+    drop-shadow(0 30px 32px rgba(0, 0, 0, 0.28))
+    drop-shadow(0 0 6px color-mix(in srgb, var(--color-accent-warm) 13%, transparent));
+}
+
+.mannheimer-coin:focus-visible {
+  outline: 2px solid var(--color-accent-warm);
+  outline-offset: 0.45rem;
+}
+
+.mannheimer-coin:active {
+  scale: 0.985;
 }
 
 .mannheimer-half {
@@ -122,15 +107,7 @@
 }
 
 .mannheimer-flash {
-  position: absolute;
-  z-index: 7;
-  inset: 8%;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent-warm) 36%, transparent), transparent 62%);
-  opacity: 0;
-  transform: scale(0.65);
-  transition: opacity 320ms ease, transform 600ms cubic-bezier(0.19, 1, 0.22, 1);
-  pointer-events: none;
+  display: none;
 }
 
 .mannheimer-print-viewport {
@@ -154,28 +131,13 @@
 }
 
 .mannheimer-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.48rem;
-  margin-bottom: 0.85rem;
-  padding: 0.4rem 0.68rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-surface-raised) 86%, transparent);
-  border: 1px solid var(--color-line);
+  display: block;
+  margin-bottom: 0.72rem;
   color: var(--color-muted);
   font-size: 0.78rem;
   font-weight: 780;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.055em;
   text-transform: uppercase;
-}
-
-.mannheimer-kicker::before {
-  content: '';
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 999px;
-  background: var(--color-accent-warm);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent-warm) 22%, transparent);
 }
 
 .mannheimer-title {
@@ -209,16 +171,6 @@
 .mannheimer-shell.is-open .mannheimer-coin {
   left: 31%;
   animation-play-state: paused;
-}
-
-.mannheimer-shell.is-open .mannheimer-coin::before {
-  opacity: 0.42;
-  animation-play-state: paused;
-}
-
-.mannheimer-shell.is-open .mannheimer-coin::after {
-  opacity: 0;
-  transform: translateX(-50%) translateY(4px);
 }
 
 .mannheimer-shell.is-open .mannheimer-half-left {
@@ -258,14 +210,26 @@
   transition-delay: 120ms;
 }
 
-@keyframes mannheimer-float {
-  0%, 100% { translate: 0 0; rotate: -0.35deg; }
-  25% { translate: 0 -9px; rotate: 0.8deg; }
-  50% { translate: 0 -4px; rotate: -0.5deg; }
-  75% { translate: 0 -12px; rotate: 0.45deg; }
+@keyframes mannheimer-wiggle {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  10% { translate: -0.7px 0.25px; rotate: -0.18deg; }
+  20% { translate: 0.9px -0.2px; rotate: 0.22deg; }
+  30% { translate: -1px -0.15px; rotate: -0.24deg; }
+  40% { translate: 0.75px 0.2px; rotate: 0.2deg; }
+  50% { translate: -0.55px 0.1px; rotate: -0.14deg; }
+  60% { translate: 0.85px -0.2px; rotate: 0.18deg; }
+  70% { translate: -0.7px 0.15px; rotate: -0.16deg; }
+  80% { translate: 0.45px 0; rotate: 0.1deg; }
+  90% { translate: -0.25px 0.05px; rotate: -0.06deg; }
 }
 
-@keyframes mannheimer-aura {
-  0%, 100% { opacity: 0.68; transform: scale(0.96); }
-  50% { opacity: 1; transform: scale(1.07); }
+@keyframes mannheimer-settle {
+  from { translate: 0.35px -0.05px; rotate: 0.08deg; }
+  to { translate: 0 0; rotate: 0deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mannheimer-coin {
+    animation: none;
+  }
 }

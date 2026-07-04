@@ -36,7 +36,7 @@ export function initializeMannheimerAnimation(target = '#mannheimer-animation', 
   section.setAttribute('aria-label', 'Euro-Split-Animation');
 
   section.innerHTML = `
-    <div class="mannheimer-coin" role="button" tabindex="0" aria-label="Animation öffnen oder schließen">
+    <div class="mannheimer-coin" role="button" tabindex="0" aria-label="Euro-Animation öffnen" aria-pressed="false">
       <div class="mannheimer-half mannheimer-half-left"></div>
       <div class="mannheimer-half mannheimer-half-right"></div>
       <div class="mannheimer-printer-slot"></div>
@@ -76,6 +76,8 @@ export function initializeMannheimerAnimation(target = '#mannheimer-animation', 
     timers.push(window.setTimeout(() => {
       section.classList.add('is-open');
       isOpen = true;
+      coin.setAttribute('aria-pressed', 'true');
+      coin.setAttribute('aria-label', 'Euro-Animation schließen');
     }, 460));
     timers.push(window.setTimeout(() => section.classList.remove('is-cutting'), 1320));
     timers.push(window.setTimeout(() => { busy = false; }, 2550));
@@ -92,6 +94,8 @@ export function initializeMannheimerAnimation(target = '#mannheimer-animation', 
     timers.push(window.setTimeout(() => {
       section.classList.remove('is-open');
       isOpen = false;
+      coin.setAttribute('aria-pressed', 'false');
+      coin.setAttribute('aria-label', 'Euro-Animation öffnen');
     }, 430));
 
     timers.push(window.setTimeout(() => {

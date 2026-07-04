@@ -29,29 +29,25 @@
 
 @media (max-width: 760px) {
   .mannheimer-shell {
-    --coin-size: min(300px, 76vw);
+    --coin-size: min(290px, 74vw);
     --printed-width: min(86vw, 32rem);
-    min-height: min(720px, 92svh);
+    min-height: clamp(540px, 84svh, 660px);
   }
 
   .mannheimer-shell.is-open .mannheimer-coin {
     left: 50%;
-    top: 32%;
+    top: 30%;
   }
 
   .mannheimer-print-viewport {
     left: 50%;
-    top: 68%;
+    top: 65%;
     transform: translate(-50%, -50%);
     text-align: center;
   }
 
   .mannheimer-shell.is-open .mannheimer-half-right {
     transform: translateX(calc(var(--coin-size) * 0.52)) translateY(-16px) rotateY(16deg) rotateZ(8deg) scale(0.84);
-  }
-
-  .mannheimer-coin::after {
-    bottom: -2.25rem;
   }
 }
 
@@ -101,7 +97,7 @@
 
   .chart-card {
     min-height: 360px;
-    padding: 0.25rem;
+    padding: 0;
   }
 
   .chart-card--tall {
