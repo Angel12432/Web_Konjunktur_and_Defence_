@@ -5,6 +5,10 @@ import { loadCsv, publicPath, toNumber } from '../lib/csv.js';
 const COUNTRY_DATA_PATH = publicPath('data/vc-country-comparison.csv');
 const VERTICAL_DATA_PATH = publicPath('data/vc-vertical-comparison.csv');
 
+let countryCache = null;
+let verticalCache = null;
+let listenersInstalled = false;
+
 const FALLBACK_COUNTRY_DATA = [
   {
     Region: 'Deutschland',
@@ -128,7 +132,7 @@ function renderVerticalCharts(verticalData) {
       yAxis: {
         title: { text: 'Wachstum (%)' },
         tickInterval: 20,
-        plotLines: [{ color: 'rgba(255,255,255,0.3)', width: 1, value: 0 }],
+        plotLines: [{ color: chartColors.line, width: 1, value: 0 }],
       },
       plotOptions: {
         column: {
@@ -158,18 +162,36 @@ function renderVerticalCharts(verticalData) {
   }
 }
 
-export async function initializeVcCharts() {
-  const [countryData, verticalData] = await Promise.all([
-    loadCsv(COUNTRY_DATA_PATH, { fallback: FALLBACK_COUNTRY_DATA, label: 'VC-Länderdaten' }),
-    loadCsv(VERTICAL_DATA_PATH, { fallback: FALLBACK_VERTICAL_DATA, label: 'VC-Verticaldaten' }),
-  ]);
+function renderCachedCharts() {
+  if (!countryCache || !verticalCache) return;
+  renderGermanyCharts(countryCache);
+  renderVerticalCharts(verticalCache);
+}
 
-  renderGermanyCharts(countryData);
-  renderVerticalCharts(verticalData);
+function installChartListeners() {
+  if (listenersInstalled) return;
+  listenersInstalled = true;
 
   window.addEventListener('resize', () => {
     Highcharts.charts.filter(Boolean).forEach((chart) => chart.reflow());
   }, { passive: true });
+
+  window.addEventListener('wkd:themechange', () => {
+    renderCachedCharts();
+  });
+}
+
+export async function initializeVcCharts() {
+  installChartListeners();
+
+  if (!countryCache || !verticalCache) {
+    [countryCache, verticalCache] = await Promise.all([
+      loadCsv(COUNTRY_DATA_PATH, { fallback: FALLBACK_COUNTRY_DATA, label: 'VC-Länderdaten' }),
+      loadCsv(VERTICAL_DATA_PATH, { fallback: FALLBACK_VERTICAL_DATA, label: 'VC-Verticaldaten' }),
+    ]);
+  }
+
+  renderCachedCharts();
 }
 
 export default initializeVcCharts;

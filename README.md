@@ -13,6 +13,7 @@ src/
   components/
     mannheimerAnimation.js
     vcCharts.js
+    themeToggle.js
     worldMap.js
   lib/
     csv.js
@@ -35,7 +36,7 @@ data_raw/
   ... Original-/Archivdaten ...
 ```
 
-`src/styles/main.css` ist der zentrale CSS-Einstiegspunkt. Einzelne Style-Dateien sind nach Zuständigkeit getrennt, werden aber nur über diesen Master importiert. Die JavaScript-Komponenten enthalten keine größeren Style-Blöcke mehr.
+`src/styles/main.css` ist der zentrale CSS-Einstiegspunkt. Einzelne Style-Dateien sind nach Zuständigkeit getrennt, werden aber nur über diesen Master importiert. Die JavaScript-Komponenten enthalten keine größeren Style-Blöcke mehr. Das Farbsystem unterstützt Dark Mode, Light Mode und die automatische Systemeinstellung über `prefers-color-scheme`.
 
 ## Lokale Entwicklung
 
@@ -77,9 +78,10 @@ Die GitHub-Actions-Workflow-Datei liegt unter:
 
 - `components/` enthält sichtbare Seitenelemente und deren Verhalten.
 - `lib/csv.js` enthält geteiltes CSV-Laden, Parsing und Zahlen-Normalisierung.
-- `lib/highchartsTheme.js` zentralisiert Farben und wiederverwendbare Highcharts-Optionen.
-- `styles/tokens.css` definiert Farben, Abstände, Radien, Schatten und Schrift-Stack.
+- `lib/highchartsTheme.js` liest die aktuellen CSS-Design-Tokens und zentralisiert wiederverwendbare Highcharts-Optionen.
+- `styles/tokens.css` definiert die Defence-/Economy-Farbpalette, Light-/Dark-Tokens, Abstände, Radien, Schatten und Schrift-Stack.
 - `styles/responsive.css` bündelt Breakpoints für Desktop, Tablet und Mobile.
+- `components/themeToggle.js` erstellt den Mode-Switch, speichert manuelle Präferenzen in `localStorage` und reagiert im Auto-Modus auf Änderungen der Systemeinstellung.
 
 ## Wichtige Hinweise
 

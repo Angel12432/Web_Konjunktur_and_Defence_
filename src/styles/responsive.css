@@ -161,3 +161,23 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+@media (max-width: 680px) {
+  .theme-switcher {
+    top: max(0.55rem, env(safe-area-inset-top));
+    right: max(0.55rem, env(safe-area-inset-right));
+    transform: scale(0.92);
+    transform-origin: top right;
+  }
+}
+
+@media (max-width: 420px) {
+  .theme-switcher__button {
+    min-width: 2.25rem;
+    height: 1.95rem;
+  }
+
+  .theme-switcher__text {
+    font-size: 0.72rem;
+  }
+}

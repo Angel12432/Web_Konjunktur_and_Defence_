@@ -36,6 +36,11 @@ const COUNTRY_LABEL_DE = {
 const DEFAULT_MAP_VIEW = { projection: { name: 'Miller' }, center: [10, 18], zoom: 1.65 };
 const MOBILE_MAP_VIEW = { projection: { name: 'Miller' }, center: [18, 18], zoom: 1.35 };
 
+let aggregatedCache = null;
+let cleanupCurrentMap = null;
+let themeListenerInstalled = false;
+let selectedYear = FIRST_YEAR;
+
 function normalizeConflictTypes(value) {
   return String(value ?? '')
     .replace(/^"|"$/g, '')
@@ -114,7 +119,12 @@ function renderLoadError(container, error) {
 }
 
 function createWorldMap(dataByYear) {
-  let currentYear = FIRST_YEAR;
+  if (cleanupCurrentMap) {
+    cleanupCurrentMap();
+    cleanupCurrentMap = null;
+  }
+
+  let currentYear = selectedYear;
   let animationTimer = null;
   let isPlaying = false;
   const controls = getMapControls();
@@ -246,6 +256,7 @@ function createWorldMap(dataByYear) {
 
   function updateMap(year) {
     currentYear = String(year);
+    selectedYear = currentYear;
     controls.yearLabel.textContent = currentYear;
     controls.slider.value = currentYear;
     setSliderProgress(controls.slider, currentYear);
@@ -281,33 +292,59 @@ function createWorldMap(dataByYear) {
     }, STEP_INTERVAL_MS);
   }
 
-  controls.playButton.addEventListener('click', () => {
+  const handlePlayClick = () => {
     if (isPlaying) stopAnimation();
     else startAnimation();
-  });
+  };
 
-  controls.slider.addEventListener('input', (event) => {
+  const handleSliderInput = (event) => {
     if (isPlaying) stopAnimation();
     updateMap(event.target.value);
-  });
+  };
 
-  controls.ticks.forEach((button) => {
-    button.addEventListener('click', () => {
+  const tickHandlers = controls.ticks.map((button) => {
+    const handler = () => {
       if (isPlaying) stopAnimation();
       updateMap(button.dataset.year);
-    });
+    };
+    button.addEventListener('click', handler);
+    return [button, handler];
   });
 
-  updateMap(FIRST_YEAR);
+  controls.playButton.addEventListener('click', handlePlayClick);
+  controls.slider.addEventListener('input', handleSliderInput);
+
+  updateMap(currentYear);
+
+  cleanupCurrentMap = () => {
+    window.clearInterval(animationTimer);
+    controls.playButton.removeEventListener('click', handlePlayClick);
+    controls.slider.removeEventListener('input', handleSliderInput);
+    tickHandlers.forEach(([button, handler]) => button.removeEventListener('click', handler));
+    chart.destroy();
+  };
+}
+
+function installThemeListener() {
+  if (themeListenerInstalled) return;
+  themeListenerInstalled = true;
+
+  window.addEventListener('wkd:themechange', () => {
+    if (aggregatedCache) createWorldMap(aggregatedCache);
+  });
 }
 
 export async function initializeWorldMap() {
   const container = document.getElementById('kartenContainer');
   if (!container) return;
+  installThemeListener();
 
   try {
-    const rows = await loadCsv(BATTLE_DEATHS_PATH, { label: 'Battle-Deaths-Daten' });
-    createWorldMap(aggregateBattleDeaths(rows));
+    if (!aggregatedCache) {
+      const rows = await loadCsv(BATTLE_DEATHS_PATH, { label: 'Battle-Deaths-Daten' });
+      aggregatedCache = aggregateBattleDeaths(rows);
+    }
+    createWorldMap(aggregatedCache);
   } catch (error) {
     renderLoadError(container, error);
     console.error(error);

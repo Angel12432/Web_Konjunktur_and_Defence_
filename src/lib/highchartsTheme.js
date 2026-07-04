@@ -1,30 +1,69 @@
 import Highcharts from 'highcharts';
 
-export const chartColors = {
+const FALLBACK_COLORS = {
   background: 'rgba(0,0,0,0)',
-  panel: '#0b1223',
-  card: '#101a2f',
-  text: '#f2f7ff',
-  soft: '#d7e2f3',
-  muted: '#b9c6da',
+  panel: '#101826',
+  card: '#162033',
+  text: '#f4f7fb',
+  soft: '#dce5f2',
+  muted: '#aebad0',
   line: 'rgba(255,255,255,0.16)',
-  accent: '#8bd7ff',
-  accentWarm: '#ffc56f',
-  danger: '#ff667f',
-  positive: '#9df6ca',
-  negative: '#ff667f',
-  mapLow: '#fef9c3',
-  mapMidLow: '#fde68a',
-  mapMid: '#f97316',
-  mapHigh: '#dc2626',
-  mapMax: '#7f1d1d',
+  accent: '#7fb6d8',
+  accentWarm: '#d9a441',
+  danger: '#df5f63',
+  positive: '#63b98a',
+  negative: '#df5f63',
+  mapLow: '#f9e7a8',
+  mapMidLow: '#e9bd55',
+  mapMid: '#c97828',
+  mapHigh: '#b94c3d',
+  mapMax: '#67212a',
 };
+
+const CSS_COLOR_MAP = {
+  background: '--chart-background',
+  panel: '--color-panel',
+  card: '--color-surface',
+  text: '--color-text',
+  soft: '--color-soft',
+  muted: '--color-muted',
+  line: '--color-line',
+  accent: '--color-accent',
+  accentWarm: '--color-accent-warm',
+  danger: '--color-danger',
+  positive: '--color-positive',
+  negative: '--color-negative',
+  mapLow: '--map-low',
+  mapMidLow: '--map-mid-low',
+  mapMid: '--map-mid',
+  mapHigh: '--map-high',
+  mapMax: '--map-max',
+};
+
+function readCssVariable(name, fallback) {
+  if (typeof window === 'undefined') return fallback;
+  const value = window.getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return value || fallback;
+}
+
+export const chartColors = new Proxy(FALLBACK_COLORS, {
+  get(target, property) {
+    const key = String(property);
+    const cssVariable = CSS_COLOR_MAP[key];
+    if (!cssVariable) return target[key];
+    return readCssVariable(cssVariable, target[key]);
+  },
+});
+
+export function getChartFontStack() {
+  return readCssVariable('--font-sans', 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif');
+}
 
 export function baseChartOptions() {
   return {
     chart: {
       backgroundColor: chartColors.background,
-      style: { fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' },
+      style: { fontFamily: getChartFontStack() },
       spacing: [18, 18, 18, 18],
     },
     title: {
