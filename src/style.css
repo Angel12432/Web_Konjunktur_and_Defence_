@@ -67,8 +67,8 @@ input:focus-visible,
   min-height: min(760px, 100svh);
   display: grid;
   align-content: center;
-  gap: clamp(1rem, 3vw, 1.75rem);
-  padding-top: clamp(3rem, 8vw, 6rem);
+  gap: clamp(0.9rem, 2.4vw, 1.5rem);
+  padding-top: clamp(2.5rem, 7vw, 5.5rem);
 }
 
 .eyebrow {
@@ -83,42 +83,62 @@ input:focus-visible,
 
 h1,
 h2,
-h3,
+h3 {
+  text-wrap: balance;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
 p {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 
 h1 {
-  max-width: 11ch;
+  max-width: 12.5ch;
   margin: 0;
-  font-size: clamp(2.65rem, 10vw, 7rem);
-  line-height: 0.92;
-  letter-spacing: -0.075em;
+  font-size: clamp(2.65rem, 6.3vw, 5.25rem);
+  line-height: 0.96;
+  letter-spacing: -0.065em;
+}
+
+.hero-title span span {
+  display: block;
+  white-space: nowrap;
+}
+
+.title-mobile {
+  display: none;
 }
 
 h2 {
+  max-width: 18ch;
   margin: 0;
-  font-size: clamp(1.75rem, 4.2vw, 3rem);
-  line-height: 1.05;
+  font-size: clamp(1.8rem, 3.35vw, 2.85rem);
+  line-height: 1.08;
   letter-spacing: -0.04em;
 }
 
 h3 {
+  max-width: 28ch;
   margin: 0;
-  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  line-height: 1.16;
 }
 
 p {
   margin: 0;
   color: var(--soft);
-  font-size: clamp(1rem, 1.7vw, 1.1rem);
-  line-height: 1.7;
+  font-size: clamp(1rem, 1.35vw, 1.08rem);
+  line-height: 1.72;
 }
 
 .lead {
   max-width: 760px;
   color: var(--soft);
-  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  font-size: clamp(1.05rem, 1.8vw, 1.24rem);
 }
 
 .hero-cards {
@@ -176,6 +196,24 @@ p {
   max-width: 930px;
 }
 
+.transition-section h2 {
+  max-width: 20ch;
+}
+
+.transition-section p {
+  max-width: 860px;
+}
+
+.worldmap h2,
+.section-deutschland h2,
+.section-verticals h2 {
+  max-width: 22ch;
+}
+
+.info-card h2 {
+  max-width: 20ch;
+}
+
 .two-column-text {
   max-width: var(--page-max);
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
@@ -191,7 +229,7 @@ p {
 }
 
 .section-note {
-  max-width: 360px;
+  max-width: 38ch;
   color: var(--muted);
   font-size: 0.95rem;
 }
@@ -430,12 +468,21 @@ p {
     min-height: auto;
   }
 
+  h1 {
+    font-size: clamp(2.55rem, 7.4vw, 4.6rem);
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 4.6vw, 2.6rem);
+    max-width: 19ch;
+  }
+
   .section-heading-row {
     display: grid;
   }
 
   .section-note {
-    max-width: 100%;
+    max-width: 64ch;
   }
 }
 
@@ -450,7 +497,28 @@ p {
   }
 
   h1 {
-    max-width: 9ch;
+    max-width: 9.5ch;
+    font-size: clamp(2.45rem, 11.5vw, 4.1rem);
+    line-height: 0.98;
+  }
+
+  h2 {
+    max-width: 17ch;
+    font-size: clamp(1.65rem, 7.2vw, 2.35rem);
+    line-height: 1.1;
+  }
+
+  p,
+  .lead {
+    font-size: 1rem;
+  }
+
+  .title-desktop {
+    display: none;
+  }
+
+  .title-mobile {
+    display: block;
   }
 
   #kartenContainer {
@@ -487,6 +555,33 @@ p {
 
   .info-card {
     min-height: auto;
+  }
+}
+
+@media (max-width: 540px) {
+  .eyebrow {
+    letter-spacing: 0.1em;
+  }
+
+  .hero-cards {
+    gap: 0.75rem;
+  }
+
+  .transition-section h2,
+  .worldmap h2,
+  .section-deutschland h2,
+  .section-verticals h2 {
+    max-width: 16ch;
+  }
+}
+
+@media (max-width: 360px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.55rem;
   }
 }
 

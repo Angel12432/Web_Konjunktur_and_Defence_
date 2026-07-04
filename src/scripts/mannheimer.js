@@ -205,20 +205,24 @@ function installMannheimerStyles() {
 
         .mannheimer-title {
             margin: 0 0 .8rem;
-            font-size: clamp(2.05rem, 4.8vw, 4.3rem);
-            line-height: .94;
-            letter-spacing: -.06em;
+            font-size: clamp(1.9rem, 4.1vw, 3.85rem);
+            line-height: .98;
+            letter-spacing: -.055em;
             font-weight: 880;
             color: #f2f7ff;
             white-space: pre-line;
+            text-wrap: balance;
+            overflow-wrap: normal;
+            word-break: normal;
         }
 
         .mannheimer-body {
             margin: 0;
             color: rgba(242,247,255,.72);
-            font-size: clamp(1rem, 1.45vw, 1.16rem);
+            font-size: clamp(1rem, 1.25vw, 1.12rem);
             line-height: 1.62;
             white-space: pre-line;
+            overflow-wrap: break-word;
         }
 
         .mannheimer-shell.is-cutting .mannheimer-printer-slot {
