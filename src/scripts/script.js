@@ -261,3 +261,4 @@ Highcharts.chart('growth-chart', {
 //Export main.js
 
 export default initalisiereVCFinanzierung;
+export { initialisiereMannheimerAnimation } from './mannheimer.js';
