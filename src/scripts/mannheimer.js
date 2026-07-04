@@ -1,9 +1,9 @@
 import euroCoin from '../assets/euro-coin.png';
 
 const DEFAULTS = {
-    title: 'Aus einem Euro wird nur noch die Hälfte',
-    body: 'Beispieltext: Hier kann später erklärt werden, warum vom ursprünglichen Wert nur noch ein Teil übrig bleibt.',
-    kicker: 'Value breakdown',
+    title: '1 Euro rein, nur die Hälfte wieder raus.',
+    body: 'Laut Krebs und Kaczmarczyk liegt der kurzfristige Multiplikator deutscher Militärausgaben bei maximal etwa 0,5. Das heißt: Zusätzliche Rüstungsausgaben wirken ökonomisch deutlich schwächer als Investitionen in Infrastruktur, Bildung oder Betreuung.',
+    kicker: 'Quelle: Krebs & Kaczmarczyk, 2025',
     coinImage: euroCoin,
     className: '',
 };
