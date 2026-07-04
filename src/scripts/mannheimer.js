@@ -1,7 +1,7 @@
 import euroCoin from '../assets/euro-coin.png';
 
 const DEFAULTS = {
-    title: '1 Euro rein, nur die Hälfte wieder raus.',
+    title: '1 Euro rein,\nnur die Hälfte wieder raus.',
     body: 'Laut Krebs und Kaczmarczyk liegt der kurzfristige Multiplikator deutscher Militärausgaben bei maximal etwa 0,5. Das heißt: Zusätzliche Rüstungsausgaben wirken ökonomisch deutlich schwächer als Investitionen in Infrastruktur, Bildung oder Betreuung.',
     kicker: 'Quelle: Krebs & Kaczmarczyk, 2025',
     coinImage: euroCoin,
@@ -210,6 +210,7 @@ function installMannheimerStyles() {
             letter-spacing: -.06em;
             font-weight: 880;
             color: #f2f7ff;
+            white-space: pre-line;
         }
 
         .mannheimer-body {
@@ -217,6 +218,7 @@ function installMannheimerStyles() {
             color: rgba(242,247,255,.72);
             font-size: clamp(1rem, 1.45vw, 1.16rem);
             line-height: 1.62;
+            white-space: pre-line;
         }
 
         .mannheimer-shell.is-cutting .mannheimer-printer-slot {
@@ -297,7 +299,7 @@ function installMannheimerStyles() {
             .mannheimer-shell {
                 --coin-size: min(300px, 76vw);
                 --printed-width: min(86vw, 32rem);
-                min-height: 710px;
+                min-height: min(720px, 92svh);
             }
 
             .mannheimer-shell.is-open .mannheimer-coin {
@@ -307,7 +309,7 @@ function installMannheimerStyles() {
 
             .mannheimer-print-viewport {
                 left: 50%;
-                top: 67%;
+                top: 68%;
                 transform: translate(-50%, -50%);
                 text-align: center;
             }

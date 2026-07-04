@@ -1,0 +1,1171 @@
+country,year,num_conflicts,bd_best,bd_low,bd_high,type_of_conflict
+Afghanistan,1989,1,5174,1904,17051,Internationalized Intrastate
+Afghanistan,1990,1,1478,1323,2275,Intrastate
+Afghanistan,1991,1,3302,3156,3802,Intrastate
+Afghanistan,1992,1,4276,4259,5460,Intrastate
+Afghanistan,1993,1,3721,3713,7805,Intrastate
+Afghanistan,1994,1,8937,8937,11955,Intrastate
+Afghanistan,1995,1,5516,5516,6490,Intrastate
+Afghanistan,1996,1,3177,3161,3638,Intrastate
+Afghanistan,1997,1,6396,4244,8281,Intrastate
+Afghanistan,1998,1,6256,6168,7698,Intrastate
+Afghanistan,1999,1,4629,4594,4945,Intrastate
+Afghanistan,2000,1,5235,4053,5511,Intrastate
+Afghanistan,2001,2,3725,3605,9732,"Internationalized Intrastate, Interstate"
+Afghanistan,2002,1,30,30,30,Intrastate
+Afghanistan,2003,1,660,646,984,Internationalized Intrastate
+Afghanistan,2004,1,711,669,1245,Internationalized Intrastate
+Afghanistan,2005,1,1628,1424,1992,Internationalized Intrastate
+Afghanistan,2006,1,4734,4665,5543,Internationalized Intrastate
+Afghanistan,2007,1,6848,6303,8386,Internationalized Intrastate
+Afghanistan,2008,1,5655,5204,7189,Internationalized Intrastate
+Afghanistan,2009,1,6390,5659,8063,Internationalized Intrastate
+Afghanistan,2010,1,7038,6865,8465,Internationalized Intrastate
+Afghanistan,2011,1,7423,7279,8290,Internationalized Intrastate
+Afghanistan,2012,1,7730,7558,8541,Internationalized Intrastate
+Afghanistan,2013,1,8048,7612,10172,Internationalized Intrastate
+Afghanistan,2014,1,12351,11561,15724,Internationalized Intrastate
+Afghanistan,2015,2,17285,16202,20687,Internationalized Intrastate
+Afghanistan,2016,2,17916,16503,24706,Internationalized Intrastate
+Afghanistan,2017,2,18974,18142,20698,Internationalized Intrastate
+Afghanistan,2018,2,25679,24256,29967,Internationalized Intrastate
+Afghanistan,2019,2,29903,28017,34723,Internationalized Intrastate
+Afghanistan,2020,2,20475,18975,21743,Internationalized Intrastate
+Afghanistan,2021,2,35593,33619,39871,Internationalized Intrastate
+Afghanistan,2022,2,947,592,1754,Intrastate
+Afghanistan,2023,2,241,168,454,Intrastate
+Afghanistan,2024,3,195,145,398,"Interstate, Intrastate"
+Afghanistan,2025,3,259,124,620,"Interstate, Intrastate"
+Algeria,1991,1,34,34,34,Intrastate
+Algeria,1992,1,257,257,336,Intrastate
+Algeria,1993,1,800,800,860,Intrastate
+Algeria,1994,1,1916,1916,2079,Intrastate
+Algeria,1995,1,3008,2984,6091,Intrastate
+Algeria,1996,1,1084,1078,1507,Intrastate
+Algeria,1997,1,1403,1403,2061,Intrastate
+Algeria,1998,1,3029,3029,3665,Intrastate
+Algeria,1999,1,1031,1031,1059,Intrastate
+Algeria,2000,1,947,947,1026,Intrastate
+Algeria,2001,1,642,642,866,Intrastate
+Algeria,2002,1,539,539,540,Intrastate
+Algeria,2003,1,670,670,686,Intrastate
+Algeria,2004,1,451,451,467,Internationalized Intrastate
+Algeria,2005,1,229,228,262,Intrastate
+Algeria,2006,1,255,255,286,Intrastate
+Algeria,2007,1,472,471,518,Intrastate
+Algeria,2008,1,339,339,410,Intrastate
+Algeria,2009,1,505,493,674,Intrastate
+Algeria,2010,1,236,236,276,Intrastate
+Algeria,2011,1,267,259,273,Intrastate
+Algeria,2012,1,256,250,310,Intrastate
+Algeria,2013,1,147,147,165,Intrastate
+Algeria,2014,1,107,83,147,Intrastate
+Algeria,2015,2,110,107,117,Intrastate
+Algeria,2016,1,86,82,91,Intrastate
+Algeria,2017,1,60,60,73,Intrastate
+Algeria,2018,1,33,33,37,Intrastate
+Algeria,2020,1,26,26,26,Intrastate
+Angola,1989,1,2828,2828,6284,Internationalized Intrastate
+Angola,1990,1,2558,2557,4452,Intrastate
+Angola,1991,2,516,497,688,Intrastate
+Angola,1992,2,2346,2323,3700,Intrastate
+Angola,1993,1,12054,12054,23329,Intrastate
+Angola,1994,2,3975,3924,11241,Intrastate
+Angola,1995,2,187,165,609,Intrastate
+Angola,1996,1,29,6,256,Intrastate
+Angola,1997,1,51,6,70,Intrastate
+Angola,1998,2,1066,1054,1841,Intrastate
+Angola,1999,1,2273,2273,6431,Internationalized Intrastate
+Angola,2000,1,1000,404,3796,Internationalized Intrastate
+Angola,2001,1,1123,1123,2447,Internationalized Intrastate
+Angola,2002,2,521,493,900,"Internationalized Intrastate, Intrastate"
+Angola,2003,1,25,22,146,Intrastate
+Angola,2004,1,25,8,54,Intrastate
+Angola,2007,1,25,0,110,Intrastate
+Angola,2009,1,25,1,66,Intrastate
+Angola,2016,1,25,9,185,Intrastate
+Angola,2017,1,25,16,111,Intrastate
+Angola,2019,1,25,10,50,Intrastate
+Angola,2020,1,25,11,136,Intrastate
+Angola,2022,1,25,6,149,Intrastate
+Angola,2024,1,25,10,109,Intrastate
+Angola,2025,1,25,5,95,Intrastate
+Australia,2003,1,7927,7927,13814,Interstate
+Azerbaijan,1991,1,35,35,35,Internationalized Intrastate
+Azerbaijan,1992,1,2167,2099,3635,Internationalized Intrastate
+Azerbaijan,1993,2,1231,1028,1889,"Internationalized Intrastate, Intrastate"
+Azerbaijan,1994,1,1507,1257,3937,Intrastate
+Azerbaijan,1995,1,44,44,72,Intrastate
+Azerbaijan,1997,1,29,29,36,Internationalized Intrastate
+Azerbaijan,1998,1,34,34,38,Internationalized Intrastate
+Azerbaijan,2005,1,25,25,26,Internationalized Intrastate
+Azerbaijan,2008,1,30,30,43,Internationalized Intrastate
+Azerbaijan,2012,1,25,25,27,Internationalized Intrastate
+Azerbaijan,2014,1,46,45,54,Internationalized Intrastate
+Azerbaijan,2015,1,72,65,121,Internationalized Intrastate
+Azerbaijan,2016,1,141,141,263,Internationalized Intrastate
+Azerbaijan,2017,1,36,36,37,Internationalized Intrastate
+Azerbaijan,2020,1,7538,7439,7943,Internationalized Intrastate
+Azerbaijan,2021,1,40,40,43,Internationalized Intrastate
+Azerbaijan,2022,1,308,308,310,Internationalized Intrastate
+Azerbaijan,2023,1,462,462,462,Internationalized Intrastate
+Bangladesh,1989,1,26,26,26,Intrastate
+Bangladesh,1990,1,45,45,45,Intrastate
+Bangladesh,1991,1,25,22,45,Intrastate
+Bangladesh,2005,1,62,61,68,Intrastate
+Bangladesh,2006,1,57,57,58,Intrastate
+Bangladesh,2016,1,41,41,41,Intrastate
+Bangladesh,2017,1,47,47,48,Intrastate
+Benin,2022,1,30,30,33,Intrastate
+Benin,2023,1,28,28,33,Intrastate
+Benin,2024,1,77,73,83,Intrastate
+Benin,2025,1,149,140,193,Intrastate
+Bosnia-Herzegovina,1992,2,16882,13977,19104,"Internationalized Intrastate, Intrastate"
+Bosnia-Herzegovina,1993,3,13160,12361,15407,"Internationalized Intrastate, Intrastate"
+Bosnia-Herzegovina,1994,3,6936,6349,7953,Intrastate
+Bosnia-Herzegovina,1995,2,8549,8209,10514,Intrastate
+Burkina Faso,2018,1,79,70,103,Internationalized Intrastate
+Burkina Faso,2019,2,349,258,541,Internationalized Intrastate
+Burkina Faso,2020,2,512,314,541,Internationalized Intrastate
+Burkina Faso,2021,2,991,858,1100,Internationalized Intrastate
+Burkina Faso,2022,2,2105,1862,2356,Internationalized Intrastate
+Burkina Faso,2023,2,4806,4541,5822,"Internationalized Intrastate, Intrastate"
+Burkina Faso,2024,2,2199,2071,2648,Internationalized Intrastate
+Burkina Faso,2025,2,3031,2962,4491,Internationalized Intrastate
+Burundi,1991,1,272,272,551,Intrastate
+Burundi,1992,1,61,61,61,Intrastate
+Burundi,1994,1,56,56,532,Intrastate
+Burundi,1995,1,382,308,926,Intrastate
+Burundi,1996,1,987,787,1462,Intrastate
+Burundi,1997,1,1159,1048,1944,Intrastate
+Burundi,1998,1,843,732,933,Intrastate
+Burundi,1999,1,781,545,953,Intrastate
+Burundi,2000,1,1529,1357,2246,Intrastate
+Burundi,2001,1,1246,1211,2598,Intrastate
+Burundi,2002,1,1293,940,1680,Intrastate
+Burundi,2003,1,912,885,1424,Intrastate
+Burundi,2004,1,433,411,471,Intrastate
+Burundi,2005,1,298,298,380,Intrastate
+Burundi,2006,1,141,141,141,Intrastate
+Burundi,2008,1,226,226,233,Intrastate
+Burundi,2014,1,56,56,56,Intrastate
+Burundi,2015,1,185,185,188,Intrastate
+Burundi,2019,1,61,60,96,Internationalized Intrastate
+Burundi,2020,1,139,135,201,Internationalized Intrastate
+Burundi,2021,1,26,26,29,Internationalized Intrastate
+Burundi,2022,1,242,234,268,Internationalized Intrastate
+Burundi,2023,1,93,32,99,Internationalized Intrastate
+Burundi,2024,1,60,57,108,Internationalized Intrastate
+Cambodia (Kampuchea),1989,1,818,818,2438,Internationalized Intrastate
+Cambodia (Kampuchea),1990,1,274,268,657,Intrastate
+Cambodia (Kampuchea),1991,1,220,220,451,Intrastate
+Cambodia (Kampuchea),1992,1,118,118,118,Intrastate
+Cambodia (Kampuchea),1993,1,274,274,393,Intrastate
+Cambodia (Kampuchea),1994,1,464,404,1126,Intrastate
+Cambodia (Kampuchea),1995,1,694,684,1105,Intrastate
+Cambodia (Kampuchea),1996,1,788,788,1007,Intrastate
+Cambodia (Kampuchea),1997,1,415,415,649,Intrastate
+Cambodia (Kampuchea),1998,1,246,246,385,Intrastate
+Cambodia (Kampuchea),2011,1,29,29,36,Interstate
+Cambodia (Kampuchea),2025,1,252,249,442,Interstate
+Cameroon,1996,1,56,56,57,Interstate
+Cameroon,2015,2,995,995,1027,Internationalized Intrastate
+Cameroon,2016,2,221,221,238,Intrastate
+Cameroon,2017,2,98,98,107,Intrastate
+Cameroon,2018,1,754,750,1010,Intrastate
+Cameroon,2019,2,693,686,798,"Internationalized Intrastate, Intrastate"
+Cameroon,2020,2,429,405,491,Intrastate
+Cameroon,2021,2,581,566,778,"Internationalized Intrastate, Intrastate"
+Cameroon,2022,2,406,345,489,Intrastate
+Cameroon,2023,3,359,326,445,Intrastate
+Cameroon,2024,2,231,216,238,Intrastate
+Cameroon,2025,3,240,224,266,"Internationalized Intrastate, Intrastate"
+Central African Republic,2001,1,195,195,295,Internationalized Intrastate
+Central African Republic,2002,1,131,129,184,Intrastate
+Central African Republic,2006,1,46,44,168,Internationalized Intrastate
+Central African Republic,2009,1,28,28,71,Intrastate
+Central African Republic,2010,1,25,25,105,Intrastate
+Central African Republic,2011,1,44,44,79,Intrastate
+Central African Republic,2012,1,45,45,45,Internationalized Intrastate
+Central African Republic,2013,1,376,352,488,Internationalized Intrastate
+Central African Republic,2014,1,136,136,148,Internationalized Intrastate
+Central African Republic,2015,1,27,27,27,Internationalized Intrastate
+Central African Republic,2017,1,35,35,35,Internationalized Intrastate
+Central African Republic,2018,1,103,100,116,Internationalized Intrastate
+Central African Republic,2019,1,51,48,53,Internationalized Intrastate
+Central African Republic,2020,1,57,57,67,Internationalized Intrastate
+Central African Republic,2021,1,906,743,916,Internationalized Intrastate
+Central African Republic,2022,1,675,675,801,Internationalized Intrastate
+Central African Republic,2023,2,261,254,282,Internationalized Intrastate
+Central African Republic,2024,1,177,159,448,Internationalized Intrastate
+Central African Republic,2025,1,197,193,213,Internationalized Intrastate
+Chad,1989,1,315,315,1585,Intrastate
+Chad,1990,1,1352,1352,8932,Intrastate
+Chad,1991,1,68,68,68,Intrastate
+Chad,1992,1,899,899,1553,Intrastate
+Chad,1993,1,120,120,120,Intrastate
+Chad,1994,1,156,156,260,Intrastate
+Chad,1997,1,97,97,97,Intrastate
+Chad,1998,1,34,34,34,Intrastate
+Chad,1999,1,394,394,1149,Intrastate
+Chad,2000,1,989,989,1041,Intrastate
+Chad,2001,1,226,226,326,Intrastate
+Chad,2002,1,294,294,350,Intrastate
+Chad,2003,1,37,37,189,Intrastate
+Chad,2005,1,100,100,356,Intrastate
+Chad,2006,1,1250,1250,2623,Intrastate
+Chad,2007,1,69,69,380,Intrastate
+Chad,2008,1,991,991,1361,Intrastate
+Chad,2009,1,131,131,324,Intrastate
+Chad,2010,1,42,42,83,Intrastate
+Chad,2015,1,272,271,272,Intrastate
+Chad,2017,1,57,57,219,Intrastate
+Chad,2018,2,150,150,198,Intrastate
+Chad,2019,1,144,144,166,Intrastate
+Chad,2020,2,196,149,749,Intrastate
+Chad,2021,2,486,486,713,Intrastate
+Chad,2022,1,35,34,66,Intrastate
+Chad,2023,1,61,61,79,Intrastate
+China,2008,1,36,36,39,Intrastate
+China,2020,1,25,25,26,Interstate
+Colombia,1989,1,238,237,944,Intrastate
+Colombia,1990,1,501,501,568,Intrastate
+Colombia,1991,1,725,725,754,Intrastate
+Colombia,1992,1,1479,1479,1503,Intrastate
+Colombia,1993,1,182,182,192,Intrastate
+Colombia,1994,1,1123,1123,1334,Intrastate
+Colombia,1995,1,823,823,828,Intrastate
+Colombia,1996,1,1197,1190,1234,Intrastate
+Colombia,1997,1,568,568,684,Intrastate
+Colombia,1998,1,939,938,1384,Intrastate
+Colombia,1999,1,1949,1925,2359,Intrastate
+Colombia,2000,1,1881,1867,2255,Intrastate
+Colombia,2001,1,1864,1859,1983,Intrastate
+Colombia,2002,1,3387,3330,3924,Intrastate
+Colombia,2003,1,2086,2059,2114,Intrastate
+Colombia,2004,1,1358,1325,1404,Intrastate
+Colombia,2005,1,1562,1534,1614,Intrastate
+Colombia,2006,1,503,503,515,Intrastate
+Colombia,2007,1,320,320,327,Intrastate
+Colombia,2008,1,282,273,291,Intrastate
+Colombia,2009,1,388,387,432,Intrastate
+Colombia,2010,1,419,419,425,Intrastate
+Colombia,2011,1,202,202,208,Intrastate
+Colombia,2012,1,211,211,310,Intrastate
+Colombia,2013,1,140,140,183,Intrastate
+Colombia,2014,1,119,119,119,Intrastate
+Colombia,2015,1,134,134,140,Intrastate
+Colombia,2016,1,30,30,30,Intrastate
+Colombia,2017,1,44,44,47,Intrastate
+Colombia,2018,1,191,190,191,Intrastate
+Colombia,2019,1,140,140,144,Intrastate
+Colombia,2020,1,28,28,28,Intrastate
+Colombia,2021,1,115,115,125,Intrastate
+Colombia,2022,1,122,122,123,Intrastate
+Colombia,2023,1,89,88,90,Intrastate
+Colombia,2024,1,226,220,230,Intrastate
+Colombia,2025,1,298,279,330,Intrastate
+Comoros,1989,1,29,29,30,Intrastate
+Comoros,1997,1,56,56,78,Intrastate
+Congo,1993,1,53,53,53,Intrastate
+Congo,1997,1,10033,10033,20033,Internationalized Intrastate
+Congo,1998,1,3272,3272,3476,Internationalized Intrastate
+Congo,1999,1,626,626,1516,Internationalized Intrastate
+Congo,2002,1,167,167,171,Internationalized Intrastate
+Congo,2016,1,73,73,73,Intrastate
+Croatia,1992,1,4034,3998,4065,Internationalized Intrastate
+Croatia,1993,1,418,418,486,Internationalized Intrastate
+Croatia,1994,1,86,86,86,Intrastate
+Croatia,1995,1,1132,672,2823,Intrastate
+DR Congo (Zaire),1996,1,1289,1149,1837,Internationalized Intrastate
+DR Congo (Zaire),1997,1,4465,4046,4834,Internationalized Intrastate
+DR Congo (Zaire),1998,1,3345,3024,5713,Internationalized Intrastate
+DR Congo (Zaire),1999,1,2925,2598,3201,Internationalized Intrastate
+DR Congo (Zaire),2000,1,1294,1260,2458,Internationalized Intrastate
+DR Congo (Zaire),2001,1,454,454,734,Internationalized Intrastate
+DR Congo (Zaire),2005,1,34,34,34,Intrastate
+DR Congo (Zaire),2006,1,182,54,362,Intrastate
+DR Congo (Zaire),2007,2,632,632,669,Intrastate
+DR Congo (Zaire),2008,2,736,736,779,Intrastate
+DR Congo (Zaire),2011,1,82,82,82,Intrastate
+DR Congo (Zaire),2012,1,734,678,851,Internationalized Intrastate
+DR Congo (Zaire),2013,2,1474,1450,1505,Internationalized Intrastate
+DR Congo (Zaire),2014,2,146,93,166,Internationalized Intrastate
+DR Congo (Zaire),2016,1,506,308,1822,Intrastate
+DR Congo (Zaire),2017,3,3491,3249,4451,Internationalized Intrastate
+DR Congo (Zaire),2018,2,817,714,842,Internationalized Intrastate
+DR Congo (Zaire),2019,2,514,471,529,Internationalized Intrastate
+DR Congo (Zaire),2020,4,986,956,1090,Internationalized Intrastate
+DR Congo (Zaire),2021,2,1017,977,1065,Internationalized Intrastate
+DR Congo (Zaire),2022,2,1458,1434,1740,Internationalized Intrastate
+DR Congo (Zaire),2023,2,550,508,1563,Internationalized Intrastate
+DR Congo (Zaire),2024,2,1059,885,2814,Internationalized Intrastate
+DR Congo (Zaire),2025,2,4464,4285,21403,Internationalized Intrastate
+Djibouti,1991,1,60,60,240,Intrastate
+Djibouti,1992,1,129,44,757,Intrastate
+Djibouti,1993,1,33,33,107,Intrastate
+Djibouti,1994,1,39,39,46,Intrastate
+Djibouti,1999,1,25,25,57,Intrastate
+Djibouti,2008,1,35,35,44,Interstate
+Ecuador,1995,1,99,92,303,Interstate
+Egypt,1993,1,103,103,119,Intrastate
+Egypt,1994,1,145,145,157,Intrastate
+Egypt,1995,1,191,191,199,Intrastate
+Egypt,1996,1,85,85,99,Intrastate
+Egypt,1997,1,66,66,69,Intrastate
+Egypt,1998,1,27,27,29,Intrastate
+Egypt,2014,1,184,184,184,Intrastate
+Egypt,2015,1,767,753,947,Intrastate
+Egypt,2016,1,355,355,359,Intrastate
+Egypt,2017,2,497,382,674,Intrastate
+Egypt,2018,2,680,530,682,Intrastate
+Egypt,2019,2,637,259,652,Intrastate
+Egypt,2020,1,527,206,538,Intrastate
+Egypt,2021,1,112,99,204,Intrastate
+Egypt,2022,1,231,213,232,Intrastate
+El Salvador,1989,1,4924,4924,4952,Intrastate
+El Salvador,1990,1,849,849,999,Intrastate
+El Salvador,1991,1,88,88,93,Intrastate
+Eritrea,1997,1,31,31,117,Intrastate
+Eritrea,1998,1,1000,218,1980,Interstate
+Eritrea,1999,2,47217,47217,47431,"Interstate, Intrastate"
+Eritrea,2000,1,50000,50000,50000,Interstate
+Eritrea,2003,1,57,57,57,Intrastate
+Eritrea,2008,1,35,35,44,Interstate
+Eritrea,2016,1,25,25,200,Interstate
+Ethiopia,1989,3,24358,24358,24500,Intrastate
+Ethiopia,1990,3,49698,49698,52661,Intrastate
+Ethiopia,1991,4,12225,12222,13905,Intrastate
+Ethiopia,1992,1,165,165,275,Intrastate
+Ethiopia,1993,1,36,36,36,Intrastate
+Ethiopia,1994,2,75,75,92,Intrastate
+Ethiopia,1995,1,25,1,402,Intrastate
+Ethiopia,1996,2,236,236,506,Intrastate
+Ethiopia,1998,3,1050,249,2095,"Interstate, Intrastate"
+Ethiopia,1999,3,47925,47614,50746,"Interstate, Intrastate"
+Ethiopia,2000,3,50050,50025,51463,"Interstate, Intrastate"
+Ethiopia,2001,2,50,35,993,Intrastate
+Ethiopia,2002,2,50,50,2071,Intrastate
+Ethiopia,2003,2,50,50,336,Intrastate
+Ethiopia,2004,2,50,25,692,Intrastate
+Ethiopia,2005,2,83,58,770,Intrastate
+Ethiopia,2006,2,50,0,1020,Intrastate
+Ethiopia,2007,2,177,152,1098,Intrastate
+Ethiopia,2008,2,50,50,591,Intrastate
+Ethiopia,2009,2,515,515,1092,Intrastate
+Ethiopia,2010,2,151,148,1988,Intrastate
+Ethiopia,2011,2,50,25,553,Intrastate
+Ethiopia,2012,2,50,50,568,Intrastate
+Ethiopia,2013,2,77,77,1001,Intrastate
+Ethiopia,2014,1,25,25,222,Intrastate
+Ethiopia,2015,2,50,25,248,Intrastate
+Ethiopia,2016,3,75,30,542,"Interstate, Intrastate"
+Ethiopia,2019,2,67,67,70,Intrastate
+Ethiopia,2020,2,20916,20902,21597,"Internationalized Intrastate, Intrastate"
+Ethiopia,2021,2,124549,123982,128161,"Internationalized Intrastate, Intrastate"
+Ethiopia,2022,2,163219,163015,170045,Internationalized Intrastate
+Ethiopia,2023,2,1719,1655,6905,Intrastate
+Ethiopia,2024,2,2876,2847,10383,Intrastate
+Ethiopia,2025,2,4312,2696,16702,"Internationalized Intrastate, Intrastate"
+Georgia,1991,1,52,52,170,Intrastate
+Georgia,1992,3,771,771,1408,Intrastate
+Georgia,1993,2,1763,1763,2715,Intrastate
+Georgia,2004,1,27,27,73,Intrastate
+Georgia,2008,1,621,621,859,Internationalized Intrastate
+Guatemala,1989,1,82,82,300,Intrastate
+Guatemala,1990,1,83,83,114,Intrastate
+Guatemala,1991,1,72,72,85,Intrastate
+Guatemala,1992,1,67,67,95,Intrastate
+Guatemala,1993,1,58,58,86,Intrastate
+Guatemala,1994,1,37,37,39,Intrastate
+Guatemala,1995,1,27,21,27,Intrastate
+Guinea,2000,1,217,182,522,Intrastate
+Guinea,2001,1,432,432,778,Intrastate
+Guinea-Bissau,1998,1,505,501,702,Internationalized Intrastate
+Guinea-Bissau,1999,1,199,154,225,Internationalized Intrastate
+Haiti,1989,1,48,21,57,Intrastate
+Haiti,1991,1,160,55,359,Intrastate
+Haiti,2004,1,207,130,516,Intrastate
+Haiti,2024,1,217,185,230,Internationalized Intrastate
+Haiti,2025,1,1211,1113,1336,Internationalized Intrastate
+India,1989,3,1002,1002,1033,"Interstate, Intrastate"
+India,1990,5,2396,2348,2668,"Interstate, Intrastate"
+India,1991,4,3180,3180,3563,"Interstate, Intrastate"
+India,1992,6,3078,3078,3394,"Interstate, Intrastate"
+India,1993,5,1503,1494,1865,Intrastate
+India,1994,7,1214,1209,1514,"Interstate, Intrastate"
+India,1995,4,836,824,1092,Intrastate
+India,1996,7,838,837,1588,"Interstate, Intrastate"
+India,1997,7,999,973,1035,"Interstate, Intrastate"
+India,1998,6,933,933,1088,"Interstate, Intrastate"
+India,1999,7,2073,2027,2681,"Interstate, Intrastate"
+India,2000,7,3015,2953,3131,"Interstate, Intrastate"
+India,2001,6,1336,1245,4136,"Interstate, Intrastate"
+India,2002,6,2033,2032,2064,"Interstate, Intrastate"
+India,2003,7,1875,1854,2082,"Interstate, Intrastate"
+India,2004,6,1658,1480,1662,Intrastate
+India,2005,4,1382,1378,1511,Intrastate
+India,2006,4,1373,1305,1461,Intrastate
+India,2007,4,1086,1072,1159,Intrastate
+India,2008,5,1083,1057,1165,Intrastate
+India,2009,5,1115,1060,1304,Intrastate
+India,2010,4,1028,1010,1220,Intrastate
+India,2011,2,439,439,495,Intrastate
+India,2012,3,416,403,452,Intrastate
+India,2013,4,420,406,444,"Interstate, Intrastate"
+India,2014,5,491,451,631,"Interstate, Intrastate"
+India,2015,4,535,470,631,"Interstate, Intrastate"
+India,2016,4,697,673,801,"Interstate, Intrastate"
+India,2017,4,757,756,762,"Interstate, Intrastate"
+India,2018,4,851,842,908,"Interstate, Intrastate"
+India,2019,3,647,646,668,"Interstate, Intrastate"
+India,2020,4,651,650,681,"Interstate, Intrastate"
+India,2021,2,431,422,447,Intrastate
+India,2022,2,310,310,312,Intrastate
+India,2023,2,215,206,270,Intrastate
+India,2024,2,438,431,475,Intrastate
+India,2025,4,604,593,709,"Interstate, Intrastate"
+Indonesia,1990,1,72,61,127,Intrastate
+Indonesia,1991,1,58,57,133,Intrastate
+Indonesia,1992,1,39,39,39,Intrastate
+Indonesia,1997,1,56,55,84,Intrastate
+Indonesia,1998,1,47,33,65,Intrastate
+Indonesia,1999,2,264,212,440,Intrastate
+Indonesia,2000,1,286,242,332,Intrastate
+Indonesia,2001,1,278,254,306,Intrastate
+Indonesia,2002,1,466,429,571,Intrastate
+Indonesia,2003,1,868,839,1365,Intrastate
+Indonesia,2004,1,935,932,1075,Intrastate
+Indonesia,2005,1,213,213,215,Intrastate
+Indonesia,2018,1,28,25,45,Intrastate
+Indonesia,2019,1,34,21,42,Intrastate
+Indonesia,2020,1,31,20,33,Intrastate
+Indonesia,2021,1,52,25,60,Intrastate
+Indonesia,2022,1,46,38,47,Intrastate
+Indonesia,2023,1,59,39,75,Intrastate
+Indonesia,2024,1,57,39,63,Intrastate
+Indonesia,2025,1,104,74,132,Intrastate
+Iran,1990,1,31,31,335,Intrastate
+Iran,1991,1,45,45,45,Intrastate
+Iran,1993,2,186,186,262,Intrastate
+Iran,1996,1,27,27,29,Intrastate
+Iran,1997,1,38,38,42,Intrastate
+Iran,1999,1,28,28,35,Intrastate
+Iran,2000,1,40,40,77,Intrastate
+Iran,2001,1,119,119,149,Intrastate
+Iran,2005,1,28,28,37,Intrastate
+Iran,2006,1,57,52,123,Intrastate
+Iran,2007,1,86,61,200,Intrastate
+Iran,2008,1,121,121,265,Intrastate
+Iran,2009,1,133,121,148,Intrastate
+Iran,2010,1,74,74,74,Intrastate
+Iran,2011,1,242,235,246,Intrastate
+Iran,2016,1,30,30,137,Intrastate
+Iran,2017,1,27,27,27,Intrastate
+Iran,2018,3,183,171,242,"Interstate, Intrastate"
+Iran,2019,2,169,144,199,"Interstate, Intrastate"
+Iran,2020,2,496,425,517,"Interstate, Intrastate"
+Iran,2021,2,196,179,206,"Interstate, Intrastate"
+Iran,2022,1,56,56,92,Interstate
+Iran,2023,2,194,194,194,"Interstate, Intrastate"
+Iran,2024,2,662,661,662,"Interstate, Intrastate"
+Iran,2025,2,1274,1138,1289,"Interstate, Intrastate"
+Iraq,1989,1,50,50,50,Intrastate
+Iraq,1990,2,1152,1152,1152,"Interstate, Intrastate"
+Iraq,1991,3,23274,23231,30067,"Interstate, Intrastate"
+Iraq,1992,2,306,306,793,Intrastate
+Iraq,1993,1,75,75,203,Intrastate
+Iraq,1994,1,34,34,36,Intrastate
+Iraq,1995,2,587,587,952,Intrastate
+Iraq,1996,2,398,398,432,Intrastate
+Iraq,2003,1,7927,7927,13814,Interstate
+Iraq,2004,1,4094,4081,6142,Internationalized Intrastate
+Iraq,2005,1,2608,2542,3563,Internationalized Intrastate
+Iraq,2006,1,3923,3192,4123,Internationalized Intrastate
+Iraq,2007,1,2212,2040,2481,Internationalized Intrastate
+Iraq,2008,1,2112,2098,2539,Internationalized Intrastate
+Iraq,2009,1,1036,910,1058,Internationalized Intrastate
+Iraq,2010,1,989,810,1040,Internationalized Intrastate
+Iraq,2011,1,864,737,959,Internationalized Intrastate
+Iraq,2012,1,565,487,598,Intrastate
+Iraq,2013,1,1872,1723,1929,Intrastate
+Iraq,2014,1,13797,13035,15073,Internationalized Intrastate
+Iraq,2015,1,10982,10918,12181,Internationalized Intrastate
+Iraq,2016,1,9775,9543,10214,Internationalized Intrastate
+Iraq,2017,1,10012,9763,12173,Internationalized Intrastate
+Iraq,2018,1,866,855,899,Internationalized Intrastate
+Iraq,2019,1,498,497,520,Internationalized Intrastate
+Iraq,2020,1,674,641,714,Internationalized Intrastate
+Iraq,2021,1,707,628,816,Internationalized Intrastate
+Iraq,2022,1,340,337,350,Internationalized Intrastate
+Iraq,2023,1,203,203,205,Internationalized Intrastate
+Iraq,2024,1,217,215,230,Internationalized Intrastate
+Iraq,2025,1,77,75,85,Internationalized Intrastate
+Israel,1989,1,54,54,63,Intrastate
+Israel,1990,2,71,68,94,Intrastate
+Israel,1991,2,56,56,61,Intrastate
+Israel,1992,2,120,119,156,Intrastate
+Israel,1993,2,171,171,234,Intrastate
+Israel,1994,2,126,112,165,Intrastate
+Israel,1995,2,108,105,124,Intrastate
+Israel,1996,2,162,160,170,Intrastate
+Israel,1997,1,88,88,96,Intrastate
+Israel,1998,1,54,54,56,Intrastate
+Israel,1999,1,41,41,42,Intrastate
+Israel,2000,2,104,101,106,Intrastate
+Israel,2001,1,244,238,261,Intrastate
+Israel,2002,1,613,606,669,Intrastate
+Israel,2003,1,308,308,327,Intrastate
+Israel,2004,1,386,372,435,Intrastate
+Israel,2005,1,123,117,136,Intrastate
+Israel,2006,2,1649,1602,1879,Intrastate
+Israel,2007,1,276,275,305,Intrastate
+Israel,2008,1,668,580,715,Intrastate
+Israel,2009,1,696,598,867,Intrastate
+Israel,2010,1,27,27,27,Intrastate
+Israel,2011,1,78,78,78,Intrastate
+Israel,2012,1,235,235,244,Intrastate
+Israel,2014,1,2378,2366,2381,Intrastate
+Israel,2018,2,164,164,189,"Interstate, Intrastate"
+Israel,2019,2,188,163,204,"Interstate, Intrastate"
+Israel,2020,1,461,398,473,Interstate
+Israel,2021,2,435,430,445,"Interstate, Intrastate"
+Israel,2022,2,140,137,176,"Interstate, Intrastate"
+Israel,2023,3,27088,26971,27195,"Internationalized Intrastate, Interstate, Intrastate"
+Israel,2024,3,26506,26064,27607,"Internationalized Intrastate, Interstate, Intrastate"
+Israel,2025,5,16192,15378,16905,"Interstate, Intrastate"
+Ivory Coast,2002,1,661,565,661,Intrastate
+Ivory Coast,2003,1,140,140,520,Intrastate
+Ivory Coast,2004,1,47,47,48,Intrastate
+Ivory Coast,2011,1,98,90,179,Intrastate
+Jordan,2016,1,34,34,35,Intrastate
+Kenya,2015,1,42,40,117,Intrastate
+Kenya,2016,1,49,49,83,Intrastate
+Kenya,2017,1,85,83,110,Intrastate
+Kenya,2018,1,69,59,147,Intrastate
+Kenya,2019,1,61,60,94,Internationalized Intrastate
+Kenya,2020,1,94,94,142,Internationalized Intrastate
+Kenya,2021,1,78,78,184,Internationalized Intrastate
+Kenya,2022,1,72,71,148,Intrastate
+Kenya,2023,1,196,191,212,Intrastate
+Kenya,2024,1,52,49,53,Intrastate
+Kenya,2025,1,44,43,94,Intrastate
+Kuwait,1990,1,1058,1058,1058,Interstate
+Kuwait,1991,1,21790,21747,26203,Interstate
+Kyrgyzstan,2021,1,56,56,56,Interstate
+Kyrgyzstan,2022,1,150,134,159,Interstate
+Laos,1989,1,30,30,30,Intrastate
+Laos,1990,1,249,45,249,Intrastate
+Lebanon,1989,1,711,604,904,Internationalized Intrastate
+Lebanon,1990,1,700,400,800,Internationalized Intrastate
+Lebanon,2014,1,126,126,126,Intrastate
+Lebanon,2015,1,76,42,135,Intrastate
+Lebanon,2017,1,70,69,96,Intrastate
+Lesotho,1998,1,78,78,78,Internationalized Intrastate
+Liberia,1989,1,27,27,27,Intrastate
+Liberia,1990,1,347,347,431,Intrastate
+Liberia,2000,1,57,57,57,Intrastate
+Liberia,2001,1,341,341,341,Intrastate
+Liberia,2002,1,492,391,517,Intrastate
+Liberia,2003,1,1787,1787,1887,Intrastate
+Libya,2011,1,3762,3722,6285,Internationalized Intrastate
+Libya,2013,1,31,17,61,Intrastate
+Libya,2014,1,274,274,274,Intrastate
+Libya,2015,2,274,272,311,Intrastate
+Libya,2016,1,1678,1607,2720,Internationalized Intrastate
+Libya,2017,2,404,403,458,"Internationalized Intrastate, Intrastate"
+Libya,2018,1,44,44,45,Internationalized Intrastate
+Libya,2019,2,1631,1424,1707,Internationalized Intrastate
+Libya,2020,1,668,564,784,Internationalized Intrastate
+Malaysia,2013,1,70,68,122,Intrastate
+Mali,1990,1,457,457,467,Intrastate
+Mali,1991,1,59,3,138,Intrastate
+Mali,1994,1,106,106,106,Intrastate
+Mali,2007,1,39,39,39,Intrastate
+Mali,2008,1,112,112,127,Intrastate
+Mali,2009,2,126,93,132,Intrastate
+Mali,2012,2,218,209,579,Intrastate
+Mali,2013,1,836,836,1004,Internationalized Intrastate
+Mali,2014,2,189,189,231,"Internationalized Intrastate, Intrastate"
+Mali,2015,3,172,169,240,"Internationalized Intrastate, Intrastate"
+Mali,2016,1,97,97,112,Internationalized Intrastate
+Mali,2017,2,359,350,461,Internationalized Intrastate
+Mali,2018,2,521,489,590,Internationalized Intrastate
+Mali,2019,2,603,595,761,Internationalized Intrastate
+Mali,2020,2,583,556,756,Internationalized Intrastate
+Mali,2021,2,726,688,789,Internationalized Intrastate
+Mali,2022,2,1440,1422,1682,Internationalized Intrastate
+Mali,2023,3,1238,1225,1588,"Internationalized Intrastate, Intrastate"
+Mali,2024,3,1011,987,1320,Internationalized Intrastate
+Mali,2025,3,1357,1312,1835,Internationalized Intrastate
+Mauritania,2010,1,29,27,41,Internationalized Intrastate
+Mexico,1994,1,145,145,445,Intrastate
+Mexico,1996,1,37,37,70,Intrastate
+Moldova,1992,1,585,316,632,Intrastate
+Morocco,1989,1,207,207,378,Intrastate
+Mozambique,1989,1,1614,1574,4215,Internationalized Intrastate
+Mozambique,1990,1,1577,327,1577,Internationalized Intrastate
+Mozambique,1991,1,1326,365,2359,Intrastate
+Mozambique,1992,1,309,309,445,Intrastate
+Mozambique,2013,1,42,29,112,Intrastate
+Mozambique,2014,1,30,22,35,Intrastate
+Mozambique,2016,1,55,46,64,Intrastate
+Mozambique,2018,1,51,45,53,Intrastate
+Mozambique,2019,2,291,261,317,Intrastate
+Mozambique,2020,1,939,645,1261,Intrastate
+Mozambique,2021,1,867,496,1179,Internationalized Intrastate
+Mozambique,2022,1,378,212,592,Internationalized Intrastate
+Mozambique,2023,1,176,85,247,Internationalized Intrastate
+Mozambique,2024,1,151,108,321,Internationalized Intrastate
+Mozambique,2025,2,296,198,349,"Internationalized Intrastate, Intrastate"
+Myanmar (Burma),1989,2,1498,732,2107,Intrastate
+Myanmar (Burma),1990,4,555,555,590,Intrastate
+Myanmar (Burma),1991,5,777,722,897,Intrastate
+Myanmar (Burma),1992,4,1617,1582,1729,Intrastate
+Myanmar (Burma),1993,1,130,130,230,Intrastate
+Myanmar (Burma),1994,4,685,675,1143,Intrastate
+Myanmar (Burma),1995,3,317,267,475,Intrastate
+Myanmar (Burma),1996,3,229,229,245,Intrastate
+Myanmar (Burma),1997,3,323,323,328,Intrastate
+Myanmar (Burma),1998,2,61,40,61,Intrastate
+Myanmar (Burma),1999,1,25,25,25,Intrastate
+Myanmar (Burma),2000,3,226,224,226,Intrastate
+Myanmar (Burma),2001,3,215,215,215,Intrastate
+Myanmar (Burma),2002,2,294,291,371,Intrastate
+Myanmar (Burma),2003,1,38,38,44,Intrastate
+Myanmar (Burma),2004,1,27,25,28,Intrastate
+Myanmar (Burma),2005,4,142,123,147,Intrastate
+Myanmar (Burma),2006,3,244,209,251,Intrastate
+Myanmar (Burma),2007,3,348,348,350,Intrastate
+Myanmar (Burma),2008,2,64,64,67,Intrastate
+Myanmar (Burma),2009,3,195,175,409,Intrastate
+Myanmar (Burma),2010,2,157,142,161,Intrastate
+Myanmar (Burma),2011,3,713,695,2213,Intrastate
+Myanmar (Burma),2012,1,702,676,2198,Intrastate
+Myanmar (Burma),2013,4,278,267,299,Intrastate
+Myanmar (Burma),2014,3,187,127,394,Intrastate
+Myanmar (Burma),2015,4,634,632,3161,Intrastate
+Myanmar (Burma),2016,2,118,115,176,Intrastate
+Myanmar (Burma),2017,4,517,517,542,Intrastate
+Myanmar (Burma),2018,3,99,69,216,Intrastate
+Myanmar (Burma),2019,3,558,430,1134,Intrastate
+Myanmar (Burma),2020,1,170,161,208,Intrastate
+Myanmar (Burma),2021,5,1031,910,5359,Intrastate
+Myanmar (Burma),2022,5,2038,1862,10436,Intrastate
+Myanmar (Burma),2023,6,2453,2347,9440,Intrastate
+Myanmar (Burma),2024,6,2334,2289,4466,Intrastate
+Myanmar (Burma),2025,5,2083,2049,2979,Intrastate
+Nepal,1996,1,44,44,46,Intrastate
+Nepal,1997,1,40,40,40,Intrastate
+Nepal,1998,1,250,118,302,Intrastate
+Nepal,1999,1,156,147,306,Intrastate
+Nepal,2000,1,268,259,295,Intrastate
+Nepal,2001,1,429,380,479,Intrastate
+Nepal,2002,1,3946,2773,4105,Intrastate
+Nepal,2003,1,1341,1275,1405,Intrastate
+Nepal,2004,1,1880,1848,2040,Intrastate
+Nepal,2005,1,1104,1100,1169,Intrastate
+Nepal,2006,1,457,452,477,Intrastate
+Nicaragua,1989,1,526,526,533,Intrastate
+Nicaragua,1990,1,39,39,43,Intrastate
+Niger,1991,1,40,40,150,Intrastate
+Niger,1992,1,29,29,29,Intrastate
+Niger,1994,1,50,50,90,Intrastate
+Niger,1995,1,34,34,34,Intrastate
+Niger,1997,1,62,62,62,Intrastate
+Niger,2007,1,81,81,97,Intrastate
+Niger,2008,1,47,47,104,Intrastate
+Niger,2015,1,171,131,338,Internationalized Intrastate
+Niger,2016,1,274,274,281,Internationalized Intrastate
+Niger,2017,1,229,229,236,Internationalized Intrastate
+Niger,2018,1,74,71,113,Internationalized Intrastate
+Niger,2019,1,283,280,322,Internationalized Intrastate
+Niger,2020,1,512,510,550,Internationalized Intrastate
+Niger,2021,2,456,314,546,Internationalized Intrastate
+Niger,2022,2,488,371,541,Internationalized Intrastate
+Niger,2023,2,295,240,673,Internationalized Intrastate
+Niger,2024,2,925,802,1339,Intrastate
+Niger,2025,2,702,674,839,"Internationalized Intrastate, Intrastate"
+Nigeria,1996,1,56,56,57,Interstate
+Nigeria,2004,2,151,151,228,Intrastate
+Nigeria,2009,1,405,402,835,Intrastate
+Nigeria,2011,1,325,267,547,Intrastate
+Nigeria,2012,1,811,811,1155,Internationalized Intrastate
+Nigeria,2013,1,1629,1474,2081,Internationalized Intrastate
+Nigeria,2014,1,4788,4733,5216,Internationalized Intrastate
+Nigeria,2015,2,4766,4763,6122,Internationalized Intrastate
+Nigeria,2016,2,2451,2451,2528,Internationalized Intrastate
+Nigeria,2017,2,1879,1877,2380,Internationalized Intrastate
+Nigeria,2018,2,1171,1015,1613,Internationalized Intrastate
+Nigeria,2019,2,1341,1177,1981,Internationalized Intrastate
+Nigeria,2020,2,2024,1703,2996,Internationalized Intrastate
+Nigeria,2021,3,2005,1779,3019,"Internationalized Intrastate, Intrastate"
+Nigeria,2022,3,1564,1153,2501,"Internationalized Intrastate, Intrastate"
+Nigeria,2023,3,2125,1628,2554,Internationalized Intrastate
+Nigeria,2024,3,1579,1360,1810,"Internationalized Intrastate, Intrastate"
+Nigeria,2025,3,1905,1667,2150,"Internationalized Intrastate, Intrastate"
+North Macedonia,2001,1,72,72,233,Intrastate
+Pakistan,1989,1,25,25,25,Interstate
+Pakistan,1990,2,98,96,98,"Interstate, Intrastate"
+Pakistan,1991,1,99,99,195,Interstate
+Pakistan,1992,1,25,25,33,Interstate
+Pakistan,1994,2,80,80,80,"Interstate, Intrastate"
+Pakistan,1995,1,52,52,55,Intrastate
+Pakistan,1996,2,77,77,77,"Interstate, Intrastate"
+Pakistan,1997,1,127,127,133,Interstate
+Pakistan,1998,1,147,147,163,Interstate
+Pakistan,1999,1,934,914,1508,Interstate
+Pakistan,2000,1,225,221,263,Interstate
+Pakistan,2001,1,48,48,86,Interstate
+Pakistan,2002,1,212,212,233,Interstate
+Pakistan,2003,1,237,237,276,Interstate
+Pakistan,2004,1,43,43,58,Intrastate
+Pakistan,2006,1,200,200,209,Intrastate
+Pakistan,2007,2,668,667,1058,Intrastate
+Pakistan,2008,2,3195,3166,3932,Intrastate
+Pakistan,2009,2,6384,4855,6823,Intrastate
+Pakistan,2010,1,5574,5322,6409,Intrastate
+Pakistan,2011,2,2640,2603,3032,Intrastate
+Pakistan,2012,2,2791,2791,3104,Intrastate
+Pakistan,2013,3,1805,1805,1836,"Interstate, Intrastate"
+Pakistan,2014,3,3086,3081,3174,"Interstate, Intrastate"
+Pakistan,2015,3,2124,2123,2160,"Internationalized Intrastate, Interstate, Intrastate"
+Pakistan,2016,4,788,788,808,"Internationalized Intrastate, Interstate, Intrastate"
+Pakistan,2017,3,737,737,741,"Internationalized Intrastate, Interstate, Intrastate"
+Pakistan,2018,3,327,324,375,"Internationalized Intrastate, Interstate, Intrastate"
+Pakistan,2019,4,378,378,394,"Interstate, Intrastate"
+Pakistan,2020,3,468,425,475,"Interstate, Intrastate"
+Pakistan,2021,3,414,392,446,Intrastate
+Pakistan,2022,3,677,632,845,Intrastate
+Pakistan,2023,3,1068,967,1173,Intrastate
+Pakistan,2024,3,1684,1651,2179,"Interstate, Intrastate"
+Pakistan,2025,5,3336,3113,5152,"Interstate, Intrastate"
+Panama,1989,2,920,769,2234,"Interstate, Intrastate"
+Papua New Guinea,1990,1,55,55,65,Intrastate
+Papua New Guinea,1992,1,35,35,55,Intrastate
+Papua New Guinea,1993,1,34,34,62,Intrastate
+Papua New Guinea,1994,1,26,26,26,Intrastate
+Papua New Guinea,1995,1,29,29,31,Intrastate
+Papua New Guinea,1996,1,78,78,80,Intrastate
+Paraguay,1989,1,150,17,300,Intrastate
+Peru,1989,1,1827,1810,1838,Intrastate
+Peru,1990,1,1099,1099,1099,Intrastate
+Peru,1991,1,1138,1138,1139,Intrastate
+Peru,1992,1,1042,1042,1044,Intrastate
+Peru,1993,1,672,672,677,Intrastate
+Peru,1994,1,253,253,253,Intrastate
+Peru,1995,2,277,270,481,"Interstate, Intrastate"
+Peru,1996,1,80,80,80,Intrastate
+Peru,1997,1,93,93,99,Intrastate
+Peru,1998,1,25,25,25,Intrastate
+Peru,1999,1,75,75,75,Intrastate
+Peru,2007,1,32,32,32,Intrastate
+Peru,2008,1,40,40,40,Intrastate
+Peru,2009,1,50,50,80,Intrastate
+Peru,2010,1,28,28,28,Intrastate
+Philippines,1989,2,937,916,1000,Intrastate
+Philippines,1990,2,1316,1312,1334,Intrastate
+Philippines,1991,1,1514,1514,1933,Intrastate
+Philippines,1992,1,430,430,454,Intrastate
+Philippines,1993,2,253,253,292,Intrastate
+Philippines,1994,2,265,265,286,Intrastate
+Philippines,1995,2,152,152,163,Intrastate
+Philippines,1996,1,180,180,184,Intrastate
+Philippines,1997,2,302,262,380,Intrastate
+Philippines,1998,1,93,93,93,Intrastate
+Philippines,1999,2,199,166,233,Intrastate
+Philippines,2000,2,1567,1545,1699,Intrastate
+Philippines,2001,2,1001,716,1208,Intrastate
+Philippines,2002,2,662,662,707,Intrastate
+Philippines,2003,2,1051,922,1272,Intrastate
+Philippines,2004,2,339,330,443,Intrastate
+Philippines,2005,2,470,455,530,Intrastate
+Philippines,2006,2,360,360,1134,Intrastate
+Philippines,2007,2,439,439,1403,Intrastate
+Philippines,2008,2,481,481,763,Intrastate
+Philippines,2009,2,894,878,948,Intrastate
+Philippines,2010,2,332,332,437,Intrastate
+Philippines,2011,2,350,350,381,Intrastate
+Philippines,2012,2,295,288,331,Intrastate
+Philippines,2013,2,514,514,584,Intrastate
+Philippines,2014,2,470,463,487,Intrastate
+Philippines,2015,2,572,562,738,Intrastate
+Philippines,2016,3,550,456,627,Intrastate
+Philippines,2017,3,1624,1597,1742,"Internationalized Intrastate, Intrastate"
+Philippines,2018,3,420,345,430,Intrastate
+Philippines,2019,3,309,296,352,Intrastate
+Philippines,2020,3,348,347,350,Intrastate
+Philippines,2021,2,266,266,266,Intrastate
+Philippines,2022,2,220,217,220,Intrastate
+Philippines,2023,2,243,242,260,Intrastate
+Philippines,2024,2,176,165,176,Intrastate
+Philippines,2025,1,141,135,141,Intrastate
+Romania,1989,1,249,249,499,Intrastate
+Russia (Soviet Union),1990,2,192,78,402,Intrastate
+Russia (Soviet Union),1991,1,220,220,501,Intrastate
+Russia (Soviet Union),1993,1,145,145,147,Intrastate
+Russia (Soviet Union),1994,1,229,229,338,Intrastate
+Russia (Soviet Union),1995,1,1754,1754,3896,Intrastate
+Russia (Soviet Union),1996,1,2721,2704,4027,Intrastate
+Russia (Soviet Union),1999,2,5854,5819,12208,Intrastate
+Russia (Soviet Union),2000,1,2907,2907,5329,Intrastate
+Russia (Soviet Union),2001,1,791,790,1032,Intrastate
+Russia (Soviet Union),2002,1,1289,1131,3196,Intrastate
+Russia (Soviet Union),2003,1,480,476,626,Intrastate
+Russia (Soviet Union),2004,1,1151,1134,1307,Intrastate
+Russia (Soviet Union),2005,1,682,650,735,Intrastate
+Russia (Soviet Union),2006,1,259,259,357,Intrastate
+Russia (Soviet Union),2007,2,176,176,273,Intrastate
+Russia (Soviet Union),2008,1,404,279,453,Intrastate
+Russia (Soviet Union),2009,1,697,553,780,Intrastate
+Russia (Soviet Union),2010,1,418,409,634,Intrastate
+Russia (Soviet Union),2011,1,359,358,518,Intrastate
+Russia (Soviet Union),2012,1,516,514,723,Intrastate
+Russia (Soviet Union),2013,1,321,286,535,Intrastate
+Russia (Soviet Union),2014,1,173,173,301,Intrastate
+Russia (Soviet Union),2015,2,85,78,90,Intrastate
+Russia (Soviet Union),2016,1,69,64,85,Intrastate
+Russia (Soviet Union),2017,1,53,53,76,Intrastate
+Russia (Soviet Union),2018,1,30,30,30,Intrastate
+Russia (Soviet Union),2019,1,26,26,27,Intrastate
+Russia (Soviet Union),2020,1,30,24,31,Intrastate
+Russia (Soviet Union),2022,1,99473,72533,172378,Interstate
+Russia (Soviet Union),2023,2,76351,71125,135281,"Interstate, Intrastate"
+Russia (Soviet Union),2024,3,102201,81021,127087,"Interstate, Intrastate"
+Russia (Soviet Union),2025,1,94741,87321,140889,Interstate
+Rwanda,1990,1,1126,1098,2338,Internationalized Intrastate
+Rwanda,1991,1,153,150,1977,Intrastate
+Rwanda,1992,1,87,87,1390,Intrastate
+Rwanda,1993,1,353,353,403,Intrastate
+Rwanda,1994,1,1882,1781,2026,Intrastate
+Rwanda,1996,1,124,94,355,Intrastate
+Rwanda,1997,1,1086,686,1466,Intrastate
+Rwanda,1998,1,1096,1096,1901,Intrastate
+Rwanda,1999,1,315,115,315,Intrastate
+Rwanda,2000,1,155,155,294,Intrastate
+Rwanda,2001,1,2054,359,2054,Intrastate
+Rwanda,2002,1,83,63,83,Intrastate
+Rwanda,2009,1,1807,1703,2060,Internationalized Intrastate
+Rwanda,2010,1,212,208,267,Internationalized Intrastate
+Rwanda,2011,1,116,101,118,Internationalized Intrastate
+Rwanda,2012,1,83,59,99,Internationalized Intrastate
+Rwanda,2016,1,136,136,136,Internationalized Intrastate
+Rwanda,2019,1,226,226,305,Internationalized Intrastate
+Rwanda,2020,1,134,133,137,Internationalized Intrastate
+Rwanda,2022,1,25,25,25,Intrastate
+Rwanda,2023,1,132,130,133,Intrastate
+Rwanda,2024,1,44,37,44,Intrastate
+Rwanda,2025,1,60,12,84,Intrastate
+Senegal,1990,1,58,58,58,Intrastate
+Senegal,1992,1,78,78,78,Intrastate
+Senegal,1993,1,233,233,243,Intrastate
+Senegal,1995,1,299,299,303,Intrastate
+Senegal,1997,1,319,319,319,Intrastate
+Senegal,1998,1,242,242,252,Intrastate
+Senegal,2000,1,47,47,52,Intrastate
+Senegal,2003,1,39,38,39,Intrastate
+Senegal,2011,1,25,25,43,Intrastate
+Serbia (Yugoslavia),1991,2,3022,2949,4465,Intrastate
+Serbia (Yugoslavia),1992,1,153,153,163,Intrastate
+Serbia (Yugoslavia),1998,1,1235,651,2288,Intrastate
+Serbia (Yugoslavia),1999,1,1404,1349,3074,Internationalized Intrastate
+Sierra Leone,1991,1,552,551,1263,Internationalized Intrastate
+Sierra Leone,1992,1,218,218,342,Internationalized Intrastate
+Sierra Leone,1993,1,415,415,1088,Internationalized Intrastate
+Sierra Leone,1994,1,628,628,779,Internationalized Intrastate
+Sierra Leone,1995,1,1472,1472,2052,Internationalized Intrastate
+Sierra Leone,1996,1,570,570,735,Internationalized Intrastate
+Sierra Leone,1997,1,748,747,1552,Internationalized Intrastate
+Sierra Leone,1998,1,3287,3285,4197,Internationalized Intrastate
+Sierra Leone,1999,1,3153,3153,5650,Internationalized Intrastate
+Sierra Leone,2000,1,382,382,642,Internationalized Intrastate
+Sierra Leone,2001,1,48,48,92,Intrastate
+Somalia,1989,1,379,379,4504,Intrastate
+Somalia,1990,1,2710,1641,2962,Intrastate
+Somalia,1991,1,8005,7230,9005,Intrastate
+Somalia,1992,1,1154,1154,9823,Intrastate
+Somalia,1993,1,25,18,25,Intrastate
+Somalia,1994,1,237,237,614,Intrastate
+Somalia,1995,1,104,97,108,Intrastate
+Somalia,1996,1,256,255,308,Intrastate
+Somalia,2001,1,228,223,268,Intrastate
+Somalia,2002,1,114,113,207,Intrastate
+Somalia,2006,1,547,463,1293,Internationalized Intrastate
+Somalia,2007,1,1546,1528,2046,Internationalized Intrastate
+Somalia,2008,1,1491,1433,2075,Internationalized Intrastate
+Somalia,2009,1,1467,1263,1751,Internationalized Intrastate
+Somalia,2010,1,2150,1915,2355,Internationalized Intrastate
+Somalia,2011,1,1938,1559,2259,Internationalized Intrastate
+Somalia,2012,1,2646,2470,2945,Internationalized Intrastate
+Somalia,2013,1,940,760,1769,Internationalized Intrastate
+Somalia,2014,1,1153,905,2303,Internationalized Intrastate
+Somalia,2015,1,1206,927,2502,Internationalized Intrastate
+Somalia,2016,1,1933,1207,3127,Internationalized Intrastate
+Somalia,2017,1,1918,1778,2601,Internationalized Intrastate
+Somalia,2018,2,2204,1919,3126,"Internationalized Intrastate, Intrastate"
+Somalia,2019,2,1943,1693,2431,Internationalized Intrastate
+Somalia,2020,2,1942,1900,2238,Internationalized Intrastate
+Somalia,2021,2,2172,2163,2749,Internationalized Intrastate
+Somalia,2022,1,3034,3006,4233,Internationalized Intrastate
+Somalia,2023,1,3859,3846,4851,Internationalized Intrastate
+Somalia,2024,1,2191,2163,2309,Internationalized Intrastate
+Somalia,2025,2,3095,3035,3673,Internationalized Intrastate
+South Africa,1989,1,361,360,363,Intrastate
+South Sudan,2011,1,216,216,326,Intrastate
+South Sudan,2012,2,504,504,1236,"Interstate, Intrastate"
+South Sudan,2013,1,926,926,2318,Intrastate
+South Sudan,2014,1,1667,719,2993,Internationalized Intrastate
+South Sudan,2015,1,493,492,522,Internationalized Intrastate
+South Sudan,2016,1,735,734,1155,Intrastate
+South Sudan,2017,1,484,478,684,Intrastate
+South Sudan,2018,1,526,497,727,Intrastate
+South Sudan,2019,1,110,102,188,Intrastate
+South Sudan,2020,1,58,49,135,Intrastate
+South Sudan,2021,1,188,188,209,Intrastate
+South Sudan,2025,1,282,277,446,Intrastate
+Spain,1991,1,45,45,45,Intrastate
+Sri Lanka,1989,2,533,533,662,Intrastate
+Sri Lanka,1990,2,3622,3622,4661,Intrastate
+Sri Lanka,1991,1,6432,6432,6787,Intrastate
+Sri Lanka,1992,1,4091,4091,4247,Intrastate
+Sri Lanka,1993,1,2075,2075,2347,Intrastate
+Sri Lanka,1994,1,657,657,746,Intrastate
+Sri Lanka,1995,1,4755,4748,5062,Intrastate
+Sri Lanka,1996,1,3868,3868,4254,Intrastate
+Sri Lanka,1997,1,2880,2880,3959,Intrastate
+Sri Lanka,1998,1,3762,3762,4419,Intrastate
+Sri Lanka,1999,1,1882,1882,2616,Intrastate
+Sri Lanka,2000,1,2525,2525,4155,Intrastate
+Sri Lanka,2001,1,1144,1144,1145,Intrastate
+Sri Lanka,2003,1,29,17,46,Intrastate
+Sri Lanka,2005,1,88,88,90,Intrastate
+Sri Lanka,2006,1,1970,1970,2845,Intrastate
+Sri Lanka,2007,1,2494,2391,3070,Intrastate
+Sri Lanka,2008,1,8262,8262,9917,Intrastate
+Sri Lanka,2009,1,10165,10136,13702,Intrastate
+Sudan,1989,1,4253,4253,5253,Intrastate
+Sudan,1990,1,4335,4335,4335,Intrastate
+Sudan,1991,1,1317,1317,4317,Intrastate
+Sudan,1992,1,1083,1083,4083,Intrastate
+Sudan,1993,1,942,942,942,Intrastate
+Sudan,1994,1,337,337,337,Intrastate
+Sudan,1995,1,1000,1000,1882,Intrastate
+Sudan,1996,1,2289,2289,2291,Intrastate
+Sudan,1997,1,3709,3709,7228,Intrastate
+Sudan,1998,1,4891,4891,5572,Intrastate
+Sudan,1999,1,1408,1408,1597,Intrastate
+Sudan,2000,1,2841,2841,3610,Intrastate
+Sudan,2001,1,3408,3408,3658,Intrastate
+Sudan,2002,1,2021,2021,3024,Intrastate
+Sudan,2003,1,1999,1899,2856,Internationalized Intrastate
+Sudan,2004,1,3278,3277,4588,Intrastate
+Sudan,2005,1,161,161,191,Intrastate
+Sudan,2006,1,1002,1002,2719,Intrastate
+Sudan,2007,1,217,201,222,Intrastate
+Sudan,2008,1,598,598,1476,Intrastate
+Sudan,2009,1,353,353,370,Intrastate
+Sudan,2010,1,1010,1010,1888,Intrastate
+Sudan,2011,2,1404,1380,2222,"Internationalized Intrastate, Intrastate"
+Sudan,2012,2,1540,1490,2902,"Interstate, Intrastate"
+Sudan,2013,1,594,528,3784,Intrastate
+Sudan,2014,1,856,815,3386,Intrastate
+Sudan,2015,1,1264,1264,2379,Intrastate
+Sudan,2016,1,1309,1303,2321,Intrastate
+Sudan,2017,1,160,148,360,Intrastate
+Sudan,2018,1,243,191,500,Intrastate
+Sudan,2020,1,45,45,48,Intrastate
+Sudan,2021,1,31,31,72,Intrastate
+Sudan,2022,1,47,47,47,Intrastate
+Sudan,2023,1,11760,11737,17241,Intrastate
+Sudan,2024,1,4684,4360,4974,Intrastate
+Sudan,2025,1,12269,11718,12661,Intrastate
+Syria,2011,1,1203,1121,1451,Intrastate
+Syria,2012,2,50490,48759,55537,Intrastate
+Syria,2013,3,72016,68601,76818,Intrastate
+Syria,2014,3,65345,63576,68372,"Internationalized Intrastate, Intrastate"
+Syria,2015,3,50181,48268,51914,"Internationalized Intrastate, Intrastate"
+Syria,2016,3,43650,42199,45145,"Internationalized Intrastate, Intrastate"
+Syria,2017,2,24126,23282,25972,Internationalized Intrastate
+Syria,2018,3,13072,12622,13717,"Internationalized Intrastate, Intrastate"
+Syria,2019,2,7379,7231,7812,Internationalized Intrastate
+Syria,2020,2,4589,4206,5095,Internationalized Intrastate
+Syria,2021,2,1356,1344,1559,Internationalized Intrastate
+Syria,2022,2,911,908,1107,Internationalized Intrastate
+Syria,2023,3,1500,1500,1641,"Internationalized Intrastate, Intrastate"
+Syria,2024,3,2166,2119,2194,"Internationalized Intrastate, Intrastate"
+Syria,2025,4,735,734,757,"Internationalized Intrastate, Interstate, Intrastate"
+Tajikistan,1992,1,3355,3352,5118,Internationalized Intrastate
+Tajikistan,1993,1,1395,1395,1596,Internationalized Intrastate
+Tajikistan,1994,1,356,356,645,Internationalized Intrastate
+Tajikistan,1995,1,368,362,649,Internationalized Intrastate
+Tajikistan,1996,1,2790,2790,2869,Internationalized Intrastate
+Tajikistan,1997,1,87,87,87,Intrastate
+Tajikistan,1998,1,600,600,617,Intrastate
+Tajikistan,2000,1,46,46,46,Intrastate
+Tajikistan,2010,1,98,93,244,Intrastate
+Tajikistan,2011,1,28,21,30,Intrastate
+Tajikistan,2018,1,52,52,63,Intrastate
+Tajikistan,2019,1,49,24,75,Intrastate
+Tajikistan,2021,1,56,56,56,Interstate
+Tajikistan,2022,1,150,134,159,Interstate
+Tanzania,2020,1,25,22,26,Intrastate
+Thailand,2003,1,26,26,27,Intrastate
+Thailand,2004,1,164,162,170,Intrastate
+Thailand,2005,1,205,202,212,Intrastate
+Thailand,2006,1,212,212,217,Intrastate
+Thailand,2007,1,197,197,206,Intrastate
+Thailand,2008,1,130,130,133,Intrastate
+Thailand,2009,1,138,135,138,Intrastate
+Thailand,2010,1,76,74,79,Intrastate
+Thailand,2011,2,172,172,185,"Interstate, Intrastate"
+Thailand,2012,1,131,131,132,Intrastate
+Thailand,2013,1,189,188,192,Intrastate
+Thailand,2014,1,68,62,72,Intrastate
+Thailand,2015,1,57,56,57,Intrastate
+Thailand,2016,1,50,49,50,Intrastate
+Thailand,2017,1,43,43,43,Intrastate
+Thailand,2018,1,36,27,36,Intrastate
+Thailand,2019,1,55,54,55,Intrastate
+Thailand,2020,1,46,37,47,Intrastate
+Thailand,2021,1,38,30,38,Intrastate
+Thailand,2022,1,29,23,29,Intrastate
+Thailand,2023,1,30,19,30,Intrastate
+Thailand,2024,1,34,28,36,Intrastate
+Thailand,2025,2,288,268,479,"Interstate, Intrastate"
+Togo,2022,1,34,19,59,Intrastate
+Togo,2023,1,29,29,48,Intrastate
+Togo,2024,1,46,46,53,Intrastate
+Togo,2025,1,69,18,69,Intrastate
+Trinidad and Tobago,1990,1,39,32,55,Intrastate
+Tunisia,2013,1,29,29,30,Intrastate
+Tunisia,2014,1,50,50,60,Intrastate
+Tunisia,2015,1,59,59,61,Intrastate
+Tunisia,2016,1,71,71,72,Intrastate
+Turkey,1989,1,442,442,442,Intrastate
+Turkey,1990,1,526,514,526,Intrastate
+Turkey,1991,2,409,409,414,Intrastate
+Turkey,1992,2,1734,1734,1751,Intrastate
+Turkey,1993,2,2341,2341,3549,Intrastate
+Turkey,1994,1,4165,4165,4268,Intrastate
+Turkey,1995,1,3738,3731,4435,Intrastate
+Turkey,1996,1,3974,3974,4067,Intrastate
+Turkey,1997,1,3902,3899,5124,Intrastate
+Turkey,1998,1,2074,2074,2162,Intrastate
+Turkey,1999,1,1363,1363,1440,Intrastate
+Turkey,2000,2,207,207,211,Intrastate
+Turkey,2001,1,186,186,201,Intrastate
+Turkey,2002,1,105,105,124,Intrastate
+Turkey,2003,1,153,153,156,Intrastate
+Turkey,2004,1,276,276,414,Intrastate
+Turkey,2005,2,407,405,438,Intrastate
+Turkey,2006,1,349,349,400,Intrastate
+Turkey,2007,1,664,658,687,Intrastate
+Turkey,2008,1,681,634,1067,Intrastate
+Turkey,2009,1,219,214,232,Intrastate
+Turkey,2010,1,356,347,414,Intrastate
+Turkey,2011,1,558,557,760,Intrastate
+Turkey,2012,1,853,853,866,Intrastate
+Turkey,2013,1,32,32,36,Intrastate
+Turkey,2015,2,932,927,1424,Intrastate
+Turkey,2016,3,2615,2610,2711,Intrastate
+Turkey,2017,2,1506,1439,1676,Intrastate
+Turkey,2018,1,940,932,957,Intrastate
+Turkey,2019,1,630,630,684,Intrastate
+Turkey,2020,1,431,428,446,Intrastate
+Turkey,2021,1,493,482,599,Intrastate
+Turkey,2022,1,760,754,792,Intrastate
+Turkey,2023,1,386,385,505,Intrastate
+Turkey,2024,1,239,235,395,Intrastate
+Turkey,2025,1,55,52,90,Intrastate
+Uganda,1989,1,1019,1019,1040,Intrastate
+Uganda,1990,1,621,621,633,Intrastate
+Uganda,1991,1,853,853,853,Intrastate
+Uganda,1992,1,72,72,72,Intrastate
+Uganda,1994,1,149,149,226,Intrastate
+Uganda,1995,1,295,295,332,Intrastate
+Uganda,1996,1,1268,1268,1614,Intrastate
+Uganda,1997,1,888,888,1179,Intrastate
+Uganda,1998,1,835,835,1048,Intrastate
+Uganda,1999,1,355,355,355,Intrastate
+Uganda,2000,1,388,388,407,Intrastate
+Uganda,2001,1,189,189,237,Intrastate
+Uganda,2002,1,1086,1086,1881,Intrastate
+Uganda,2003,1,642,641,1100,Intrastate
+Uganda,2004,1,1610,1609,2215,Intrastate
+Uganda,2005,1,695,695,814,Internationalized Intrastate
+Uganda,2006,1,221,221,318,Intrastate
+Uganda,2007,1,91,91,147,Intrastate
+Uganda,2008,1,53,53,66,Internationalized Intrastate
+Uganda,2009,1,238,238,263,Internationalized Intrastate
+Uganda,2010,1,138,138,158,Internationalized Intrastate
+Uganda,2011,1,136,136,146,Internationalized Intrastate
+Uganda,2013,1,100,100,118,Internationalized Intrastate
+Uganda,2014,1,864,864,1033,Internationalized Intrastate
+Uganda,2015,1,197,162,227,Internationalized Intrastate
+Uganda,2016,1,142,142,143,Internationalized Intrastate
+Uganda,2017,1,141,141,149,Internationalized Intrastate
+Uganda,2022,1,25,25,28,Intrastate
+Ukraine,2014,4,4899,4776,5640,"Internationalized Intrastate, Intrastate"
+Ukraine,2015,1,1894,1739,1951,Internationalized Intrastate
+Ukraine,2016,1,697,488,766,Internationalized Intrastate
+Ukraine,2017,1,447,422,497,Internationalized Intrastate
+Ukraine,2018,1,243,168,257,Internationalized Intrastate
+Ukraine,2019,1,311,259,311,Internationalized Intrastate
+Ukraine,2020,1,196,113,257,Internationalized Intrastate
+Ukraine,2021,1,208,167,213,Internationalized Intrastate
+Ukraine,2022,2,99530,72589,172439,"Internationalized Intrastate, Interstate"
+Ukraine,2023,1,76254,71065,135105,Interstate
+Ukraine,2024,1,102120,80950,126998,Interstate
+Ukraine,2025,1,94741,87321,140889,Interstate
+United Kingdom,1989,1,38,38,39,Intrastate
+United Kingdom,1990,1,44,44,46,Intrastate
+United Kingdom,1991,1,26,26,27,Intrastate
+United Kingdom,1998,1,29,29,29,Intrastate
+United Kingdom,2001,1,1397,1388,2075,Interstate
+United Kingdom,2003,1,7927,7927,13814,Interstate
+United Kingdom,2024,1,130,84,198,Interstate
+United Kingdom,2025,1,781,337,1044,Interstate
+United States of America,1989,1,843,745,2001,Interstate
+United States of America,2001,2,2980,2926,4107,"Internationalized Intrastate, Interstate"
+United States of America,2002,1,880,866,1300,Internationalized Intrastate
+United States of America,2003,2,7992,7992,13905,"Internationalized Intrastate, Interstate"
+United States of America,2004,1,378,378,952,Internationalized Intrastate
+United States of America,2005,1,108,107,289,Internationalized Intrastate
+United States of America,2006,1,246,246,382,Internationalized Intrastate
+United States of America,2007,1,186,149,225,Internationalized Intrastate
+United States of America,2008,1,291,285,377,Internationalized Intrastate
+United States of America,2009,1,493,416,683,Internationalized Intrastate
+United States of America,2010,1,329,288,877,Internationalized Intrastate
+United States of America,2011,1,203,203,513,Internationalized Intrastate
+United States of America,2012,1,225,223,313,Internationalized Intrastate
+United States of America,2013,1,38,35,145,Internationalized Intrastate
+United States of America,2014,1,138,129,253,Internationalized Intrastate
+United States of America,2015,1,87,81,138,Internationalized Intrastate
+United States of America,2016,1,117,117,146,Internationalized Intrastate
+United States of America,2017,1,111,100,194,Internationalized Intrastate
+United States of America,2019,1,37,34,56,Internationalized Intrastate
+United States of America,2024,1,130,84,198,Interstate
+United States of America,2025,1,781,337,1044,Interstate
+Uzbekistan,1999,1,67,64,76,Intrastate
+Uzbekistan,2000,1,471,410,482,Internationalized Intrastate
+Uzbekistan,2004,1,37,19,50,Intrastate
+Venezuela,1992,1,144,144,263,Intrastate
+Yemen (North Yemen),1994,1,1489,1283,3253,Intrastate
+Yemen (North Yemen),2008,1,33,33,111,Intrastate
+Yemen (North Yemen),2009,1,1413,1288,1611,Internationalized Intrastate
+Yemen (North Yemen),2010,1,716,610,889,Internationalized Intrastate
+Yemen (North Yemen),2011,1,1699,1520,1748,Internationalized Intrastate
+Yemen (North Yemen),2012,1,2450,2406,2556,Internationalized Intrastate
+Yemen (North Yemen),2013,1,582,576,650,Internationalized Intrastate
+Yemen (North Yemen),2014,1,1855,1810,2241,Internationalized Intrastate
+Yemen (North Yemen),2015,2,7842,7298,8991,"Internationalized Intrastate, Intrastate"
+Yemen (North Yemen),2016,1,3275,3150,3402,Internationalized Intrastate
+Yemen (North Yemen),2017,2,3235,3061,3672,"Internationalized Intrastate, Intrastate"
+Yemen (North Yemen),2018,1,4706,4609,6827,Internationalized Intrastate
+Yemen (North Yemen),2019,1,2637,2108,3589,Internationalized Intrastate
+Yemen (North Yemen),2020,2,6293,3771,16278,"Internationalized Intrastate, Intrastate"
+Yemen (North Yemen),2021,1,23360,22112,33637,Internationalized Intrastate
+Yemen (North Yemen),2022,1,2920,2136,3572,Internationalized Intrastate
+Yemen (North Yemen),2023,1,808,739,4619,Internationalized Intrastate
+Yemen (North Yemen),2024,2,909,481,1003,"Internationalized Intrastate, Interstate"
+Yemen (North Yemen),2025,4,1414,856,1716,"Internationalized Intrastate, Interstate, Intrastate"

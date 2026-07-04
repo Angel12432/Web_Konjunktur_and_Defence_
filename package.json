@@ -14,5 +14,8 @@
   "dependencies": {
     "@highcharts/map-collection": "^2.3.3",
     "highcharts": "^13.0.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

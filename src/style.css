@@ -1,9 +1,8 @@
-/* Farbpalette ist aus alter Datei übernommen, können wir ändern */
-
 :root {
   --bg: #050814;
   --panel: #0b1223;
   --card: #101a2f;
+  --card-soft: rgba(16, 26, 47, 0.72);
   --text: #f2f7ff;
   --soft: #d7e2f3;
   --muted: #b9c6da;
@@ -14,99 +13,221 @@
   --ok: #9df6ca;
   --purple: #c9b2ff;
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+  --radius: 24px;
+  --page-max: 1180px;
+  --page-pad: clamp(1rem, 4vw, 2rem);
   --font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font2: Merriweather_sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font2: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
   font-size: 1rem;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  background: radial-gradient(circle at 20% -5%, #183154 0, #050814 44%, #02040a 100%);
+  background:
+    radial-gradient(circle at 18% -8%, rgba(34, 73, 122, 0.9) 0, transparent 35%),
+    radial-gradient(circle at 95% 12%, rgba(255, 102, 127, 0.12) 0, transparent 30%),
+    linear-gradient(180deg, #050814 0%, #02040a 100%);
   color: var(--text);
   font-family: var(--font2);
   min-height: 100vh;
 }
 
-.main_content {
-  min-width: 320px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+main {
+  overflow: hidden;
 }
 
-.worldmap {
-  min-width: 320px;
-  max-width: 100vw;
-  margin: 0 auto;
-  padding: 0 2rem 2rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+.highcharts-container:focus-visible {
+  outline: 3px solid rgba(139, 215, 255, 0.85);
+  outline-offset: 3px;
+}
+
+.section-shell {
+  width: min(100% - (var(--page-pad) * 2), var(--page-max));
+  margin-inline: auto;
+  padding-block: clamp(2.25rem, 6vw, 4.5rem);
+}
+
+.hero {
+  min-height: min(760px, 100svh);
+  display: grid;
+  align-content: center;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  padding-top: clamp(3rem, 8vw, 6rem);
+}
+
+.eyebrow {
+  margin: 0 0 0.65rem;
+  color: var(--accent2);
+  font-family: var(--font-family);
+  font-size: clamp(0.75rem, 1.5vw, 0.88rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  overflow-wrap: anywhere;
 }
 
 h1 {
-  /* Mindestens 2rem, idealerweise 5vw, maximal 4rem */
-  font-size: clamp(2rem, 5vw, 4rem);
-  
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(2.65rem, 10vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.075em;
 }
 
-
-
-/* Große Sektions-Überschriften */
 h2 {
-  font-size: clamp(1.625rem, 4vw, 2.5rem);
-  margin-bottom: 20px;
+  margin: 0;
+  font-size: clamp(1.75rem, 4.2vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
 }
 
-/*Überschrift Worldmap*/
-h2.worldmaph {
-  color: red;
-}
-
-/* Kleinere Unterüberschriften *//* Kleinere Unterüberschriften */
 h3 {
-  font-size: clamp(1.375rem, 3vw, 1.75rem);
+  margin: 0;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
 }
 
-
-
-/* ─── Weltkarte ─────────────────────────────────────────────────────────── */
-
-#kartenContainer {
-  width: 100%;
-  height: 560px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--panel);
+p {
+  margin: 0;
+  color: var(--soft);
+  font-size: clamp(1rem, 1.7vw, 1.1rem);
+  line-height: 1.7;
 }
 
+.lead {
+  max-width: 760px;
+  color: var(--soft);
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+}
 
-.karte-laden {
-  display: flex;
+.hero-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: clamp(1rem, 3vw, 2rem);
+}
+
+.info-card,
+.chart-container,
+.map-card,
+.slider-bereich {
+  background: linear-gradient(145deg, rgba(16, 26, 47, 0.94), rgba(11, 18, 35, 0.94));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.info-card {
+  min-height: 190px;
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+}
+
+.info-card h2 {
+  margin-top: 1.3rem;
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  letter-spacing: -0.025em;
+}
+
+.info-card p {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.97rem;
+}
+
+.card-number {
+  display: inline-flex;
+  width: 2.2rem;
+  height: 2.2rem;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  color: var(--muted);
-  font-size: 15px;
-  gap: 12px;
+  border-radius: 999px;
+  background: rgba(139, 215, 255, 0.12);
+  border: 1px solid rgba(139, 215, 255, 0.32);
+  color: var(--accent);
+  font-family: var(--font-family);
+  font-size: 0.82rem;
+  font-weight: 800;
 }
 
+.transition-section {
+  display: grid;
+  gap: 1rem;
+  max-width: 930px;
+}
+
+.two-column-text {
+  max-width: var(--page-max);
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+  align-items: end;
+}
+
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: end;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+}
+
+.section-note {
+  max-width: 360px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.worldmaph {
+  color: var(--danger);
+}
+
+/* Weltkarte */
+#kartenContainer {
+  width: 100%;
+  height: clamp(360px, 58vw, 620px);
+  overflow: hidden;
+}
+
+.karte-laden,
 .karte-fehler {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  color: var(--danger);
-  font-size: 14px;
+  min-height: 100%;
+  color: var(--muted);
   text-align: center;
-  padding: 32px;
+  padding: 2rem;
+  gap: 0.75rem;
+}
+
+.karte-fehler {
+  color: var(--danger);
+  flex-direction: column;
+}
+
+.karte-fehler code {
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .spinner {
@@ -123,51 +244,52 @@ h3 {
   to { transform: rotate(360deg); }
 }
 
-
-/* ─── Slider ─────────────────────────────────────────────────────────────── */
-
+/* Slider */
 .slider-bereich {
-  margin-top: 20px;
-  padding: 0 4px;
+  margin-top: 1rem;
+  padding: clamp(1rem, 2.5vw, 1.25rem);
 }
 
 .slider-kopf {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .slider-titel {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-family: var(--font-family);
-  margin-right: 10px;
 }
 
 #jahrLabel {
   color: var(--text);
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 800;
   letter-spacing: 0.04em;
   font-family: var(--font-family);
+  min-width: 4ch;
 }
 
 #jahrSlider {
   width: 100%;
-  height: 5px;
-  border-radius: 4px;
+  height: 8px;
+  border-radius: 999px;
   outline: none;
   cursor: pointer;
   background: linear-gradient(to right, var(--danger) 0%, var(--line) 0%);
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 #jahrSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: var(--text);
   border: 3px solid var(--danger);
@@ -176,8 +298,8 @@ h3 {
 }
 
 #jahrSlider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: var(--text);
   border: 3px solid var(--danger);
@@ -185,56 +307,51 @@ h3 {
 }
 
 .slider-ticks {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 10px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin-top: 0.85rem;
 }
- 
+
 .slider-tick {
-  flex: 1;
   text-align: center;
   background: none;
   border: 1px solid transparent;
-  border-radius: 4px;
-  padding: 4px 2px;
+  border-radius: 999px;
+  padding: 0.45rem 0.25rem;
   font-family: var(--font-family);
-  font-size: 15px;
+  font-size: clamp(0.78rem, 2.5vw, 0.95rem);
   color: var(--muted);
   cursor: pointer;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
   user-select: none;
 }
- 
+
 .slider-tick:hover {
   color: var(--soft);
   border-color: var(--line);
   background: rgba(255, 255, 255, 0.04);
 }
- 
+
 .slider-tick.aktiv {
   color: var(--text);
-  font-weight: 600;
+  font-weight: 700;
   border-color: var(--danger);
   background: rgba(255, 102, 127, 0.08);
 }
 
-
-
-/* ── Play/Pause-Button ─────────────────────────────────────────────────── */
-/* In style.css ergänzen (z.B. im Block "Slider") */
- 
 .play-bereich {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
 }
- 
+
 .play-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   border: 2px solid var(--danger);
   background: transparent;
@@ -244,108 +361,55 @@ h3 {
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   flex-shrink: 0;
 }
- 
+
 .play-btn:hover {
   background: var(--danger);
   color: var(--text);
   box-shadow: 0 0 10px rgba(255, 102, 127, 0.4);
 }
- 
+
 .play-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   pointer-events: none;
 }
 
-
-/*Lokales Einbinden von zwei Schriften*/
-@font-face {
-  font-family: 'Roboto';
-  src: url('assets/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Merriweather_sans';
-  src: url('assets/fonts/Merriweather_Sans/MerriweatherSans-VariableFont_wght.ttf')  format('truetype');
-  font-display: swap;
-}
-
-
-/* ─── Charts & Graphiken ────────────────────────────────────────────────── */
-
-
-.charts-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin: 20px 0;
-}
-
+/* Charts */
+.charts-row,
 .charts-row-vertical {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin: 20px 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 1.5rem);
+  margin: 0;
 }
 
 .chart-container {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: var(--shadow);
-  min-height: 400px;
-}
-
-.chart-container.wide {
-  grid-column: 1;
-  min-height: 500px;
+  min-width: 0;
+  min-height: clamp(320px, 45vw, 440px);
+  padding: clamp(0.5rem, 2vw, 1rem);
 }
 
 .chart-container.horizontal {
-  min-height: 600px;
-}
-
-.section-verticals .charts-row-vertical {
-  grid-template-columns: 1fr 1fr;
+  min-height: clamp(430px, 68vw, 640px);
 }
 
 .source {
   text-align: center;
-  font-size: 0.85em;
+  font-size: 0.85rem;
   color: var(--muted);
-  margin-top: 15px;
+  margin-top: 1rem;
   font-style: italic;
 }
 
-/* Animation für Bars von links */
-@keyframes slideInFromLeft {
-  from {
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: left;
-  }
-  to {
-    opacity: 1;
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-}
-
-/* Highcharts Anpassungen */
 .highcharts-title {
-  font-weight: 600 !important;
+  font-weight: 700 !important;
 }
 
 .highcharts-axis-labels {
   color: var(--muted) !important;
 }
 
-.highcharts-grid-line {
-  stroke: var(--line) !important;
-}
-
+.highcharts-grid-line,
 .highcharts-axis-line {
   stroke: var(--line) !important;
 }
@@ -354,5 +418,88 @@ h3 {
   color: var(--text) !important;
 }
 
+@media (max-width: 960px) {
+  .hero-cards,
+  .charts-row,
+  .charts-row-vertical,
+  .two-column-text {
+    grid-template-columns: 1fr;
+  }
 
+  .hero {
+    min-height: auto;
+  }
 
+  .section-heading-row {
+    display: grid;
+  }
+
+  .section-note {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  :root {
+    --radius: 18px;
+  }
+
+  .section-shell {
+    width: min(100% - 1rem, var(--page-max));
+    padding-block: 2rem;
+  }
+
+  h1 {
+    max-width: 9ch;
+  }
+
+  #kartenContainer {
+    height: 430px;
+  }
+
+  .slider-kopf {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .slider-ticks {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .chart-container {
+    min-height: 360px;
+    padding: 0.25rem;
+  }
+
+  .chart-container.horizontal {
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 420px) {
+  .section-shell {
+    width: calc(100% - 0.75rem);
+  }
+
+  #kartenContainer {
+    height: 390px;
+  }
+
+  .info-card {
+    min-height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -112,7 +112,7 @@ async function ladeCSV() {
 }
 
 // ─── Karte rendern ────────────────────────────────────────────────────────
-const StandardMapView = {projection: { name: "Miller" }, center: [15, 42], zoom: 4.0}
+const StandardMapView = { projection: { name: "Miller" }, center: [10, 18], zoom: 1.65 }
 
 async function erstelleKarte(datenNachJahr) {
 
@@ -128,6 +128,7 @@ async function erstelleKarte(datenNachJahr) {
       style: { fontFamily: "var(--font-family)" },
       zooming: { mouseWheel: { enabled: false } },
       panning: { enabled: true },
+      height: null,
     },
     title: {
       text: null,
@@ -165,7 +166,10 @@ async function erstelleKarte(datenNachJahr) {
       align: "right",
       verticalAlign: "bottom",
       layout: "vertical",
+      floating: false,
       itemStyle: { color: "var(--soft)" },
+      itemMarginTop: 2,
+      itemMarginBottom: 2,
     },
     tooltip: {
       useHTML: true,
@@ -220,6 +224,17 @@ async function erstelleKarte(datenNachJahr) {
       },
     },
     credits: { enabled: false },
+    accessibility: { enabled: false },
+    responsive: {
+      rules: [{
+        condition: { maxWidth: 700 },
+        chartOptions: {
+          mapView: { projection: { name: "Miller" }, center: [18, 18], zoom: 1.35 },
+          legend: { align: "center", verticalAlign: "bottom", layout: "horizontal", title: { text: null } },
+          subtitle: { style: { fontSize: "10px" } },
+        },
+      }],
+    },
   });
 
   // ─── DOM-Referenzen ───────────────────────────────────────────────────────
@@ -336,7 +351,7 @@ async function erstelleKarte(datenNachJahr) {
 }
 
 // ─── Einstiegspunkt (wird von main.js aufgerufen) ─────────────────────────
-export async function initialisiere_Weltkarte() {
+export async function initialisiereWeltkarte() {
   const kartenContainer = document.getElementById("kartenContainer");
   if (!kartenContainer) {
     console.error("Element #kartenContainer nicht gefunden.");
@@ -355,4 +370,5 @@ export async function initialisiere_Weltkarte() {
   }
 }
 
-export default initialisiere_Weltkarte;
+export { initialisiereWeltkarte as initialisiere_Weltkarte };
+export default initialisiereWeltkarte;
