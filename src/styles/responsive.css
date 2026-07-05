@@ -2,6 +2,7 @@
   .hero-cards,
   .chart-grid--two,
   .chart-grid--verticals,
+  .chart-grid--with-note,
   .text-section--split {
     grid-template-columns: 1fr;
   }
