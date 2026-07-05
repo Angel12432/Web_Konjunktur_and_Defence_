@@ -18,12 +18,8 @@
     font-size: clamp(1.75rem, 4.6vw, 2.6rem);
   }
 
-  .section-header--row {
-    display: grid;
-  }
-
   .section-note {
-    max-width: 64ch;
+    max-width: 100%;
   }
 }
 
@@ -51,6 +47,14 @@
   }
 }
 
+
+@media (max-width: 860px) and (min-width: 681px) {
+  h1 {
+    font-size: clamp(2.85rem, 8.4vw, 4.55rem);
+    letter-spacing: -0.075em;
+  }
+}
+
 @media (max-width: 680px) {
   :root {
     --radius-card: var(--radius-card-sm);
@@ -59,7 +63,7 @@
   }
 
   h1 {
-    max-width: 9.5ch;
+    max-width: 100%;
     font-size: clamp(2.45rem, 11.5vw, 4.1rem);
     line-height: 0.98;
   }
@@ -114,9 +118,9 @@
     gap: 0.75rem;
   }
 
-  .section-header--row h2,
+  .visual-header h2,
   .section-header--narrow h2 {
-    max-width: 16ch;
+    max-width: 100%;
   }
 }
 
@@ -155,6 +159,14 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+
+@media (max-width: 860px) and (min-width: 681px) {
+  h1 {
+    font-size: clamp(2.85rem, 8.4vw, 4.55rem);
+    letter-spacing: -0.075em;
   }
 }
 

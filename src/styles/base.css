@@ -33,9 +33,36 @@ button {
   color: inherit;
 }
 
-button:focus-visible,
-input:focus-visible,
-.highcharts-container:focus-visible {
+/* Mobile interaction polish: remove native tap flash while preserving keyboard focus. */
+a,
+button,
+input,
+select,
+textarea,
+[role='button'],
+[tabindex]:not([tabindex='-1']) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+[role='button'],
+[tabindex]:not([tabindex='-1']) {
+  touch-action: manipulation;
+}
+
+button img,
+[role='button'] img,
+[tabindex]:not([tabindex='-1']) img {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+:where(a, button, input, select, textarea, [role='button'], [tabindex]:not([tabindex='-1']), .highcharts-container):focus {
+  outline: none;
+}
+
+:where(a, button, input, select, textarea, [role='button'], [tabindex]:not([tabindex='-1']), .highcharts-container):focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 3px;
 }
@@ -75,7 +102,9 @@ p {
   color: var(--color-soft);
   font-size: clamp(1rem, 1.35vw, 1.08rem);
   line-height: 1.72;
-  overflow-wrap: break-word;
+  max-width: 100%;
+  overflow-wrap: normal;
   word-break: normal;
-  hyphens: auto;
+  hyphens: manual;
+  text-wrap: pretty;
 }
