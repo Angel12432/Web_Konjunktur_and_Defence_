@@ -125,57 +125,124 @@
         gelten als wachstumsfähig, und wie stark ist Deutschland im europäischen Vergleich vertreten?
       </p>
     </section>
-
-    <section class="section-shell visual-section" aria-labelledby="germany-title">
-      <header class="section-header visual-header">
-        <p class="eyebrow">Deutschland</p>
-        <h2 id="germany-title">VC-DefTech-Finanzierung</h2>
-        <p class="section-note">Der Betrag sinkt gegenüber 2019, der Anteil am nationalen VC-Markt steigt deutlich.</p>
-      </header>
-      <div class="chart-grid chart-grid--two">
-        <div id="deutschland-funding" class="chart-card"></div>
-        <div id="deutschland-share" class="chart-card"></div>
-      </div>
-    </section>
-
-    <section class="section-shell text-section">
-      <header class="section-header section-header--narrow">
-        <p class="eyebrow">Einordnung</p>
-        <h2>Defence ist wachstumsstark, aber nicht der ganze VC-Markt</h2>
+    
+    <section class="section-shell text-section text-section--split">
+      <header class="section-header">
+        <p class="eyebrow">Kapitalkonzentration</p>
+        <h2>Die Asymmetrie im Security-Sektor</h2>
         <p>
-          Die nächsten Diagramme vergleichen Defence und angrenzende Resilience-Bereiche mit anderen Verticals.
-          Dadurch wird sichtbar, dass Defence zwar dynamisch wächst, aber im absoluten Finanzierungsvolumen
-          weiterhin neben größeren Feldern wie Fintech, Deep Tech oder Health steht.
+          Beim Blick auf die Marktanteile am Finanzierungsvolumen zeigt sich der Bereich Security als klarer Gewinner.
+          Diese Entwicklung offenbart ein extremes Ungleichgewicht, das auf den enormen Kapitalbedarf einzelner Start-ups in
+          diesem Segment hinweist:
         </p>
       </header>
+    
+      <!-- Hier startet die Datamotion -->
+      <div class="datamotion-container" aria-hidden="true">
+    
+        <div class="data-node">
+          <div class="bubble bubble-small"></div>
+          <div class="data-text">
+            <span class="data-number" id="count-deals">0</span><span class="data-percent">%</span>
+            <span class="data-label">aller Deals</span>
+          </div>
+        </div>
+    
+      <div class="data-arrow">
+        <svg viewBox="0 0 100 20" preserveAspectRatio="none">
+          <line class="arrow-shaft" x1="0" y1="10" x2="95" y2="10" />
+          <path class="arrow-head" d="M85,5 L95,10 L85,15" />
+        </svg>
+      </div>
+    
+        <div class="data-node">
+          <div class="bubble bubble-large"></div>
+          <div class="data-text">
+            <span class="data-number" id="count-volume">0</span><span class="data-percent">%</span>
+            <span class="data-label">des Deal-Volumens</span>
+          </div>
+        </div>
+    
+      </div>
     </section>
 
-    <section class="section-shell visual-section" aria-labelledby="vertical-title">
-      <header class="section-header visual-header">
-        <p class="eyebrow">VC-Verticals</p>
-        <h2 id="vertical-title">VC-Funding 2025 nach Vertical</h2>
-        <p class="section-note">Funding und Wachstum sollten zusammen gelesen werden: groß ist nicht automatisch dynamisch.</p>
+    <section class="section-shell visual-section" aria-labelledby="dsr-total-title">
+      <header class="section-header section-header--row">
+        <div>
+          <p class="eyebrow">DSR Marktentwicklung</p>
+          <h2 id="dsr-total-title">Vergleich der Risikokapitalfinanzierung in den Bereichen Verteidigung, Sicherheit und Resilienz (DSR) mit der gesamten Risikokapitalfinanzierung in Europa</h2>
+        </div>
+        <p class="section-note">Zeitreihe: DSR-Finanzierung im Verhältnis zum gesamten europäischen VC-Markt.</p>
       </header>
-      <div class="chart-grid chart-grid--verticals">
-        <div id="funding-chart" class="chart-card chart-card--tall"></div>
-        <div id="growth-chart" class="chart-card chart-card--tall"></div>
+      <div class="chart-grid chart-grid--two">
+        <div id="dsr-chart" class="chart-card"></div>
       </div>
-      <p class="source">Quelle: Dealroom.com, 2025 data as of 1st Sept 2025.</p>
+      <p class="chart-source">Quelle: NATO Innovation Fund 2026</p>
+    </section>
+
+    <section class="section-shell visual-section" aria-labelledby="dsr-countries-title">
+      <header class="section-header section-header--row">
+        <div>
+          <p class="eyebrow">Regionale Verteilung</p>
+          <h2 id="dsr-countries-title">VC-Finanzierungen in den Bereichen Verteidigung, Sicherheit und Resilienz (DSR) in Europa nach Regionen (2020–2025)</h2>
+        </div>
+        <p class="section-note">Ländervergleich: DSR-Finanzierung nach europäischen Regionen (2020-2025).</p>
+      </header>
+      <div class="chart-grid chart-grid--with-note">
+        <div id="dsr-countries-chart" class="chart-card"></div>
+        <aside class="vc-note-card" aria-label="Zusammenfassung zur regionalen VC-Verteilung">
+          <p>Innerhalb von Europa ist das Vereinigte Königreich in den letzten 5 Jahren der größte Risikokapitalgeldgeber gewesen. Deutschland zieht aktuell stark nach: So belief sich die DSR Risikokapitalsfinanzierung alleine im Jahr 2025 auf 2,1 Milliarden US.Dollar. Das entsprach 26% der Gesamtfinanzierung aller Sektoren</p>
+        </aside>
+      </div>
+      <p class="chart-source">Quelle: NATO Innovation Fund 2026</p>
     </section>
 
     <section class="section-shell text-section critique-intro">
       <header class="section-header section-header--narrow">
-        <p class="eyebrow">Kritik</p>
+        <p class="eyebrow">Die Makroökonomische-Falle</p>
         <h2>Mehr Defence-Ausgaben sind nicht automatisch ein Konjunkturprogramm</h2>
         <p>
-          Die Investitionsdaten erklären, warum Defence als Wachstumsfeld attraktiv wirkt. Die makroökonomische
-          Gegenfrage lautet aber: Wie viel zusätzliche Wirtschaftsleistung entsteht pro ausgegebenem Euro?
-          Genau hier setzt die Multiplikator-Kritik an.
+          Die Investitionsdaten erklären, warum Defence als Wachstumsfeld attraktiv wirkt. 
+          Die makroökonomische Gegenfrage lautet aber: Wie viel zusätzliche Wirtschaftsleistung 
+          entsteht pro ausgegebenem Euro? Genau hier setzt die Multiplikator-Kritik an.
         </p>
       </header>
     </section>
 
+    <!-- Deine bestehende Animation erklärt den Mannheim-Effekt im Detail -->
     <section id="mannheimer-animation" class="section-shell" aria-label="Mannheimer Euro Animation"></section>
+
+    <!-- IWF-Erkenntnisse und sachliches Fazit in fließendem Text -->
+    <section class="section-shell text-section text-section--split conclusion-section">
+      <header class="section-header">
+        <p class="eyebrow">Langfristige Effekte</p>
+        <h2>Die makroökonomischen Grenzen des Rüstungsbooms</h2>
+      </header>
+      <div class="conclusion-content">
+        <p>
+          Neben dem geringen kurzfristigen Multiplikatoreffekt weisen Institutionen wie der 
+          Internationale Währungsfonds (IWF) auf die langfristigen fiskalischen Folgen hin. 
+          Demnach wirken Erhöhungen von Rüstungsausgaben zwar kurzfristig wachstumsfördernd, 
+          werden jedoch meist durch Neuverschuldung finanziert. Eine anhaltend steigende 
+          Schuldenlast kann langfristig private Investitionen verdrängen (Crowding-out-Effekt). 
+          Um eine Überlastung der Staatshaushalte zu vermeiden, sind Regierungen mittelfristig 
+          gezwungen, Ausgaben zu reduzieren oder umzuschichten.
+        </p>
+        <br>
+        <p>
+          <strong>Fazit</strong><br>
+          Aus makroökonomischer Perspektive ist ein dauerhaftes, lineares Wachstum der 
+          staatlichen Rüstungsbudgets ohne weitreichende volkswirtschaftliche Konsequenzen 
+          unwahrscheinlich. Für den DefTech-Sektor und dessen Finanzierung zeigt sich damit 
+          eine Diskrepanz zwischen dem aktuellen geopolitischen Investitionsdruck und der 
+          langfristigen staatlichen Kaufkraft. Unternehmen und Kapitalgeber, die sich 
+          ausschließlich auf staatliche Verteidigungsaufträge stützen, sind stark von diesen 
+          zyklischen Budgetgrenzen abhängig. Dies verdeutlicht, warum Technologien mit 
+          zusätzlichen zivilen Anwendungsmöglichkeiten (Dual-Use) im gegenwärtigen 
+          Marktumfeld häufig als resilienter bewertet werden.
+        </p>
+      </div>
+    </section>
   </main>
 </body>
 

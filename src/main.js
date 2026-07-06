@@ -4,12 +4,18 @@ import { initializeWorldMap } from './components/worldMap.js';
 import { initializeVcCharts } from './components/vcCharts.js';
 import { initializeMannheimerAnimation } from './components/mannheimerAnimation.js';
 import { initializeThemeToggle } from './components/themeToggle.js';
+import { initializeDsrChart } from './components/dsr_chart.js';
+import { initializeDsrCountriesChart } from './components/dsr_countries.js';
+import { initializeArrow } from './components/arrow.js';
 
 function startApp() {
   initializeThemeToggle();
   initializeWorldMap();
   initializeVcCharts();
   initializeMannheimerAnimation();
+  initializeDsrChart();
+  initializeDsrCountriesChart();
+  initializeArrow();
 }
 
 if (document.readyState === 'loading') {
