@@ -7,6 +7,7 @@ import { initializeThemeToggle } from './components/themeToggle.js';
 import { initializeDsrChart } from './components/dsr_chart.js';
 import { initializeDsrCountriesChart } from './components/dsr_countries.js';
 import { initializeArrow } from './components/arrow.js';
+import { initializeMilitaryEconomyCharts } from './components/militaryEconomyCharts.js';
 
 function startApp() {
   initializeThemeToggle();
@@ -16,6 +17,7 @@ function startApp() {
   initializeDsrChart();
   initializeDsrCountriesChart();
   initializeArrow();
+  initializeMilitaryEconomyCharts();
 }
 
 if (document.readyState === 'loading') {

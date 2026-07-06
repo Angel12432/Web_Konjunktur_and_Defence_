@@ -15,6 +15,7 @@ src/
       Merriweather_Sans/
   components/
     mannheimerAnimation.js
+    militaryEconomyCharts.js
     vcCharts.js
     themeToggle.js
     worldMap.js
@@ -35,10 +36,20 @@ src/
 public/
   data/
     battle-deaths.csv
+    battle-deaths-full.csv
+    dsr-countries.csv
+    dsr-total.csv
+    germany-gdp-growth.csv
+    military-spending.csv
+    military-spending.metadata.json
+    rheinmetall-employees.csv
+    rheinmetall-revenue.csv
+    rheinmetall-stock-dividend.csv
+    survey-konjunktur-defense-all-participants.csv
     vc-country-comparison.csv
+    vc-europe-dsr.csv
+    vc-selected-sectors-europe.csv
     vc-vertical-comparison.csv
-data_raw/
-  ... Original-/Archivdaten ...
 ```
 
 `src/styles/main.css` ist der zentrale CSS-Einstiegspunkt. Einzelne Style-Dateien sind nach Zuständigkeit getrennt, werden aber nur über diesen Master importiert. Die JavaScript-Komponenten enthalten keine größeren Style-Blöcke mehr. Das Farbsystem unterstützt Dark Mode, Light Mode und die automatische Systemeinstellung über `prefers-color-scheme`.
@@ -63,7 +74,7 @@ npm run build
 npm run preview
 ```
 
-Der Build erzeugt `dist/`. Alle Browser-Daten liegen unter `public/data/` und werden dadurch automatisch nach `dist/data/` kopiert. Die Rohdaten in `data_raw/` dienen als Arbeits-/Archivstand und werden nicht direkt von der Website geladen.
+Der Build erzeugt `dist/`. Alle Browser-Daten liegen unter `public/data/` und werden dadurch automatisch nach `dist/data/` kopiert. Die Website lädt keine Daten aus `data_raw/`; der Ordner wurde aus dem Branch-Paket entfernt, damit es nur eine Datenquelle gibt.
 
 ## Deployment auf GitHub Pages
 
@@ -86,6 +97,7 @@ Die GitHub-Actions-Workflow-Datei liegt unter:
 - `components/` enthält sichtbare Seitenelemente und deren Verhalten.
 - `lib/csv.js` enthält geteiltes CSV-Laden, Parsing und Zahlen-Normalisierung.
 - `lib/highchartsTheme.js` liest die aktuellen CSS-Design-Tokens und zentralisiert wiederverwendbare Highcharts-Optionen.
+- `components/militaryEconomyCharts.js` rendert die neu integrierten makroökonomischen Diagramme zu Militärausgaben als BIP-Anteil und zum Vergleich von deutschem BIP-Wachstum mit deutschen Militärausgaben.
 - `lib/viewportBarAnimation.js` startet Balkendiagramme erst beim ersten Sichtbarwerden im Viewport. Die Balken wachsen von 0 auf ihren Zielwert und bleiben danach bis zum Reload im Endzustand.
 - `styles/fonts.css` definiert die lokal gehosteten Font-Dateien.
 - `styles/tokens.css` definiert die Defence-/Economy-Farbpalette, Light-/Dark-Tokens, Abstände, Radien, Schatten und Schrift-Stacks.
@@ -96,5 +108,5 @@ Die GitHub-Actions-Workflow-Datei liegt unter:
 
 - `node_modules/` wird nicht versioniert und sollte nicht in ZIPs für Branches enthalten sein.
 - `dist/` wird lokal erzeugt, aber nicht als Quellcode benötigt.
-- Die Highcharts/Highmaps-Abhängigkeiten sind relativ groß; ein Build kann deshalb eine Bundle-Size-Warnung ausgeben. Das ist für dieses Projekt erwartbar.
+- Die Highcharts/Highmaps-Abhängigkeiten und die lokale Euro-Coin-Grafik sind relativ groß; ein Build kann deshalb eine Bundle-Size-Warnung ausgeben. Das ist für dieses Projekt erwartbar.
 - Die Font-Dateien werden beim Vite-Build als eigene Assets gebündelt und von der eigenen Website ausgeliefert. In DevTools → Network sollten keine Requests an `fonts.googleapis.com` oder `fonts.gstatic.com` auftauchen.

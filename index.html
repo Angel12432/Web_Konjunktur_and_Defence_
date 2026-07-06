@@ -197,6 +197,69 @@
       <p class="chart-source">Quelle: NATO Innovation Fund 2026</p>
     </section>
 
+
+
+    <section class="section-shell text-section">
+      <header class="section-header section-header--narrow">
+        <p class="eyebrow">Öffentliche Nachfrage</p>
+        <h2>Kapitalmärkte reagieren auf Staaten, aber Staaten finanzieren aus Budgets</h2>
+        <p>
+          Die VC-Daten zeigen die private Seite des Defence- und Resilience-Booms. Für die makroökonomische Einordnung ist aber entscheidend,
+          wie stark Staaten ihre Verteidigungsausgaben tatsächlich erhöhen und ob diese Dynamik mit der allgemeinen wirtschaftlichen Entwicklung zusammenläuft.
+        </p>
+      </header>
+    </section>
+
+    <section class="section-shell visual-section" aria-labelledby="military-spending-title">
+      <header class="section-header visual-header">
+        <p class="eyebrow">Militärausgaben</p>
+        <h2 id="military-spending-title">Militärausgaben als Anteil des BIP</h2>
+        <p class="section-note">
+          Die Linien zeigen, welcher Anteil der Wirtschaftsleistung in militärische Ausgaben fließt. Über die Auswahl lassen sich Ländergruppen vergleichen; einzelne Länder können über die Legende ein- und ausgeblendet werden.
+        </p>
+      </header>
+
+      <div class="chart-toolbar" aria-label="Filter für Militärausgaben">
+        <label class="select-label" for="military-region-filter">Ländergruppe</label>
+        <select id="military-region-filter" class="chart-select">
+          <option value="top5eu">Top 5 EU</option>
+          <option value="eu">EU</option>
+          <option value="nato">NATO</option>
+          <option value="europe">Europa</option>
+          <option value="asia">Asien</option>
+          <option value="northamerica">Nordamerika</option>
+          <option value="all">Alle Länder</option>
+        </select>
+      </div>
+
+      <div id="military-spending-chart" class="chart-card chart-card--wide" aria-live="polite">
+        <div class="loading-state">
+          <div class="spinner" aria-hidden="true"></div>
+          Daten werden geladen …
+        </div>
+      </div>
+      <div id="military-legend" class="legend-panel" aria-label="Länder ein- und ausblenden"></div>
+      <p class="chart-source">Quelle: SIPRI Military Expenditure Database, verarbeitet durch Our World in Data (2026)</p>
+    </section>
+
+    <section class="section-shell visual-section" aria-labelledby="bip-military-title">
+      <header class="section-header visual-header">
+        <p class="eyebrow">Makrovergleich</p>
+        <h2 id="bip-military-title">BIP-Wachstum und deutsche Militärausgaben</h2>
+        <p class="section-note">
+          Die Grafik legt zwei Prozentreihen nebeneinander: das deutsche BIP-Wachstum und die deutschen Militärausgaben als Anteil des BIP. Sie zeigt keine direkte Kausalität, sondern ordnet die Defence-Dynamik in den Konjunkturverlauf ein.
+        </p>
+      </header>
+
+      <div id="bip-military-chart" class="chart-card chart-card--wide" aria-live="polite">
+        <div class="loading-state">
+          <div class="spinner" aria-hidden="true"></div>
+          Daten werden geladen …
+        </div>
+      </div>
+      <p class="chart-source">Quelle: BIP-Datensatz im Projekt; SIPRI/Our World in Data (2026)</p>
+    </section>
+
     <section class="section-shell text-section critique-intro">
       <header class="section-header section-header--narrow">
         <p class="eyebrow">Die Makroökonomische-Falle</p>

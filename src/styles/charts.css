@@ -66,3 +66,100 @@
 .highcharts-legend-item text {
   color: var(--color-text) !important;
 }
+
+.chart-card--wide {
+  min-height: clamp(380px, 52vw, 540px);
+}
+
+.chart-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin: 0 0 clamp(0.75rem, 2vw, 1rem);
+  flex-wrap: wrap;
+}
+
+.select-label {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.chart-select {
+  min-height: 2.65rem;
+  min-width: min(100%, 16rem);
+  padding: 0.55rem 2.5rem 0.55rem 0.85rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background:
+    linear-gradient(45deg, transparent 50%, var(--color-muted) 50%) calc(100% - 1.15rem) 52% / 0.42rem 0.42rem no-repeat,
+    linear-gradient(135deg, var(--color-muted) 50%, transparent 50%) calc(100% - 0.86rem) 52% / 0.42rem 0.42rem no-repeat,
+    color-mix(in srgb, var(--color-surface) 82%, transparent);
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 700;
+  appearance: none;
+  cursor: pointer;
+}
+
+.legend-panel {
+  margin-top: clamp(0.75rem, 2vw, 1rem);
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.1rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 68%, transparent);
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.88rem;
+  transition: opacity 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.legend-item:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-line));
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+}
+
+.legend-item.is-disabled {
+  opacity: 0.48;
+}
+
+.legend-swatch {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.legend-label {
+  white-space: nowrap;
+}
+
+.chart-empty {
+  display: grid;
+  min-height: 14rem;
+  place-items: center;
+  margin: 0;
+  padding: 2rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.chart-empty--error {
+  color: var(--color-danger);
+}

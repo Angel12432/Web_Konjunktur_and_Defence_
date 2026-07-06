@@ -190,3 +190,32 @@
     font-size: 0.72rem;
   }
 }
+
+@media (max-width: 680px) {
+  .chart-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .chart-select {
+    width: 100%;
+  }
+
+  .legend-items {
+    gap: 0.4rem;
+  }
+
+  .legend-item {
+    max-width: 100%;
+    font-size: 0.82rem;
+  }
+
+  .legend-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .chart-card--wide {
+    min-height: 400px;
+  }
+}
