@@ -15,6 +15,7 @@ src/
       Merriweather_Sans/
   components/
     mannheimerAnimation.js
+    bitkomDirectOrdersChart.js
     militaryEconomyCharts.js
     vcCharts.js
     themeToggle.js
@@ -37,6 +38,7 @@ public/
   data/
     battle-deaths.csv
     battle-deaths-full.csv
+    bitkom-direct-orders.csv
     dsr-countries.csv
     dsr-total.csv
     germany-gdp-growth.csv
@@ -55,6 +57,24 @@ public/
 `src/styles/main.css` ist der zentrale CSS-Einstiegspunkt. Einzelne Style-Dateien sind nach Zuständigkeit getrennt, werden aber nur über diesen Master importiert. Die JavaScript-Komponenten enthalten keine größeren Style-Blöcke mehr. Das Farbsystem unterstützt Dark Mode, Light Mode und die automatische Systemeinstellung über `prefers-color-scheme`.
 
 Die Schriftarten liegen lokal im Projekt unter `src/assets/fonts/` und werden über `src/styles/fonts.css` per `@font-face` geladen. Dadurch lädt die Website keine Fonts von Google Fonts, fonts.gstatic.com oder anderen externen Font-CDNs. Genutzt werden die lokalen Variable-Font-Dateien von Roboto und Merriweather Sans; die OFL-Lizenzdateien bleiben im jeweiligen Font-Ordner.
+
+
+## Aktuelle Erzählstruktur
+
+Die Seitenelemente sind in der aktuellen Branch-Version dramaturgisch so sortiert:
+
+1. Hero-Section
+2. Konfliktlage und Weltkarte zu konfliktbedingten Todesfällen
+3. Überleitung von Konflikten zu Verteidigungsausgaben
+4. Militärausgaben als Anteil des BIP
+5. Überleitung zum deutschen BIP-Wachstum
+6. BIP-Wachstum Deutschland und deutsche Militärausgaben
+7. Mannheimer-Euro-Animation mit IWF-Einordnung
+8. Bitkom DefTech Report: direkte Bundeswehr-Beauftragungen
+9. Überleitung zu Start-ups und DSR-Finanzierung
+10. Start-up-/DSR-Marktentwicklung
+11. VC-DSR-Finanzierung nach Region und Deutschland-Einordnung
+12. Fazit: aktuell kein breiter Konjunkturboost
 
 ## Lokale Entwicklung
 
@@ -97,7 +117,8 @@ Die GitHub-Actions-Workflow-Datei liegt unter:
 - `components/` enthält sichtbare Seitenelemente und deren Verhalten.
 - `lib/csv.js` enthält geteiltes CSV-Laden, Parsing und Zahlen-Normalisierung.
 - `lib/highchartsTheme.js` liest die aktuellen CSS-Design-Tokens und zentralisiert wiederverwendbare Highcharts-Optionen.
-- `components/militaryEconomyCharts.js` rendert die neu integrierten makroökonomischen Diagramme zu Militärausgaben als BIP-Anteil und zum Vergleich von deutschem BIP-Wachstum mit deutschen Militärausgaben.
+- `components/militaryEconomyCharts.js` rendert die makroökonomischen Diagramme zu Militärausgaben als BIP-Anteil und zum Vergleich von deutschem BIP-Wachstum mit deutschen Militärausgaben.
+- `components/bitkomDirectOrdersChart.js` rendert die Bitkom-Befragung zu direkten Bundeswehr-Beauftragungen als projektweit gestyltes Balkendiagramm.
 - `lib/viewportBarAnimation.js` startet Balkendiagramme erst beim ersten Sichtbarwerden im Viewport. Die Balken wachsen von 0 auf ihren Zielwert und bleiben danach bis zum Reload im Endzustand.
 - `styles/fonts.css` definiert die lokal gehosteten Font-Dateien.
 - `styles/tokens.css` definiert die Defence-/Economy-Farbpalette, Light-/Dark-Tokens, Abstände, Radien, Schatten und Schrift-Stacks.

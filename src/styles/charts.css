@@ -71,6 +71,11 @@
   min-height: clamp(380px, 52vw, 540px);
 }
 
+.chart-card--direct-orders {
+  min-height: clamp(360px, 42vw, 460px);
+}
+
+
 .chart-toolbar {
   display: flex;
   align-items: center;
