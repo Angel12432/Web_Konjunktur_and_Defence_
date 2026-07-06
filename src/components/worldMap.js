@@ -2,7 +2,7 @@ import Highcharts from 'highcharts/highmaps';
 import worldTopology from '@highcharts/map-collection/custom/world.topo.json';
 
 import { loadCsv, publicPath, toNumber } from '../lib/csv.js';
-import { chartColors } from '../lib/highchartsTheme.js';
+import { chartColors, getChartFontStack } from '../lib/highchartsTheme.js';
 
 const BATTLE_DEATHS_PATH = publicPath('data/battle-deaths.csv');
 const YEARS = ['2020', '2021', '2022', '2023', '2024', '2025'];
@@ -137,7 +137,7 @@ function createWorldMap(dataByYear) {
     chart: {
       map: worldTopology,
       backgroundColor: 'transparent',
-      style: { fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' },
+      style: { fontFamily: getChartFontStack() },
       zooming: { mouseWheel: { enabled: false } },
       panning: { enabled: true },
       height: null,

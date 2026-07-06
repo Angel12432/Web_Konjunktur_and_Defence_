@@ -56,7 +56,7 @@ export const chartColors = new Proxy(FALLBACK_COLORS, {
 });
 
 export function getChartFontStack() {
-  return readCssVariable('--font-sans', 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif');
+  return readCssVariable('--font-sans', '"Roboto Local", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif');
 }
 
 export function baseChartOptions() {

@@ -10,6 +10,9 @@ src/
   main.js
   assets/
     euro-coin.png
+    fonts/
+      Roboto/
+      Merriweather_Sans/
   components/
     mannheimerAnimation.js
     vcCharts.js
@@ -21,6 +24,7 @@ src/
     viewportBarAnimation.js
   styles/
     main.css
+    fonts.css
     tokens.css
     base.css
     layout.css
@@ -38,6 +42,8 @@ data_raw/
 ```
 
 `src/styles/main.css` ist der zentrale CSS-Einstiegspunkt. Einzelne Style-Dateien sind nach Zuständigkeit getrennt, werden aber nur über diesen Master importiert. Die JavaScript-Komponenten enthalten keine größeren Style-Blöcke mehr. Das Farbsystem unterstützt Dark Mode, Light Mode und die automatische Systemeinstellung über `prefers-color-scheme`.
+
+Die Schriftarten liegen lokal im Projekt unter `src/assets/fonts/` und werden über `src/styles/fonts.css` per `@font-face` geladen. Dadurch lädt die Website keine Fonts von Google Fonts, fonts.gstatic.com oder anderen externen Font-CDNs. Genutzt werden die lokalen Variable-Font-Dateien von Roboto und Merriweather Sans; die OFL-Lizenzdateien bleiben im jeweiligen Font-Ordner.
 
 ## Lokale Entwicklung
 
@@ -81,7 +87,8 @@ Die GitHub-Actions-Workflow-Datei liegt unter:
 - `lib/csv.js` enthält geteiltes CSV-Laden, Parsing und Zahlen-Normalisierung.
 - `lib/highchartsTheme.js` liest die aktuellen CSS-Design-Tokens und zentralisiert wiederverwendbare Highcharts-Optionen.
 - `lib/viewportBarAnimation.js` startet Balkendiagramme erst beim ersten Sichtbarwerden im Viewport. Die Balken wachsen von 0 auf ihren Zielwert und bleiben danach bis zum Reload im Endzustand.
-- `styles/tokens.css` definiert die Defence-/Economy-Farbpalette, Light-/Dark-Tokens, Abstände, Radien, Schatten und Schrift-Stack.
+- `styles/fonts.css` definiert die lokal gehosteten Font-Dateien.
+- `styles/tokens.css` definiert die Defence-/Economy-Farbpalette, Light-/Dark-Tokens, Abstände, Radien, Schatten und Schrift-Stacks.
 - `styles/responsive.css` bündelt Breakpoints für Desktop, Tablet und Mobile.
 - `components/themeToggle.js` erstellt den Mode-Switch, speichert manuelle Präferenzen in `localStorage` und reagiert im Auto-Modus auf Änderungen der Systemeinstellung.
 
@@ -90,3 +97,4 @@ Die GitHub-Actions-Workflow-Datei liegt unter:
 - `node_modules/` wird nicht versioniert und sollte nicht in ZIPs für Branches enthalten sein.
 - `dist/` wird lokal erzeugt, aber nicht als Quellcode benötigt.
 - Die Highcharts/Highmaps-Abhängigkeiten sind relativ groß; ein Build kann deshalb eine Bundle-Size-Warnung ausgeben. Das ist für dieses Projekt erwartbar.
+- Die Font-Dateien werden beim Vite-Build als eigene Assets gebündelt und von der eigenen Website ausgeliefert. In DevTools → Network sollten keine Requests an `fonts.googleapis.com` oder `fonts.gstatic.com` auftauchen.
