@@ -143,10 +143,6 @@ function createWorldMap(dataByYear) {
       height: null,
     },
     title: { text: null },
-    subtitle: {
-      text: 'Quelle: UCDP Battle-Related Deaths Dataset v26.1 · Bester Schätzwert (bd_best)',
-      style: { color: chartColors.muted, fontSize: '11px' },
-    },
     mapView: DEFAULT_MAP_VIEW,
     colorAxis: {
       min: 1,
@@ -243,9 +239,12 @@ function createWorldMap(dataByYear) {
 
   function setPlaybackState(playing) {
     isPlaying = playing;
-    controls.playIcon.hidden = playing;
-    controls.pauseIcon.hidden = !playing;
+    if (controls.playIcon) controls.playIcon.hidden = playing;
+    if (controls.pauseIcon) controls.pauseIcon.hidden = !playing;
+    controls.playButton.classList.toggle('is-playing', playing);
+    controls.playButton.setAttribute('aria-pressed', String(playing));
     controls.playButton.setAttribute('aria-label', playing ? 'Animation pausieren' : 'Animation abspielen');
+    controls.playButton.title = playing ? 'Animation pausieren' : 'Animation abspielen';
   }
 
   function stopAnimation() {

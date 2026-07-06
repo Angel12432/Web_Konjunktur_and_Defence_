@@ -8,9 +8,11 @@ import { initializeDsrChart } from './components/dsr_chart.js';
 import { initializeDsrCountriesChart } from './components/dsr_countries.js';
 import { initializeMilitaryEconomyCharts } from './components/militaryEconomyCharts.js';
 import { initializeBitkomDirectOrdersChart } from './components/bitkomDirectOrdersChart.js';
+import { initializeStoryNavigation } from './components/storyNavigation.js';
 
 function startApp() {
   initializeThemeToggle();
+  initializeStoryNavigation();
   initializeWorldMap();
   initializeVcCharts();
   initializeMannheimerAnimation();

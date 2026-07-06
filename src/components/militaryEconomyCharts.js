@@ -2,6 +2,7 @@ import Highcharts from 'highcharts';
 
 import { loadCsv, publicPath, toNumber } from '../lib/csv.js';
 import { baseChartOptions, chartColors } from '../lib/highchartsTheme.js';
+import { formatMobileDatum, setMobileDataPanel } from '../lib/mobileDataPanel.js';
 
 const MILITARY_SPENDING_PATH = publicPath('data/military-spending.csv');
 const GERMANY_GDP_GROWTH_PATH = publicPath('data/germany-gdp-growth.csv');
@@ -121,6 +122,36 @@ function translateCountryName(name) {
 function formatPercent(value, decimals = 2) {
   if (!Number.isFinite(value)) return '';
   return Highcharts.numberFormat(value, decimals, ',', '.');
+}
+
+function renderMilitaryMobilePanel(point) {
+  if (!point || !Number.isFinite(point.y)) return;
+  setMobileDataPanel('military-spending-mobile-data', `
+    <div class="mobile-data-panel__title">${point.series.name} · ${point.category}</div>
+    <div class="mobile-data-panel__grid">
+      ${formatMobileDatum('Militärausgaben', `${formatPercent(point.y, 2)} % des BIP`)}
+    </div>
+  `);
+}
+
+function renderMacroMobilePanel(point) {
+  if (!point?.series?.chart) return;
+  const year = point.category;
+  const items = point.series.chart.series
+    .filter((series) => series.visible !== false)
+    .map((series) => {
+      const sameYearPoint = series.points?.[point.index];
+      if (!sameYearPoint || !Number.isFinite(sameYearPoint.y)) return '';
+      return formatMobileDatum(series.name, `${formatPercent(sameYearPoint.y, 2)} %`);
+    })
+    .filter(Boolean)
+    .join('');
+
+  if (!items) return;
+  setMobileDataPanel('bip-military-mobile-data', `
+    <div class="mobile-data-panel__title">${year}</div>
+    <div class="mobile-data-panel__grid">${items}</div>
+  `);
 }
 
 function findMilitaryValueKey(row) {
@@ -273,6 +304,12 @@ function createMilitaryChart(rows) {
         animation: { duration: 900 },
         lineWidth: 2.4,
         states: { inactive: { opacity: 0.25 } },
+        point: {
+          events: {
+            mouseOver() { renderMilitaryMobilePanel(this); },
+            click() { renderMilitaryMobilePanel(this); },
+          },
+        },
       },
     },
     tooltip: {
@@ -296,6 +333,9 @@ function createMilitaryChart(rows) {
   }));
 
   applyRegionVisibility(countries, false);
+  const firstVisible = militaryChart.series.find((item) => item.visible && item.points?.length);
+  const latestPoint = firstVisible?.points?.filter((point) => Number.isFinite(point.y)).at(-1);
+  if (latestPoint) renderMilitaryMobilePanel(latestPoint);
 }
 
 function getGermanyMilitarySeries(rows, years) {
@@ -357,6 +397,12 @@ function createMacroChart(gdpRows, spendingRows) {
         animation: { duration: 900 },
         lineWidth: 2.6,
         marker: { enabled: true, radius: 3 },
+        point: {
+          events: {
+            mouseOver() { renderMacroMobilePanel(this); },
+            click() { renderMacroMobilePanel(this); },
+          },
+        },
       },
     },
     series: [{
@@ -385,6 +431,9 @@ function createMacroChart(gdpRows, spendingRows) {
       }],
     },
   }));
+
+  const latestMacroPoint = macroChart.series[0]?.points?.filter((point) => Number.isFinite(point.y)).at(-1);
+  if (latestMacroPoint) renderMacroMobilePanel(latestMacroPoint);
 }
 
 function installRegionFilter() {

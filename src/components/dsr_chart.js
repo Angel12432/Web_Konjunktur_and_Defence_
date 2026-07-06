@@ -1,6 +1,7 @@
 import Highcharts from 'highcharts';
 import { chartColors, baseChartOptions } from '../lib/highchartsTheme.js';
 import { loadCsv, publicPath, toNumber } from '../lib/csv.js';
+import { formatMobileDatum, setMobileDataPanel } from '../lib/mobileDataPanel.js';
 
 const DSR_TOTAL_PATH = publicPath('data/dsr-total.csv');
 
@@ -8,6 +9,18 @@ let dsrTotalCache = null;
 
 function getElement(id) {
   return document.getElementById(id);
+}
+
+function renderDsrMobilePanel(point, year) {
+  if (!point) return;
+  setMobileDataPanel('dsr-mobile-data', `
+    <div class="mobile-data-panel__title">${year}</div>
+    <div class="mobile-data-panel__grid">
+      ${formatMobileDatum('DSR-Anteil', `${Highcharts.numberFormat(point.y, 2, ',', '.')} %`)}
+      ${formatMobileDatum('DSR-Funding', `$${Highcharts.numberFormat(point.dsr, 1, ',', '.')}B`)}
+      ${formatMobileDatum('Gesamt-VC', `$${Highcharts.numberFormat(point.total, 1, ',', '.')}B`)}
+    </div>
+  `);
 }
 
 export async function initializeDsrChart() {
@@ -57,6 +70,12 @@ export async function initializeDsrChart() {
         line: {
           dataLabels: { enabled: true, format: '{point.y:.2f}%', style: { color: chartColors.text } },
           enableMouseTracking: true,
+          point: {
+            events: {
+              mouseOver() { renderDsrMobilePanel(this, years[this.index]); },
+              click() { renderDsrMobilePanel(this, years[this.index]); },
+            },
+          },
         },
       },
       series: [
@@ -89,6 +108,7 @@ export async function initializeDsrChart() {
     });
 
     const chart = Highcharts.chart('dsr-chart', options);
+    renderDsrMobilePanel(percentageData[percentageData.length - 1], years[years.length - 1]);
 
     if (!window.dsrChartListener) {
       document.addEventListener('wkd:themechange', () => {

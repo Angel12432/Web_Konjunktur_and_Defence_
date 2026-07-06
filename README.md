@@ -1,6 +1,6 @@
 # Konjunkturhoffnung Defence
 
-Interaktive Vite-Webstory zur Frage, ob Defence seit der Zeitenwende als Konjunktur- und Investitionshoffnung gelesen werden kann. Die Seite verbindet eine Highmaps-Weltkarte zur globalen Konfliktlage, VC-DefTech-Diagramme und eine animierte Multiplikator-Kritik.
+Interaktive Vite-Webstory zur Frage, ob Defence seit der Zeitenwende als Konjunktur- und Investitionshoffnung gelesen werden kann. Die Seite verbindet eine Highmaps-Weltkarte zur globalen Konfliktlage, makroökonomische Highcharts-Grafiken, Bitkom-/DSR-Daten und eine animierte Multiplikator-Kritik.
 
 ## Projektstruktur
 
@@ -14,26 +14,24 @@ src/
       Roboto/
       Merriweather_Sans/
   components/
-    mannheimerAnimation.js
     bitkomDirectOrdersChart.js
+    dsr_chart.js
+    dsr_countries.js
+    mannheimerAnimation.js
     militaryEconomyCharts.js
-    vcCharts.js
+    storyNavigation.js
     themeToggle.js
+    vcCharts.js
     worldMap.js
   lib/
     csv.js
     highchartsTheme.js
+    mobileDataPanel.js
     viewportBarAnimation.js
   styles/
     main.css
     fonts.css
     tokens.css
-    base.css
-    layout.css
-    components.css
-    charts.css
-    mannheimer.css
-    responsive.css
 public/
   data/
     battle-deaths.csv
@@ -54,14 +52,11 @@ public/
     vc-vertical-comparison.csv
 ```
 
-`src/styles/main.css` ist der zentrale CSS-Einstiegspunkt. Einzelne Style-Dateien sind nach Zuständigkeit getrennt, werden aber nur über diesen Master importiert. Die JavaScript-Komponenten enthalten keine größeren Style-Blöcke mehr. Das Farbsystem unterstützt Dark Mode, Light Mode und die automatische Systemeinstellung über `prefers-color-scheme`.
+`src/styles/main.css` ist der zentrale CSS-Master für Layout, Komponenten, Charts, Mannheimer-Animation und Responsive-Regeln. `fonts.css` enthält nur die lokalen Font-Faces, `tokens.css` enthält die Design-Tokens. Die JavaScript-Komponenten enthalten keine großen Style-Blöcke.
 
-Die Schriftarten liegen lokal im Projekt unter `src/assets/fonts/` und werden über `src/styles/fonts.css` per `@font-face` geladen. Dadurch lädt die Website keine Fonts von Google Fonts, fonts.gstatic.com oder anderen externen Font-CDNs. Genutzt werden die lokalen Variable-Font-Dateien von Roboto und Merriweather Sans; die OFL-Lizenzdateien bleiben im jeweiligen Font-Ordner.
-
+Alle Quellenangaben werden über die gemeinsame Klasse `.source` gesetzt und stehen unter den jeweiligen Grafiken bzw. Elementen. Die Mannheimer-Animation nutzt ebenfalls eine Quellenzeile unter der Animation.
 
 ## Aktuelle Erzählstruktur
-
-Die Seitenelemente sind in der aktuellen Branch-Version dramaturgisch so sortiert:
 
 1. Hero-Section
 2. Konfliktlage und Weltkarte zu konfliktbedingten Todesfällen
@@ -75,6 +70,15 @@ Die Seitenelemente sind in der aktuellen Branch-Version dramaturgisch so sortier
 10. Start-up-/DSR-Marktentwicklung
 11. VC-DSR-Finanzierung nach Region und Deutschland-Einordnung
 12. Fazit: aktuell kein breiter Konjunkturboost
+
+## Responsives Verhalten
+
+- Die Hero-Kästen wurden entfernt; die Hero-Section ist nun ein fokussierter Editorial-Einstieg.
+- Die kleine Abschnittsnavigation wird nur auf ausreichend großen Viewports eingeblendet. Auf schmalen oder vertikal kurzen Screens wird sie ausgeblendet, damit sie keinen Platz wegnimmt.
+- Karten- und Chart-Höhen sind mit Viewport-basierten Grenzen versehen, damit Window-Resizing und horizontale Mobile-Ansichten nicht unnötig viel Inhalt abschneiden.
+- Line-Charts behalten Tooltips, erhalten auf Mobile aber zusätzlich ein kompaktes Datenpanel unter dem Chart. So bleiben Werte auch ohne Desktop-Hover zugänglich.
+- Der Weltkartenbereich erhält eine dezente rote Hintergrundtönung als inhaltliche Stimmungsmarkierung.
+- Native Mobile-Tap-Highlights werden für interaktive Elemente entfernt, während `:focus-visible` für Tastaturbedienung erhalten bleibt.
 
 ## Lokale Entwicklung
 
@@ -94,7 +98,7 @@ npm run build
 npm run preview
 ```
 
-Der Build erzeugt `dist/`. Alle Browser-Daten liegen unter `public/data/` und werden dadurch automatisch nach `dist/data/` kopiert. Die Website lädt keine Daten aus `data_raw/`; der Ordner wurde aus dem Branch-Paket entfernt, damit es nur eine Datenquelle gibt.
+Der Build erzeugt `dist/`. Alle Browser-Daten liegen unter `public/data/` und werden dadurch automatisch nach `dist/data/` kopiert.
 
 ## Deployment auf GitHub Pages
 
@@ -115,19 +119,17 @@ Die GitHub-Actions-Workflow-Datei liegt unter:
 ## Architekturhinweise
 
 - `components/` enthält sichtbare Seitenelemente und deren Verhalten.
+- `components/storyNavigation.js` steuert die optionale Floating-Navigation inklusive aktiver Abschnittsmarkierung.
 - `lib/csv.js` enthält geteiltes CSV-Laden, Parsing und Zahlen-Normalisierung.
-- `lib/highchartsTheme.js` liest die aktuellen CSS-Design-Tokens und zentralisiert wiederverwendbare Highcharts-Optionen.
-- `components/militaryEconomyCharts.js` rendert die makroökonomischen Diagramme zu Militärausgaben als BIP-Anteil und zum Vergleich von deutschem BIP-Wachstum mit deutschen Militärausgaben.
-- `components/bitkomDirectOrdersChart.js` rendert die Bitkom-Befragung zu direkten Bundeswehr-Beauftragungen als projektweit gestyltes Balkendiagramm.
+- `lib/highchartsTheme.js` liest die CSS-Design-Tokens und zentralisiert wiederverwendbare Highcharts-Optionen.
+- `lib/mobileDataPanel.js` stellt kompakte mobile Datenpanels für Line-Charts bereit.
 - `lib/viewportBarAnimation.js` startet Balkendiagramme erst beim ersten Sichtbarwerden im Viewport. Die Balken wachsen von 0 auf ihren Zielwert und bleiben danach bis zum Reload im Endzustand.
 - `styles/fonts.css` definiert die lokal gehosteten Font-Dateien.
-- `styles/tokens.css` definiert die Defence-/Economy-Farbpalette, Light-/Dark-Tokens, Abstände, Radien, Schatten und Schrift-Stacks.
-- `styles/responsive.css` bündelt Breakpoints für Desktop, Tablet und Mobile.
-- `components/themeToggle.js` erstellt den Mode-Switch, speichert manuelle Präferenzen in `localStorage` und reagiert im Auto-Modus auf Änderungen der Systemeinstellung.
+- `styles/tokens.css` definiert Farbpalette, Light-/Dark-Tokens, Abstände, Radien, Schatten und Schrift-Stacks.
 
 ## Wichtige Hinweise
 
 - `node_modules/` wird nicht versioniert und sollte nicht in ZIPs für Branches enthalten sein.
 - `dist/` wird lokal erzeugt, aber nicht als Quellcode benötigt.
-- Die Highcharts/Highmaps-Abhängigkeiten und die lokale Euro-Coin-Grafik sind relativ groß; ein Build kann deshalb eine Bundle-Size-Warnung ausgeben. Das ist für dieses Projekt erwartbar.
-- Die Font-Dateien werden beim Vite-Build als eigene Assets gebündelt und von der eigenen Website ausgeliefert. In DevTools → Network sollten keine Requests an `fonts.googleapis.com` oder `fonts.gstatic.com` auftauchen.
+- Die Highcharts/Highmaps-Abhängigkeiten, lokalen Fonts und die Euro-Coin-Grafik sind relativ groß; ein Build kann deshalb eine Bundle-Size-Warnung ausgeben. Das ist für dieses Projekt erwartbar.
+- Die Font-Dateien liegen unter `src/assets/fonts/` und werden beim Vite-Build von der eigenen Website ausgeliefert. In DevTools → Network sollten keine Requests an `fonts.googleapis.com` oder `fonts.gstatic.com` auftauchen.

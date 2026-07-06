@@ -47,38 +47,23 @@
           <span class="title-mobile"><span>Konjunktur-</span><span>hoffnung</span><span>Defence</span></span>
         </h1>
         <p class="lead">
-          Kann Defence die Konjunktur tragen – oder entsteht vor allem ein enger Boom in einzelnen Märkten?
-          Diese Webstory folgt der Argumentationskette von der globalen Konfliktlage über staatliche
-          Verteidigungsausgaben bis zu DefTech-Start-ups und prüft, warum daraus aktuell kein breiter
-          wirtschaftlicher Aufschwung folgt.
+          Seit der Zeitenwende wird die Verteidigungsindustrie häufiger als wirtschaftliche Chance gelesen:
+          mehr Nachfrage, mehr Kapital, mehr technologische Dynamik. Diese Seite ordnet die These ein und
+          verbindet Konfliktlage, Verteidigungsausgaben, DefTech-Finanzierung und die makroökonomische Kritik an Rüstungsausgaben.
         </p>
       </div>
 
       <div class="hero-visual" aria-hidden="true">
-        <div class="hero-visual-label">Argumentationslinie</div>
-        <div class="hero-visual-card hero-visual-card--danger">
-          <span>01 · Konfliktlage</span>
-          <strong>Sicherheitsdruck</strong>
-          <small>Konflikte verändern politische Prioritäten und legitimieren höhere Budgets.</small>
-        </div>
-        <div class="hero-visual-card hero-visual-card--budget">
-          <span>02 · Staatliche Ausgaben</span>
-          <strong>Budgetrealität</strong>
-          <small>Verteidigungsausgaben steigen, bleiben aber fiskalisch begrenzt.</small>
-        </div>
-        <div class="hero-visual-card hero-visual-card--capital">
-          <span>03 · Kapitalmärkte</span>
-          <strong>DefTech-Dynamik</strong>
-          <small>Risikokapital reagiert selektiv: stark im Sektor, schwächer in der Gesamtwirtschaft.</small>
+        <div class="hero-orbit hero-orbit--outer"></div>
+        <div class="hero-orbit hero-orbit--inner"></div>
+        <div class="hero-node hero-node--risk">Konfliktlage</div>
+        <div class="hero-node hero-node--budget">Budgets</div>
+        <div class="hero-node hero-node--capital">Kapital</div>
+        <div class="hero-core">
+          <span>Defence</span>
+          <strong>?</strong>
         </div>
       </div>
-
-      <a class="scroll-cue" href="#konfliktlage" aria-label="Zur ersten Inhaltssektion scrollen">
-        <span>Scrollen</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 5v13m0 0 5-5m-5 5-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </a>
     </section>
 
     <section id="konfliktlage" class="section-shell text-section text-section--conflict-intro">
@@ -120,7 +105,7 @@
               <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M8 5.14v14l11-7-11-7z" />
               </svg>
-              <svg id="pauseIcon" hidden xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
               </svg>
             </button>

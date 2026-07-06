@@ -2,8 +2,9 @@ import euroCoin from '../assets/euro-coin.png';
 
 const DEFAULTS = {
   title: '1 Euro rein,\nnur die Hälfte wieder raus.',
-  body: 'Laut Krebs und Kaczmarczyk liegt der kurzfristige Multiplikator deutscher Militärausgaben bei maximal etwa 0,5. Das heißt: Zusätzliche Rüstungsausgaben wirken ökonomisch deutlich schwächer als Investitionen in Infrastruktur, Bildung oder Betreuung.',
-  kicker: 'Quelle: Krebs & Kaczmarczyk, 2025',
+  body: 'Laut Mannheimer Studie liegt der kurzfristige Multiplikator deutscher Militärausgaben bei maximal etwa 0,5. Das heißt: Zusätzliche Rüstungsausgaben wirken ökonomisch deutlich schwächer als Investitionen in Infrastruktur, Bildung oder Betreuung.',
+  kicker: 'Multiplikator-Kritik',
+  source: 'Mannheimer Studie',
   coinImage: euroCoin,
   className: '',
 };
@@ -50,6 +51,7 @@ export function initializeMannheimerAnimation(target = '#mannheimer-animation', 
         <p class="mannheimer-body">${escapeHtml(opts.body)}</p>
       </article>
     </div>
+    <p class="source mannheimer-source">Quelle: <cite>${escapeHtml(opts.source)}</cite></p>
   `;
 
   mount.replaceChildren(section);
