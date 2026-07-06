@@ -11,7 +11,6 @@ function getElement(id) {
   return document.getElementById(id);
 }
 
-// FEHLER BEHOBEN: Sauberes Parsen ohne alte Variablen
 function parseValue(value) {
   if (!value) return 0;
   const parsed = parseFloat(value);
