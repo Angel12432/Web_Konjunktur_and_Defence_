@@ -11,15 +11,11 @@ function getElement(id) {
   return document.getElementById(id);
 }
 
+// FEHLER BEHOBEN: Sauberes Parsen ohne alte Variablen
 function parseValue(value) {
   if (!value) return 0;
-
-  const str = String(value).trim();
-  const multiplier = /b/i.test(str) ? 1 : /m/i.test(str) ? 1 / 1000 : 1;
-  const numeric = str.replace(/[^0-9.]/g, '');
-  const parsed = parseFloat(numeric);
-
-  return Number.isFinite(parsed) ? parsed * multiplier : 0;
+  const parsed = parseFloat(value);
+  return Number.isFinite(parsed) ? parsed : 0;
 }
 
 export async function initializeDsrCountriesChart() {
@@ -35,7 +31,8 @@ export async function initializeDsrCountriesChart() {
     const countries = data
       .map((entry) => ({
         name: entry.Country || '',
-        funding: parseValue(entry['DSR VC funding (2020-2025)'] || ''),
+        funding: parseValue(entry['DSR VC funding (2020-2025) in $B']),
+        shareTotal: parseValue(entry['% of total funding (2020-2025)']),
       }))
       .filter((entry) => entry.name && entry.funding > 0)
       .sort((a, b) => b.funding - a.funding);
@@ -46,7 +43,15 @@ export async function initializeDsrCountriesChart() {
     }
 
     const labels = countries.map((c) => c.name);
-    const fundingData = countries.map((c) => c.funding);
+    
+    // WICHTIG: Hier packen wir die Zusatzdaten wieder in das 'custom'-Objekt für den Tooltip
+    const fundingData = countries.map((c) => ({
+      y: c.funding,
+      name: c.name,
+      custom: {
+        shareTotal: c.shareTotal
+      }
+    }));
 
     const options = Highcharts.merge(columnChartOptions(), {
       chart: { inverted: true, marginLeft: 120 },
@@ -64,8 +69,19 @@ export async function initializeDsrCountriesChart() {
         },
       },
       series: [{ name: 'DSR Funding', data: fundingData, color: chartColors.accent }],
+      
+      // WICHTIG: Dein ausführlicher Tooltip
       tooltip: {
-        pointFormat: '<b>${point.y:.1f}B</b>',
+        headerFormat: '<b>{point.key}</b><br/>',
+        pointFormatter() {
+          const customData = this.custom || this.options.custom || {};
+          const shareTotal = customData.shareTotal ?? 0;
+          const share2025 = customData.share2025 ?? 0;
+          const perCapita = customData.perCapita ?? 0;
+          
+          return `DSR-Finanzierung: <b>\$${this.y.toFixed(1)}B</b><br/>` +
+                 `Anteil an Gesamtfinanzierung: <b>${shareTotal.toFixed(1)}%</b><br/>`
+        }
       },
       legend: { enabled: false },
     });

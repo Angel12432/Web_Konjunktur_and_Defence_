@@ -50,7 +50,7 @@ export async function initializeDsrChart() {
       yAxis: {
         title: { text: 'DSR Anteil am Gesamtmarkt(%)' },
         min: 0,
-        tickInterval: 1,
+        tickInterval: 2,
         labels: { format: '{value}%' },
       },
       plotOptions: {
