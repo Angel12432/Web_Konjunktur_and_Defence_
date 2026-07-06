@@ -15,11 +15,151 @@ const regionGroups = {
 let militaryChart = null
 let militaryCountries = []
 
+const countryNameTranslations = {
+  'United States': 'Vereinigte Staaten',
+  'United Kingdom': 'Vereinigtes Königreich',
+  'South Korea': 'Südkorea',
+  'North Korea': 'Nordkorea',
+  'Czechia': 'Tschechien',
+  'Czech Republic': 'Tschechien',
+  'Russia': 'Russland',
+  'Slovakia': 'Slowakei',
+  'Bosnia and Herzegovina': 'Bosnien und Herzegowina',
+  'Moldova': 'Moldau',
+  'Congo': 'Republik Kongo',
+  'Democratic Republic of Congo': 'Demokratische Republik Kongo',
+  'United Arab Emirates': 'Vereinigte Arabische Emirate',
+  'Saudi Arabia': 'Saudi-Arabien',
+  'Turkey': 'Türkei',
+  'Ukraine': 'Ukraine',
+  'Belarus': 'Belarus',
+  'Serbia': 'Serbien',
+  'Slovenia': 'Slowenien',
+  'Croatia': 'Kroatien',
+  'Portugal': 'Portugal',
+  'Netherlands': 'Niederlande',
+  'Sweden': 'Schweden',
+  'Norway': 'Norwegen',
+  'Finland': 'Finnland',
+  'Austria': 'Österreich',
+  'Switzerland': 'Schweiz',
+  'Denmark': 'Dänemark',
+  'Belgium': 'Belgien',
+  'Luxembourg': 'Luxemburg',
+  'Ireland': 'Irland',
+  'Romania': 'Rumänien',
+  'Bulgaria': 'Bulgarien',
+  'Greece': 'Griechenland',
+  'Hungary': 'Ungarn',
+  'Cyprus': 'Zypern',
+  'Malta': 'Malta',
+  'Latvia': 'Lettland',
+  'Lithuania': 'Litauen',
+  'Estonia': 'Estland',
+  'Poland': 'Polen',
+  'Spain': 'Spanien',
+  'France': 'Frankreich',
+  'Germany': 'Deutschland',
+  'Italy': 'Italien',
+  'Canada': 'Kanada',
+  'Mexico': 'Mexiko',
+  'Brazil': 'Brasilien',
+  'Argentina': 'Argentinien',
+  'Chile': 'Chile',
+  'Peru': 'Peru',
+  'Colombia': 'Kolumbien',
+  'Venezuela': 'Venezuela',
+  'Ecuador': 'Ecuador',
+  'Bolivia': 'Bolivien',
+  'Paraguay': 'Paraguay',
+  'Uruguay': 'Uruguay',
+  'Guyana': 'Guyana',
+  'Suriname': 'Suriname',
+  'Australia': 'Australien',
+  'New Zealand': 'Neuseeland',
+  'Papua New Guinea': 'Papua-Neuguinea',
+  'Fiji': 'Fidschi',
+  'Samoa': 'Samoa',
+  'Tonga': 'Tonga',
+  'Vanuatu': 'Vanuatu',
+  'Solomon Islands': 'Salomonen',
+  'Japan': 'Japan',
+  'China': 'China',
+  'India': 'Indien',
+  'Pakistan': 'Pakistan',
+  'Bangladesh': 'Bangladesch',
+  'Sri Lanka': 'Sri Lanka',
+  'Nepal': 'Nepal',
+  'Bhutan': 'Bhutan',
+  'Afghanistan': 'Afghanistan',
+  'Iran': 'Iran',
+  'Iraq': 'Irak',
+  'Israel': 'Israel',
+  'Jordan': 'Jordanien',
+  'Syria': 'Syrien',
+  'Lebanon': 'Libanon',
+  'Indonesia': 'Indonesien',
+  'Malaysia': 'Malaysia',
+  'Thailand': 'Thailand',
+  'Vietnam': 'Vietnam',
+  'Philippines': 'Philippinen',
+  'Singapore': 'Singapur',
+  'Myanmar': 'Myanmar',
+  'Cambodia': 'Kambodscha',
+  'Laos': 'Laos',
+  'Mongolia': 'Mongolei',
+  'Kazakhstan': 'Kasachstan',
+  'Egypt': 'Ägypten',
+  'Morocco': 'Marokko',
+  'Tunisia': 'Tunesien',
+  'Libya': 'Libyen',
+  'Sudan': 'Sudan',
+  'South Africa': 'Südafrika',
+  'Nigeria': 'Nigeria',
+  'Kenya': 'Kenia',
+  'Ethiopia': 'Äthiopien',
+  'Ghana': 'Ghana',
+  'Tanzania': 'Tansania',
+  'Uganda': 'Uganda',
+  'Angola': 'Angola',
+  'Cameroon': 'Kamerun',
+  'Senegal': 'Senegal',
+  'Côte d’Ivoire': 'Côte d’Ivoire',
+  'Cote dIvoire': 'Côte d’Ivoire'
+}
+
+function translateCountryName(name) {
+  if (name === null || name === undefined) return ''
+  const trimmed = String(name).trim()
+  return countryNameTranslations[trimmed] || trimmed
+}
+
+function getCountryAliases(name) {
+  const normalized = String(name).trim()
+  const translated = translateCountryName(name)
+  return [normalized, translated].filter(Boolean)
+}
+
 function toNumber(value) {
   if (value === null || value === undefined) return null
-  const cleaned = String(value).trim().replace(/\./g, '').replace(',', '.')
+
+  const cleaned = String(value).trim()
   if (cleaned === 'k.A.' || cleaned === 'k.A' || cleaned === '') return null
-  const number = Number(cleaned)
+
+  const normalized = cleaned.replace(/\s/g, '')
+  if (normalized.includes(',') && normalized.includes('.')) {
+    const lastComma = normalized.lastIndexOf(',')
+    const lastDot = normalized.lastIndexOf('.')
+    return Number(lastComma > lastDot
+      ? normalized.replace(/\./g, '').replace(',', '.')
+      : normalized.replace(/,/g, ''))
+  }
+
+  if (normalized.includes(',')) {
+    return Number(normalized.replace(',', '.'))
+  }
+
+  const number = Number(normalized)
   return Number.isNaN(number) ? null : number
 }
 
@@ -104,7 +244,10 @@ function getRegionCountries(region) {
 
   const group = regionGroups[region] || []
   const normalizedGroup = group.map(normalizeName)
-  return militaryCountries.filter(country => normalizedGroup.includes(normalizeName(country)))
+  return militaryCountries.filter(country => {
+    const aliases = getCountryAliases(country)
+    return aliases.some(alias => normalizedGroup.includes(normalizeName(alias)))
+  })
 }
 
 function updateSeriesVisibilityForCountries(countries) {
@@ -176,28 +319,34 @@ function initializeRegionFilter() {
   })
 }
 
+function formatPercentValue(value) {
+  if (value === null || value === undefined || Number.isNaN(value)) return ''
+  return Highcharts.numberFormat(value, 2, ',', '.')
+}
+
 function createMilitaryChart(data) {
-  const yearIndex = data.header.findIndex(column => normalizeName(column) === normalizeName('Jahr'))
-  const countryIndex = data.header.findIndex(column => normalizeName(column) === normalizeName('Land'))
-  const valueIndex = data.header.findIndex(column => normalizeName(column).includes(normalizeName('Anteil_BIP_Prozent')))
+  const yearIndex = data.header.findIndex(column => normalizeName(column) === normalizeName('Year'))
+  const countryIndex = data.header.findIndex(column => normalizeName(column) === normalizeName('Entity'))
+  const valueIndex = data.header.findIndex(column => normalizeName(column).includes(normalizeName('Military expenditure')) && normalizeName(column).includes(normalizeName('GDP')))
 
   const yearSet = new Set()
   const countryMap = new Map()
 
   data.rows.forEach(row => {
-    const country = row[countryIndex]
-    const year = row[yearIndex]
+    const rawCountry = row[countryIndex]
+    const country = translateCountryName(rawCountry)
+    const year = Number(row[yearIndex])
     const value = toNumber(row[valueIndex])
-    if (!country || !year || value === null) return
+    if (!country || !Number.isFinite(year) || value === null || year < 2015 || year > 2025) return
 
-    yearSet.add(year)
+    yearSet.add(String(year))
     if (!countryMap.has(country)) {
       countryMap.set(country, new Map())
     }
-    countryMap.get(country).set(year, value)
+    countryMap.get(country).set(String(year), value)
   })
 
-  const categories = [...yearSet].sort((a, b) => a.localeCompare(b, 'de', { numeric: true }))
+  const categories = [...yearSet].sort((a, b) => Number(a) - Number(b))
   militaryCountries = [...countryMap.keys()].sort((a, b) => normalizeName(a).localeCompare(normalizeName(b)))
 
   const series = militaryCountries.map(country => {
@@ -230,8 +379,13 @@ function createMilitaryChart(data) {
     },
     yAxis: {
       title: { text: '% des BIP', style: { color: 'var(--muted)' } },
-      labels: { style: { color: 'var(--muted)' } },
-      gridLineColor: 'rgba(107, 114, 128, 0.18)' 
+      labels: {
+        style: { color: 'var(--muted)' },
+        formatter: function () {
+          return formatPercentValue(this.value)
+        }
+      },
+      gridLineColor: 'rgba(107, 114, 128, 0.18)'
     },
     legend: {
       enabled: false
@@ -251,18 +405,40 @@ function createMilitaryChart(data) {
     credits: { enabled: false },
     tooltip: {
       valueSuffix: ' %',
+      valueDecimals: 2,
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y:,.2f}</b> %<br/>',
       backgroundColor: 'rgba(15, 23, 42, 0.94)',
       style: { color: '#fff' }
     }
   })
 
-  // Use Highcharts legend; show only current region series
   updateSeriesVisibilityForCountries(getRegionCountries(currentRegion))
 }
 
-function createBipChart(data) {
-  const years = data.rows.map(row => row[0])
-  const values = data.rows.map(row => toNumber(row[1]))
+function createBipChart(bipData, militaryData = null) {
+  const years = bipData.rows.map(row => row[0])
+  const values = bipData.rows.map(row => toNumber(row[1]))
+
+  let militaryValues = []
+  if (militaryData) {
+    const militaryYearIndex = militaryData.header.findIndex(column => normalizeName(column) === normalizeName('Year'))
+    const militaryCountryIndex = militaryData.header.findIndex(column => normalizeName(column) === normalizeName('Entity'))
+    const militaryValueIndex = militaryData.header.findIndex(column => normalizeName(column).includes(normalizeName('Military expenditure')) && normalizeName(column).includes(normalizeName('GDP')))
+
+    const germanyMilitaryMap = new Map()
+    militaryData.rows.forEach(row => {
+      const country = translateCountryName(row[militaryCountryIndex])
+      if (country !== 'Deutschland') return
+
+      const year = Number(row[militaryYearIndex])
+      const value = toNumber(row[militaryValueIndex])
+      if (Number.isFinite(year) && value !== null) {
+        germanyMilitaryMap.set(String(year), value)
+      }
+    })
+
+    militaryValues = years.map(year => germanyMilitaryMap.has(String(year)) ? germanyMilitaryMap.get(String(year)) : null)
+  }
 
   Highcharts.chart('bip-chart', {
     chart: {
@@ -271,7 +447,7 @@ function createBipChart(data) {
       style: { fontFamily: 'inherit' }
     },
     title: {
-      text: 'BIP-Wachstum Deutschland 1992–2025',
+      text: 'BIP-Wachstum und deutsche Militärausgaben 1992–2025',
       style: { color: 'var(--accent)', fontSize: '1rem', fontWeight: '700' }
     },
     xAxis: {
@@ -281,19 +457,31 @@ function createBipChart(data) {
       lineColor: 'rgba(107, 114, 128, 0.24)'
     },
     yAxis: {
-      title: { text: 'Wachstum (%)', style: { color: 'var(--muted)' } },
-      labels: { style: { color: 'var(--muted)' } },
-      gridLineColor: 'rgba(107, 114, 128, 0.18)' 
+      title: { text: '%', style: { color: 'var(--muted)' } },
+      labels: {
+        style: { color: 'var(--muted)' },
+        formatter: function () {
+          return formatPercentValue(this.value)
+        }
+      },
+      gridLineColor: 'rgba(107, 114, 128, 0.18)'
     },
     series: [{
-      name: 'Wachstum',
+      name: 'BIP-Wachstum',
       data: values,
       color: 'var(--accent)',
+      marker: { enabled: false }
+    }, {
+      name: 'Militärausgaben Deutschland',
+      data: militaryValues,
+      color: '#d97706',
       marker: { enabled: false }
     }],
     credits: { enabled: false },
     tooltip: {
-      valueSuffix: ' %',
+      shared: true,
+      valueDecimals: 2,
+      pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y:,.2f}</b> %<br/>',
       backgroundColor: 'rgba(15, 23, 42, 0.94)',
       style: { color: '#fff' }
     }
@@ -327,13 +515,16 @@ function observeSections() {
 
 async function loadMilitarySection() {
   if (militaryChart) return
-  const data = await loadCSV("data_raw/Militaerausgaben/sipri_militaerausgaben_alle_laender_2015_2024_DE-1.csv")
+  const data = await loadCSV("data_raw/military-spending/military-spending.csv")
   createMilitaryChart(data)
 }
 
 async function loadBipSection() {
-  const data = await loadCSV("data_raw/BIP_Deutschland/BIP_Wachstum_92_25.csv")
-  createBipChart(data)
+  const [bipData, militaryData] = await Promise.all([
+    loadCSV("data_raw/BIP_Deutschland/BIP_Wachstum_92_25.csv"),
+    loadCSV("data_raw/military-spending/military-spending.csv")
+  ])
+  createBipChart(bipData, militaryData)
 }
 
 document.addEventListener('DOMContentLoaded', () => {
