@@ -416,8 +416,9 @@ function createMilitaryChart(data) {
 }
 
 function createBipChart(bipData, militaryData = null) {
-  const years = bipData.rows.map(row => row[0])
-  const values = bipData.rows.map(row => toNumber(row[1]))
+  const filteredRows = bipData.rows.filter(row => Number(row[0]) >= 2015)
+  const years = filteredRows.map(row => row[0])
+  const values = filteredRows.map(row => toNumber(row[1]))
 
   let militaryValues = []
   if (militaryData) {
@@ -447,7 +448,7 @@ function createBipChart(bipData, militaryData = null) {
       style: { fontFamily: 'inherit' }
     },
     title: {
-      text: 'BIP-Wachstum und deutsche Militärausgaben 1992–2025',
+      text: 'BIP-Wachstum und deutsche Militärausgaben 2015–2025',
       style: { color: 'var(--accent)', fontSize: '1rem', fontWeight: '700' }
     },
     xAxis: {

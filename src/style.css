@@ -417,6 +417,22 @@ h3 {
   font-style: italic;
 }
 
+.source-inline {
+  margin-top: 0.625rem;
+  font-size: 0.78rem;
+  font-style: normal;
+  opacity: 0.85;
+}
+
+.source-inline a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.source-inline a:hover {
+  text-decoration: underline;
+}
+
 /* Animation für Bars von links */
 @keyframes slideInFromLeft {
   from {
