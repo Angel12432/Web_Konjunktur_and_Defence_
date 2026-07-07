@@ -8,7 +8,7 @@ const MILITARY_SPENDING_PATH = publicPath('data/military-spending.csv');
 const GERMANY_GDP_GROWTH_PATH = publicPath('data/germany-gdp-growth.csv');
 const START_YEAR = 2020;
 const END_YEAR = 2025;
-const DEFENSE_SERIES_NAME = 'Wachstum Verteidigungsbudget (Verteidigungsetat + Sondervermögen)';
+const DEFENSE_SERIES_NAME = 'Wachstum Militärausgaben (Verteidigungsetat + Sondervermögen)';
 
 const REGION_GROUPS = {
   top5eu: ['Deutschland', 'Frankreich', 'Italien', 'Spanien', 'Polen'],
