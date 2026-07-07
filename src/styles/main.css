@@ -240,7 +240,7 @@ p {
 .visual-section > .map-card {
    position: relative;
    left: 51%;
-   width: 100vw;
+   width: 98vw;
    max-width: 2000px;
    transform: translateX(-50%);
   gap: 0.75rem;
@@ -1183,6 +1183,7 @@ p {
   bottom: 0.2rem;
   margin: 0 auto;
   pointer-events: none;
+  text-align: left;
 }
 
 .mobile-data-panel {
@@ -2747,6 +2748,17 @@ body {
 .hero-visual-card small {
   max-width: 42ch;
 }
+
+
+/*Animations*/
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+
 
 @media (max-width: 1120px) {
   .hero-title {

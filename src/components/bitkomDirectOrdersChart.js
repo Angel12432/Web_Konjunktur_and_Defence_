@@ -1,4 +1,4 @@
-import Highcharts from 'highcharts';
+import Highcharts, { offset } from 'highcharts';
 
 import { loadCsv, publicPath, toNumber } from '../lib/csv.js';
 import { baseChartOptions, chartColors } from '../lib/highchartsTheme.js';
@@ -73,8 +73,9 @@ function createOptions(data) {
         dataLabels: {
           enabled: true,
           format: '{point.y:.0f}%',
-          inside: true,
-          align: 'right',
+          inside: false,
+          align: 'left',
+          x: 8,
           style: {
             color: chartColors.text,
             fontWeight: 800,

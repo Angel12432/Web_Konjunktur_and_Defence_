@@ -4,7 +4,7 @@ const DEFAULTS = {
   title: '1 Euro rein,\nnur die Hälfte wieder raus.',
   body: 'Laut Mannheimer Studie liegt der kurzfristige Multiplikator deutscher Militärausgaben bei maximal etwa 0,5. Das heißt: Zusätzliche Rüstungsausgaben wirken ökonomisch deutlich schwächer als Investitionen in Infrastruktur, Bildung oder Betreuung.',
   kicker: 'Multiplikator-Kritik',
-  source: 'Mannheimer Studie',
+  source: 'Krebs, T., Kaczmarczyk, P. (2025). Wirtschaftliche Auswirkungen von Militärausgaben in Deutschland. Universität Mannheim.',
   coinImage: euroCoin,
   className: '',
 };
@@ -48,10 +48,10 @@ export function initializeMannheimerAnimation(target = '#mannheimer-animation', 
       <article class="mannheimer-printed-text">
         <div class="mannheimer-kicker">${escapeHtml(opts.kicker)}</div>
         <h2 class="mannheimer-title">${escapeHtml(opts.title)}</h2>
-        <p class="mannheimer-body">${escapeHtml(opts.body)}</p>
+        <p class="mannheimer-body">${escapeHtml(opts.body)}</p><br><br>
+        <p class="source mannheimer-source">Quelle: <cite>${escapeHtml(opts.source)}</cite></p>
       </article>
     </div>
-    <p class="source mannheimer-source">Quelle: <cite>${escapeHtml(opts.source)}</cite></p>
   `;
 
   mount.replaceChildren(section);

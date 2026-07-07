@@ -303,7 +303,7 @@ function createMilitaryChart(rows) {
     },
     xAxis: {
       categories,
-      title: { text: null },
+      title: { text: 'Jahr' },
       tickmarkPlacement: 'on',
     },
     yAxis: {
@@ -402,7 +402,7 @@ function renderMacroAnnotation(chart, annotationIndex) {
 
   chart._macroAnnotationLabel?.destroy();
   chart._macroAnnotationLabel = chart.renderer.label(
-    '2024: Natoziel erstmals erreicht',
+    '2024: 2% Natoziel erstmals erreicht',
     chart.plotLeft + point.plotX -50,
     chart.plotTop + point.plotY - 30,
     undefined,
@@ -460,7 +460,9 @@ function createMacroChart(gdpRows, spendingRows) {
     },
     xAxis: { categories: years, title: { text: null } },
     yAxis: {
-      title: { text: '%' },
+      min: -5.0,
+      title: { text:null }
+      ,
       plotLines: [{ value: 0, color: chartColors.line, width: 1.5, zIndex: 2 }],
       labels: {
         formatter() { return `${formatPercent(this.value, 1)} %`; },
@@ -468,7 +470,6 @@ function createMacroChart(gdpRows, spendingRows) {
     },
     plotOptions: {
       series: {
-        animation: { duration: 900 },
         lineWidth: 2.6,
         marker: { enabled: true, radius: 3 },
         point: {
@@ -535,30 +536,59 @@ function installThemeListener() {
 }
 
 export async function initializeMilitaryEconomyCharts() {
-  const hasMilitaryChart = document.getElementById('military-spending-chart');
-  const hasMacroChart = document.getElementById('bip-military-chart');
-  if (!hasMilitaryChart && !hasMacroChart) return;
+  const militaryEl = document.getElementById('military-spending-chart');
+  const macroEl = document.getElementById('bip-military-chart');
+  if (!militaryEl && !macroEl) return;
 
   installThemeListener();
   installRegionFilter();
 
-  try {
-    const [spendingRows, gdpRows] = await Promise.all([
-      spendingRowsCache || loadCsv(MILITARY_SPENDING_PATH, { label: 'Militärausgaben-Daten' }),
-      gdpRowsCache || loadCsv(GERMANY_GDP_GROWTH_PATH, { label: 'BIP-Wachstumsdaten' }),
-    ]);
+  const observerOptions = { threshold: 0.3 };
 
-    spendingRowsCache = spendingRows;
-    gdpRowsCache = gdpRows;
+  function observeAndLoad(element, loader) {
+    if (!element) return;
+    const alreadyLoadedFlag = `data-loaded`;
+    if (element.dataset.loaded === 'true') return;
 
-    createMilitaryChart(spendingRows);
-    createMacroChart(gdpRows, spendingRows);
-  } catch (error) {
-    console.error('Fehler beim Laden der makroökonomischen Charts:', error);
-    [hasMilitaryChart, hasMacroChart].filter(Boolean).forEach((element) => {
-      element.innerHTML = `<p class="chart-empty chart-empty--error">Fehler beim Laden der Daten: ${String(error.message ?? error)}</p>`;
-    });
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting) {
+          try {
+            await loader();
+            element.dataset.loaded = 'true';
+          } catch (err) {
+            console.error('Fehler beim Laden der Grafik:', err);
+            element.innerHTML = `<p class="chart-empty chart-empty--error">Fehler beim Laden der Daten: ${String(err.message ?? err)}</p>`;
+          }
+          obs.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    io.observe(element);
   }
+
+  // loader for military chart — only needs spendingRows
+  const loadMilitary = async () => {
+    const spendingRows = spendingRowsCache || await loadCsv(MILITARY_SPENDING_PATH, { label: 'Militärausgaben-Daten' });
+    spendingRowsCache = spendingRows;
+    createMilitaryChart(spendingRows);
+  };
+
+  // loader for macro chart — needs both gdp and spending rows
+  const loadMacro = async () => {
+    const [gdpRows, spendingRows] = await Promise.all([
+      gdpRowsCache || loadCsv(GERMANY_GDP_GROWTH_PATH, { label: 'BIP-Wachstumsdaten' }),
+      spendingRowsCache || loadCsv(MILITARY_SPENDING_PATH, { label: 'Militärausgaben-Daten' }),
+    ]);
+    gdpRowsCache = gdpRows;
+    spendingRowsCache = spendingRows;
+    createMacroChart(gdpRows, spendingRows);
+  };
+
+  // observe elements
+  observeAndLoad(militaryEl, loadMilitary);
+  observeAndLoad(macroEl, loadMacro);
 }
 
 export default initializeMilitaryEconomyCharts;
