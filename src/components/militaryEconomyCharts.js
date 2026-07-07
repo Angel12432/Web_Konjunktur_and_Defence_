@@ -3,6 +3,7 @@ import Highcharts from 'highcharts';
 import { loadCsv, publicPath, toNumber } from '../lib/csv.js';
 import { baseChartOptions, chartColors } from '../lib/highchartsTheme.js';
 import { formatMobileDatum, setMobileDataPanel } from '../lib/mobileDataPanel.js';
+import observeAndLoad from '../lib/observeAndLoad.js';
 
 const MILITARY_SPENDING_PATH = publicPath('data/military-spending.csv');
 const GERMANY_GDP_GROWTH_PATH = publicPath('data/germany-gdp-growth.csv');
@@ -546,30 +547,7 @@ export async function initializeMilitaryEconomyCharts() {
   installThemeListener();
   installRegionFilter();
 
-  const observerOptions = { threshold: 0.3 };
-
-  function observeAndLoad(element, loader) {
-    if (!element) return;
-    const alreadyLoadedFlag = `data-loaded`;
-    if (element.dataset.loaded === 'true') return;
-
-    const io = new IntersectionObserver((entries, obs) => {
-      entries.forEach(async (entry) => {
-        if (entry.isIntersecting) {
-          try {
-            await loader();
-            element.dataset.loaded = 'true';
-          } catch (err) {
-            console.error('Fehler beim Laden der Grafik:', err);
-            element.innerHTML = `<p class="chart-empty chart-empty--error">Fehler beim Laden der Daten: ${String(err.message ?? err)}</p>`;
-          }
-          obs.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    io.observe(element);
-  }
+  // use shared observeAndLoad helper
 
   // loader for military chart — only needs spendingRows
   const loadMilitary = async () => {
@@ -590,8 +568,8 @@ export async function initializeMilitaryEconomyCharts() {
   };
 
   // observe elements
-  observeAndLoad(militaryEl, loadMilitary);
-  observeAndLoad(macroEl, loadMacro);
+  observeAndLoad(militaryEl, loadMilitary, { threshold: 0.3 });
+  observeAndLoad(macroEl, loadMacro, { threshold: 0.3 });
 }
 
 export default initializeMilitaryEconomyCharts;

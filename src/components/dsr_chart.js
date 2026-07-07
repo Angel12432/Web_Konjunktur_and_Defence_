@@ -2,6 +2,7 @@ import Highcharts from 'highcharts';
 import { chartColors, baseChartOptions } from '../lib/highchartsTheme.js';
 import { loadCsv, publicPath, toNumber } from '../lib/csv.js';
 import { formatMobileDatum, setMobileDataPanel } from '../lib/mobileDataPanel.js';
+import observeAndLoad from '../lib/observeAndLoad.js';
 
 const DSR_TOTAL_PATH = publicPath('data/dsr-total.csv');
 
@@ -27,29 +28,7 @@ export async function initializeDsrChart() {
   const container = getElement('dsr-chart');
   if (!container) return;
   container.classList.add('chart-animate');
-  const observerOptions = { threshold: 0.3 };
-
   let chart = null;
-
-  function observeAndLoad(element, loader) {
-    if (!element) return;
-    if (element.dataset.loaded === 'true') return;
-    const io = new IntersectionObserver((entries, obs) => {
-      entries.forEach(async (entry) => {
-        if (entry.isIntersecting) {
-          try {
-            await loader();
-            element.dataset.loaded = 'true';
-          } catch (err) {
-            console.error('Error rendering DSR chart:', err);
-            element.innerHTML = '<p style="padding: 20px; text-align: center; color: red;">Fehler beim Laden der Daten</p>';
-          }
-          obs.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    io.observe(element);
-  }
 
   const load = async () => {
     try {
@@ -146,5 +125,5 @@ export async function initializeDsrChart() {
     }
   };
 
-  observeAndLoad(container, load);
+  observeAndLoad(container, load, { threshold: 0.3 });
 }

@@ -1,6 +1,7 @@
 import Highcharts from 'highcharts';
 import { columnChartOptions, chartColors } from '../lib/highchartsTheme.js';
 import { loadCsv, publicPath } from '../lib/csv.js';
+import observeAndLoad from '../lib/observeAndLoad.js';
 
 const DSR_COUNTRIES_PATH = publicPath('data/dsr-countries.csv');
 
@@ -40,29 +41,7 @@ export async function initializeDsrCountriesChart() {
   const container = getElement('dsr-countries-chart');
   if (!container) return;
   container.classList.add('chart-animate');
-  const observerOptions = { threshold: 0.3 };
-
   let chart = null;
-
-  function observeAndLoad(element, loader) {
-    if (!element) return;
-    if (element.dataset.loaded === 'true') return;
-    const io = new IntersectionObserver((entries, obs) => {
-      entries.forEach(async (entry) => {
-        if (entry.isIntersecting) {
-          try {
-            await loader();
-            element.dataset.loaded = 'true';
-          } catch (err) {
-            console.error('Error rendering DSR countries chart:', err);
-            element.innerHTML = '<p style="padding: 20px; text-align: center; color: red;">Fehler beim Laden der Daten</p>';
-          }
-          obs.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    io.observe(element);
-  }
 
   const load = async () => {
     try {
@@ -134,5 +113,5 @@ export async function initializeDsrCountriesChart() {
     }
   };
 
-  observeAndLoad(container, load);
+  observeAndLoad(container, load, { threshold: 0.3 });
 }
