@@ -6,8 +6,9 @@ import { formatMobileDatum, setMobileDataPanel } from '../lib/mobileDataPanel.js
 
 const MILITARY_SPENDING_PATH = publicPath('data/military-spending.csv');
 const GERMANY_GDP_GROWTH_PATH = publicPath('data/germany-gdp-growth.csv');
-const START_YEAR = 2015;
+const START_YEAR = 2020;
 const END_YEAR = 2025;
+const DEFENSE_SERIES_NAME = 'Wachstum Militärausgaben (Verteidigungsetat + Sondervermögen)';
 
 const REGION_GROUPS = {
   top5eu: ['Deutschland', 'Frankreich', 'Italien', 'Spanien', 'Polen'],
@@ -114,6 +115,10 @@ function normalizeName(name) {
     .toLowerCase();
 }
 
+function extractChartYear(row) {
+  return toNumber(row.year ?? row.Year ?? row.Jahreszahl);
+}
+
 function translateCountryName(name) {
   const trimmed = String(name ?? '').trim();
   return COUNTRY_TRANSLATIONS[trimmed] || trimmed;
@@ -124,12 +129,18 @@ function formatPercent(value, decimals = 2) {
   return Highcharts.numberFormat(value, decimals, ',', '.');
 }
 
+function formatNumber(value, decimals = 2) {
+  if (!Number.isFinite(value)) return '';
+  return Highcharts.numberFormat(value, decimals, ',', '.');
+}
+
 function renderMilitaryMobilePanel(point) {
   if (!point || !Number.isFinite(point.y)) return;
+  const absValue = Number.isFinite(point.abs) ? ` (${formatNumber(point.abs, 2)} Mrd. Euro)` : '';
   setMobileDataPanel('military-spending-mobile-data', `
     <div class="mobile-data-panel__title">${point.series.name} · ${point.category}</div>
     <div class="mobile-data-panel__grid">
-      ${formatMobileDatum('Militärausgaben', `${formatPercent(point.y, 2)} % des BIP`)}
+      ${formatMobileDatum('Militärausgaben', `${formatPercent(point.y, 2)} % des BIP${absValue}`)}
     </div>
   `);
 }
@@ -142,7 +153,10 @@ function renderMacroMobilePanel(point) {
     .map((series) => {
       const sameYearPoint = series.points?.[point.index];
       if (!sameYearPoint || !Number.isFinite(sameYearPoint.y)) return '';
-      return formatMobileDatum(series.name, `${formatPercent(sameYearPoint.y, 2)} %`);
+      const absSuffix = sameYearPoint.series.name.includes('Verteidigungsbudget') && Number.isFinite(sameYearPoint.abs)
+        ? ` (${formatNumber(sameYearPoint.abs, 2)} absolut)`
+        : '';
+      return formatMobileDatum(series.name, `${formatPercent(sameYearPoint.y, 2)} %${absSuffix}`);
     })
     .filter(Boolean)
     .join('');
@@ -344,12 +358,65 @@ function getGermanyMilitarySeries(rows, years) {
 
   rows.forEach((row) => {
     if (translateCountryName(row.Entity) !== 'Deutschland') return;
-    const year = String(toNumber(row.Year));
+    const year = toNumber(row.Year);
+    if (!Number.isFinite(year)) return;
     const value = toNumber(row[valueKey]);
-    if (year && value !== null) map.set(year, value);
+    if (value === null) return;
+    map.set(String(year), value);
   });
 
   return years.map((year) => map.get(String(year)) ?? null);
+}
+
+function getGermanyDefenseSeries(rows, years) {
+  const map = new Map();
+
+  rows.forEach((row) => {
+    const year = extractChartYear(row);
+    if (!Number.isFinite(year)) return;
+    const pct = toNumber(row.growth_defence_budget_pct ?? row['growth_defence_budget_pct']);
+    const abs = toNumber(row.growth_defence_budget_abs ?? row['growth_defence_budget_abs']);
+    map.set(String(year), { pct, abs });
+  });
+
+  return years.map((year) => {
+    const entry = map.get(String(year));
+    return entry && Number.isFinite(entry.pct) ? { y: entry.pct, abs: entry.abs } : null;
+  });
+}
+
+function formatMacroTooltipLines(points) {
+  return points.map((point) => {
+    const isDefenseSeries = point.series.name === DEFENSE_SERIES_NAME;
+    const suffix = isDefenseSeries && Number.isFinite(point.point?.abs)
+      ? ` (${formatNumber(point.point.abs, 1)} Mrd. Euro)`
+      : '';
+    return `<span style="color:${point.color}">●</span> ${point.series.name}: <strong>${formatPercent(point.y, 2)} %</strong>${suffix}`;
+  }).join('<br/>');
+}
+
+function renderMacroAnnotation(chart, annotationIndex) {
+  if (annotationIndex < 0) return;
+  const point = chart.series?.[1]?.points?.[annotationIndex];
+  if (!point || !Number.isFinite(point.plotX) || !Number.isFinite(point.plotY)) return;
+
+  chart._macroAnnotationLabel?.destroy();
+  chart._macroAnnotationLabel = chart.renderer.label(
+    '2024: Natoziel erstmals erreicht',
+    chart.plotLeft + point.plotX -50,
+    chart.plotTop + point.plotY - 30,
+    undefined,
+    undefined,
+    undefined,
+    true
+  )
+    .css({
+      color: chartColors.muted,
+      fontWeight: '600',
+      fontSize: '0.85rem',
+    })
+    .attr({ zIndex: 5 })
+    .add();
 }
 
 function createMacroChart(gdpRows, spendingRows) {
@@ -371,7 +438,8 @@ function createMacroChart(gdpRows, spendingRows) {
 
   const years = points.map((point) => point.year);
   const gdpValues = points.map((point) => point.gdp);
-  const militaryValues = getGermanyMilitarySeries(spendingRows, years);
+  const defenseValues = getGermanyDefenseSeries(gdpRows, years);
+  const annotationIndex = years.indexOf(String(2024));
 
   if (macroChart) {
     macroChart.destroy();
@@ -379,10 +447,16 @@ function createMacroChart(gdpRows, spendingRows) {
   }
 
   macroChart = Highcharts.chart('bip-military-chart', Highcharts.merge(baseChartOptions(), {
-    chart: { type: 'line' },
+    chart: {
+      type: 'line',
+      events: {
+        load() { renderMacroAnnotation(this, annotationIndex); },
+        redraw() { renderMacroAnnotation(this, annotationIndex); },
+      },
+    },
     title: { text: '' },
     subtitle: {
-      text: 'Beide Reihen sind Prozentwerte, messen aber unterschiedliche Bezugsgrößen.',
+      text: null,
     },
     xAxis: { categories: years, title: { text: null } },
     yAxis: {
@@ -406,18 +480,20 @@ function createMacroChart(gdpRows, spendingRows) {
       },
     },
     series: [{
-      name: 'BIP-Wachstum Deutschland',
+      name: 'BIP-Wachstum',
       data: gdpValues,
       color: chartColors.accent,
     }, {
-      name: 'Militärausgaben Deutschland',
-      data: militaryValues,
+      name: DEFENSE_SERIES_NAME,
+      data: defenseValues,
       color: chartColors.accentWarm,
     }],
     tooltip: {
       shared: true,
-      valueSuffix: ' %',
-      valueDecimals: 2,
+      useHTML: true,
+      formatter() {
+        return `<div>${formatMacroTooltipLines(this.points)}</div>`;
+      },
     },
     responsive: {
       rules: [{
