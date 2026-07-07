@@ -26,6 +26,7 @@ function renderDsrMobilePanel(point, year) {
 export async function initializeDsrChart() {
   const container = getElement('dsr-chart');
   if (!container) return;
+  container.classList.add('chart-animate');
   const observerOptions = { threshold: 0.3 };
 
   let chart = null;

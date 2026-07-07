@@ -540,6 +540,9 @@ export async function initializeMilitaryEconomyCharts() {
   const macroEl = document.getElementById('bip-military-chart');
   if (!militaryEl && !macroEl) return;
 
+  if (militaryEl) militaryEl.classList.add('chart-animate');
+  if (macroEl) macroEl.classList.add('chart-animate');
+
   installThemeListener();
   installRegionFilter();
 

@@ -2583,6 +2583,7 @@ body {
   box-shadow: none !important;
 }
 
+
 .chart-card {
   padding: 0 !important;
 }
@@ -2752,10 +2753,26 @@ body {
 
 /*Animations*/
 
-.reveal-on-scroll {
+.chart-animate {
+  --chart-anim-duration: 600ms; /* anpassen: 250ms / 800ms etc. */
+  transition: opacity var(--chart-anim-duration) cubic-bezier(.2,.9,.2,1),
+              transform var(--chart-anim-duration) cubic-bezier(.2,.9,.2,1);
+}
+.chart-animate:not([data-loaded="true"]) {
   opacity: 0;
-  transform: translateY(1rem);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  transform: translateY(8px);
+}
+.chart-animate[data-loaded="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-animate {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 

@@ -39,7 +39,8 @@ function parseValue(value) {
 export async function initializeDsrCountriesChart() {
   const container = getElement('dsr-countries-chart');
   if (!container) return;
-  const observerOptions = { threshold: 0.5 };
+  container.classList.add('chart-animate');
+  const observerOptions = { threshold: 0.3 };
 
   let chart = null;
 
