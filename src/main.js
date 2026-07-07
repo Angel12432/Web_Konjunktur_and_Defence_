@@ -1,4 +1,5 @@
 import './styles/main.css';
+import './lib/Theme.js';
 
 import { initializeWorldMap } from './components/worldMap.js';
 import { initializeVcCharts } from './components/vcCharts.js';
