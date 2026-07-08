@@ -18,8 +18,8 @@ function renderDsrMobilePanel(point, year) {
     <div class="mobile-data-panel__title">${year}</div>
     <div class="mobile-data-panel__grid">
       ${formatMobileDatum('DSR-Anteil', `${Highcharts.numberFormat(point.y, 2, ',', '.')} %`)}
-      ${formatMobileDatum('DSR-Funding', `$${Highcharts.numberFormat(point.dsr, 1, ',', '.')}B`)}
-      ${formatMobileDatum('Gesamt-VC', `$${Highcharts.numberFormat(point.total, 1, ',', '.')}B`)}
+      ${formatMobileDatum('DSR-Funding', `$${Highcharts.numberFormat(point.dsr, 1, ',', '.')} Mrd.`)}
+      ${formatMobileDatum('Gesamt-VC', `$${Highcharts.numberFormat(point.total, 1, ',', '.')} Mrd.`)}
     </div>
   `);
 }
@@ -38,8 +38,8 @@ export async function initializeDsrChart() {
       const series = data
         .map((entry) => ({
           year: String(toNumber(entry.Year) || entry.Year || ''),
-          dsr: toNumber(entry.DSR_Deep_Tech_VC_B_USD) || 0,
-          total: toNumber(entry.Total_VC_B_USD) || 0,
+          dsr: toNumber(entry.DSR_VC_MRD_USD) || 0,
+          total: toNumber(entry.Total_VC_MRD_USD) || 0,
         }))
         .filter((entry) => entry.year);
 
@@ -90,7 +90,7 @@ export async function initializeDsrChart() {
           },
         ],
         tooltip: {
-          pointFormat: '<b>DSR Anteil: {point.y:.2f}%</b><br/>DSR Volumen: ${point.dsr:.1f}B<br/>Gesamtes VC Volumen: ${point.total:.1f}B',
+          pointFormat: '<b>DSR Anteil: {point.y:.2f}%</b><br/>DSR Volumen: {point.dsr:.1f} Mrd.<br/>Gesamtes VC Volumen: {point.total:.1f} Mrd.',
         },
         legend: { enabled: false },
         responsive: {
