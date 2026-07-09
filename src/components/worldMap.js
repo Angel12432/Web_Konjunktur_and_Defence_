@@ -11,6 +11,18 @@ const LAST_YEAR = YEARS[YEARS.length - 1];
 const STEP_INTERVAL_MS = 1800;
 const MAP_TRANSITION_MS = 600;
 
+// Eigener Fortschritts-Wert (in %) pro Jahr für die farbige Slider-Füllung.
+// Muss nicht linear/gleichmäßig sein – einfach den gewünschten Wert (0–100) eintragen.
+// Fehlt ein Jahr hier, wird automatisch linear zwischen FIRST_YEAR und LAST_YEAR interpoliert.
+const YEAR_PROGRESS = {
+  2020: 0,
+  2021: 24,
+  2022: 42,
+  2023: 58,
+  2024: 75,
+  2025: 100,
+};
+
 const COUNTRY_TO_HC_KEY = {
   Afghanistan: 'af', Algeria: 'dz', Angola: 'ao', Australia: 'au', Azerbaijan: 'az', Bangladesh: 'bd', Benin: 'bj',
   'Bosnia-Herzegovina': 'ba', 'Burkina Faso': 'bf', Burundi: 'bi', 'Cambodia (Kampuchea)': 'kh', Cameroon: 'cm',
@@ -105,8 +117,20 @@ function buildKeyLookup(dataByYear, year) {
   return Object.fromEntries((dataByYear[year] ?? []).map((entry) => [entry['hc-key'], entry]));
 }
 
-function setSliderProgress(slider, year) {
-  const progress = ((Number(year) - Number(FIRST_YEAR)) / (Number(LAST_YEAR) - Number(FIRST_YEAR))) * 100;
+function yearToProgress(year) {
+  const customProgress = YEAR_PROGRESS[Number(year)];
+  return Number.isFinite(customProgress)
+    ? customProgress
+    : ((Number(year) - Number(FIRST_YEAR)) / (Number(LAST_YEAR) - Number(FIRST_YEAR))) * 100;
+}
+
+function progressToYear(progress) {
+  return YEARS.reduce((closest, year) => (
+    Math.abs(yearToProgress(year) - progress) < Math.abs(yearToProgress(closest) - progress) ? year : closest
+  ), YEARS[0]);
+}
+
+function setSliderProgress(slider, progress) {
   slider.style.setProperty('--slider-progress', `${progress}%`);
 }
 
@@ -260,8 +284,11 @@ function createWorldMap(dataByYear) {
     currentYear = String(year);
     selectedYear = currentYear;
     controls.yearLabel.textContent = currentYear;
-    controls.slider.value = currentYear;
-    setSliderProgress(controls.slider, currentYear);
+
+    const progress = yearToProgress(currentYear);
+    controls.slider.value = progress;
+    controls.slider.setAttribute('aria-valuetext', currentYear);
+    setSliderProgress(controls.slider, progress);
 
     const lookup = buildKeyLookup(dataByYear, currentYear);
     const series = chart.series[0];
@@ -301,7 +328,8 @@ function createWorldMap(dataByYear) {
 
   const handleSliderInput = (event) => {
     if (isPlaying) stopAnimation();
-    updateMap(event.target.value);
+    const nearestYear = progressToYear(Number(event.target.value));
+    updateMap(nearestYear);
   };
 
   const tickHandlers = controls.ticks.map((button) => {
