@@ -121,5 +121,5 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --fazit-bg: rgb(24, 6, 102);
+  --fazit-bg: #0c213a;
 }

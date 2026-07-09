@@ -309,7 +309,7 @@ function createMilitaryChart(rows) {
     chart: { type: 'spline' },
     title: { text: '' },
     subtitle: {
-      text: 'Militärausgaben geteilt durch Bruttoinlandsprodukt, 2015–2025.',
+      text: 'Militärausgaben geteilt durch Bruttoinlandsprodukt, 2020–2025.',
     },
     xAxis: {
       categories,
