@@ -2,6 +2,31 @@
 
 Interaktive Vite-Webstory zur Frage, ob Defence seit der Zeitenwende als Konjunktur- und Investitionshoffnung gelesen werden kann. Die Seite verbindet eine Highmaps-Weltkarte zur globalen Konfliktlage, makroökonomische Highcharts-Grafiken, Bitkom-/DSR-Daten und eine animierte Multiplikator-Kritik.
 
+## Über das Projekt
+
+Das Projekt entstand im Rahmen des Moduls Data and Motion an der Technischen Hochschule Nürnberg in einer Zusammenarbeit von studierenden des Studiengangs Techninkjournalismus und Social Data Science. Die Zielgruppe sind Leser von Wirtschaftsfachmagazinen wie dem Handelsblatt oder der Wirtschaftswoche.
+Aus diesem Grund ist die Struktur auch eher "klassisch" gehalten, damit sich Leser schnell zurechtfinden. 
+
+🔗 Live-Demo: https://angel12432.github.io/Web_Konjunktur_and_Defence_/
+
+## Lokale Installation
+
+Benötigt wird Node.js 20 oder neuer.
+
+```bash
+npm ci
+npm run dev
+```
+
+Die lokale Vite-Adresse wird im Terminal angezeigt.
+
+## Tech-Stack
+
+- Vite – Build-Tool & Dev-Server
+- Vanilla JavaScript (ES Modules)
+- HTML5 & CSS3
+- Highcharts und Highcharts Maps – Datenvisualisierung/Diagramme
+
 ## Projektstruktur
 
 ```text
@@ -76,38 +101,12 @@ public/
 - `components/themeToggle.js` bietet einen Theme-Umschalter, der `data-theme` auf der Wurzel setzt und `wkd:themechange` dispatcht.
 - Chart-Module registrieren auf `window` und aktualisieren sich selbst bei Theme-Wechseln.
 
-## Story-Struktur
-
-1. Hero-Section
-2. Konfliktlage und Weltkarte zu konfliktbedingten Todesfällen
-3. Überleitung von Konflikten zu Verteidigungsausgaben
-4. Militärausgaben als Anteil des BIP
-5. Überleitung zum deutschen BIP-Wachstum
-6. BIP-Wachstum Deutschland und deutsche Militärausgaben
-7. Mannheimer-Euro-Animation mit IWF-Einordnung
-8. Bitkom DefTech Report: direkte Bundeswehr-Beauftragungen
-9. Überleitung zu Start-ups und DSR-Finanzierung
-10. Start-up-/DSR-Marktentwicklung
-11. VC-DSR-Finanzierung nach Region und Deutschland-Einordnung
-12. Fazit
-
 ## Responsives Verhalten
 
-- Die Story-Navigation erscheint nur auf ausreichend großen Viewports; auf mobilen oder sehr engen Displays bleibt sie aus dem Weg.
+- Die Story-Navigation erscheint nur auf ausreichend großen Viewports; auf mobilen oder sehr engen Displays bleibt sie aus dem Weg wird sie ein Burgermenü umgewandelt.
 - Chart- und Kartenhöhen verwenden Viewport-abhängige Größen, um Layout-Brüche bei Resize und mobilen Ansichten zu verhindern.
 - Line-Charts behalten Tooltips, bieten für Mobile aber zusätzlich ein kompaktes Datenpanel (`src/lib/mobileDataPanel.js`).
 - Die UX nutzt `:focus-visible` statt nativer Tap-Highlights, sodass Tastatur- und Touch-Bedienung sauber getrennt bleiben.
-
-## Lokale Entwicklung
-
-Benötigt wird Node.js 20 oder neuer.
-
-```bash
-npm ci
-npm run dev
-```
-
-Die lokale Vite-Adresse wird im Terminal angezeigt.
 
 ## Production Build
 
@@ -138,17 +137,23 @@ Die GitHub-Actions-Workflow-Datei liegt unter:
 
 - `components/` enthält sichtbare Seitenelemente und ihre Logik.
 - `components/storyNavigation.js` steuert die Floating-Navigation inklusive aktiver Abschnittsmarkierung.
-- `components/worldMap.js` erstellt die Highmaps-Karte mit lokalen Kartendaten und CSV-Input.
+- `components/worldMap.js` erstellt die Highmaps-Karte mit lokalen Kartendaten und CSV-Input. Kümmert sich um slider-logik
+- `components/bitkomDirectOrdersChart.js` erstellt das Chart für die Bitkom-Umfrage
+- `components/dsr_chart` erstellt das Line-Chart für die DSR-Entwicklung
+- `components/dsr_countries.js` erstellt das Bar-Chart für die DSR-Investitionen nach Ländern
+- `components/militaryEconomyCharts.js` erstellt das Chart für die Länderübersicht der Militärausgaben und das Linien-Diagramm, welches das Deutsche BIP und die Militärausgaben übereinander legt. 
+- `components/mannheimerAnimation.js` erstellt die Animation des Euros. Das HTML wird bei öffnen des Euros im Skript generiert.
+- `components/themeToggle.js` ist für das Einstellen das Dark/Light-Theme zuständig und löst ein entsprechendes Event aus, das von den einzelnen Charts verarbeitet wird
+- `components/vcCharts.js` erstellt die Charts für das Venture-Capital
 - `lib/csv.js` enthält den CSV-Parser und `loadCsv()` für alle datengetriebenen Visualisierungen.
 - `lib/highchartsTheme.js` liest die CSS-Design-Tokens und erzeugt wiederverwendbare Highcharts-Grundoptionen.
 - `lib/mobileDataPanel.js` zeigt kompakte mobile Datenpanels für Line-Charts.
-- `lib/observeAndLoad.js` initialisiert Komponenten erst beim erstmaligen Sichtbarwerden im Viewport.
-- `styles/fonts.css` definiert die lokal gehosteten Schriftfamilien.
+- `lib/observeAndLoad.js` initialisiert Komponenten erst beim erstmaligen Sichtbarwerden im Viewport und sorgt so für das Auslösen der Chart-Animationen.
+- `styles/fonts.css` bindet die lokal gehosteten Schriftfamilien ein.
 - `styles/tokens.css` definiert Farbpalette, Light-/Dark-Tokens, Abstände, Radien und Schriftstacks.
+- `styles/main.css`defiert das eigentliche styling der Website
 
 ## Wichtige Hinweise
 
 - `node_modules/` wird nicht versioniert.
 - `dist/` wird lokal erzeugt und sollte nicht als Quellcode committed werden.
-- Die Schriftdateien, die lokale Topologie und die Chart-Assets werden aus dem Projektbundle ausgeliefert, nicht per externem CDN.
-- Alle CSV-Daten werden zur Laufzeit eingelesen, so dass die Visualisierungen nicht auf fest kodierte Werte angewiesen sind.
