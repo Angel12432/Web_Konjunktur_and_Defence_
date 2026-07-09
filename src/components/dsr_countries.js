@@ -86,7 +86,7 @@ export async function initializeDsrCountriesChart() {
           labels: { style: { color: chartColors.muted, fontSize: '12px' }, align: 'right' },
         },
         yAxis: { title: { text: 'DSR Risikokapital-Finanzierung (Milliarden USD)' } },
-        plotOptions: { column: { dataLabels: { enabled: true, format: '{point.y:.1f} Mrd. $' } } },
+        plotOptions: { column: { dataLabels: { enabled: true, format: '{point.y:.1f} Mrd. $', style: { color: chartColors.accentWarm } } } },
         series: [{ name: 'DSR Funding', data: fundingData, color: chartColors.accent }],
         tooltip: {
           headerFormat: '<b>{point.key}</b><br/>',
@@ -103,7 +103,7 @@ export async function initializeDsrCountriesChart() {
       chart = Highcharts.chart('dsr-countries-chart', options);
 
       if (!window.dsrCountriesChartListener) {
-        document.addEventListener('wkd:themechange', () => {
+        window.addEventListener('wkd:themechange', () => {
           if (chart) chart.update(Highcharts.merge(columnChartOptions(), options), true);
         });
         window.dsrCountriesChartListener = true;

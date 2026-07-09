@@ -21,7 +21,7 @@ body {
     var(--body-gradient);
   color: var(--color-text);
   font-family: var(--font-sans);
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.2s ease, color 0.25s ease;
 }
 
 main {
@@ -79,7 +79,6 @@ h3 {
   color: var(--color-text);
   font-family: var(--font-display);
   line-height: 1.05;
-  letter-spacing: -0.045em;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: manual;
@@ -88,8 +87,7 @@ h3 {
 
 h1 {
   font-size: clamp(2.65rem, 6.3vw, 5.25rem);
-  line-height: 0.96;
-  letter-spacing: -0.065em;
+  line-height: 1.2;
 }
 
 h2 {
@@ -99,7 +97,6 @@ h2 {
 h3 {
   font-size: clamp(1.15rem, 2.2vw, 1.5rem);
   line-height: 1.16;
-  letter-spacing: -0.025em;
 }
 
 p {
@@ -502,6 +499,7 @@ p {
   font-size: 0.85rem;
   color: var(--color-muted);
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
   font-style: italic;
 }
 
@@ -819,6 +817,7 @@ p {
 }
 
 .mannheimer-shell.is-open .mannheimer-print-viewport {
+  display:flex;
   pointer-events: auto;
 }
 
@@ -885,6 +884,7 @@ p {
 
   .section-note {
     max-width: 100%;
+    text-align: justify;
   }
 }
 
@@ -930,7 +930,6 @@ p {
   h1 {
     max-width: 100%;
     font-size: clamp(2.45rem, 11.5vw, 4.1rem);
-    line-height: 0.98;
   }
 
   h2 {
@@ -1104,9 +1103,13 @@ p {
   border: 1px solid var(--color-line);
   border-radius: 999px;
   background: color-mix(in srgb, var(--color-surface) 82%, transparent);
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(18px) saturate(1.08);
-  -webkit-backdrop-filter: blur(18px) saturate(1.08);
+    /* Keep visually transparent but add a very light surface mask
+       so underlying dark sections do not fully bleed through when scrolling. */
+    background: color-mix(in srgb, var(--color-surface) 6%, transparent);
+    backdrop-filter: blur(6px) saturate(0.98);
+    -webkit-backdrop-filter: blur(6px) saturate(0.98);
+    border: none;
+    box-shadow: none;
   transform: translateX(-50%);
 }
 
@@ -1130,6 +1133,108 @@ p {
 .story-nav a.is-active {
   color: var(--color-text);
   background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+
+.story-nav__toggle {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .story-nav {
+    position: sticky;
+    top: calc(env(safe-area-inset-top) + 0.75rem);
+    left: 0.75rem;
+    right: auto;
+    transform: none;
+    z-index: 50;
+    width: min(92vw, 18rem);
+    padding: 0.55rem 0.65rem;
+    gap: 0.5rem;
+    border-radius: 1.25rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .story-nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    padding: 0;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+    position: relative;
+  }
+
+  /* Ensure the closed mobile nav is fully transparent and has no filters
+     so the underlying section color never bleeds through. Visible background
+     is only applied when the nav has the `story-nav--open` class. */
+  .story-nav:not(.story-nav--open) {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .story-nav__icon {
+    position: relative;
+    display: inline-block;
+    width: 1.1rem;
+    height: 1rem;
+  }
+
+  .story-nav__icon::before,
+  .story-nav__icon::after,
+  .story-nav__icon span {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0.12rem;
+    border-radius: 999px;
+    background: currentColor;
+  }
+
+  .story-nav__icon::before {
+    top: 0;
+  }
+
+  .story-nav__icon::after {
+    bottom: 0;
+  }
+
+  .story-nav__icon span {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .story-nav a {
+    display: none;
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    justify-content: flex-start;
+    font-size: 0.86rem;
+    background: transparent;
+  }
+
+  .story-nav.story-nav--open a {
+    display: inline-flex;
+    background: none;
+  }
+
+  .story-nav.story-nav--open {
+    box-shadow: var(--shadow-soft);
+    background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+    border-radius: 1.25rem;
+  }
 }
 
 /* ===== REFINED STRUCTURE ===== */
@@ -1177,10 +1282,7 @@ p {
 }
 
 .mannheimer-source {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0.2rem;
+  position: bottom;
   margin: 0 auto;
   pointer-events: none;
   text-align: left;
@@ -1266,8 +1368,8 @@ p {
   min-height: clamp(360px, min(52vw, 68svh), 560px);
 }
 
-/* Hide the floating chapter navigation when it would cost more space than it saves. */
-@media (max-width: 980px), (max-height: 620px) {
+/* Hide the floating chapter navigation only when viewport height is very low. */
+@media (max-width: 980px) and (max-height: 620px), (max-height: 620px) {
   .story-nav {
     display: none;
   }
@@ -1317,6 +1419,7 @@ p {
 
   .source {
     text-align: left;
+    margin: 0.5rem;
   }
 
   .mannheimer-source {
@@ -1394,6 +1497,48 @@ p {
     white-space: normal;
     text-wrap: pretty;
   }
+}
+
+/* ===== CONCLUSION (FAZIT) ===== */
+section#fazit {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: clamp(2rem, 6vw, 4rem) var(--page-pad);
+  padding-bottom: clamp(2rem, 6vw, 4rem) var(--page-pad);
+  box-sizing: border-box;
+  border-top: 1px solid color-mix(in srgb, var(--color-line) 12%, transparent);
+}
+
+section#fazit::before {
+  content: '';
+  position: absolute;
+  inset: 0 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  z-index: -2;
+  background-color: var(--fazit-bg-start, transparent);
+  opacity: 0;
+  transition: background-color 1200ms ease 120ms, opacity 900ms ease;
+  will-change: background-color, opacity;
+  pointer-events: none;
+}
+
+/* show the background when the section becomes active (gentle color fade) */
+body.fazit-active section#fazit::before {
+  opacity: 1;
+  background-color: var(--fazit-bg, #f3e7d4);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+}
+
+section#fazit .conclusion-content {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
 }
 
 .visual-section--conflict::before {
@@ -1491,6 +1636,7 @@ p,
 .conclusion-content p {
   max-width: 100%;
   width: 100%;
+  text-align: justify;
 }
 
 .hero {
@@ -1530,7 +1676,6 @@ p,
 
 .hero-title {
   font-size: clamp(3.2rem, 6.2vw, 6.2rem);
-  line-height: 0.92;
 }
 
 .hero-visual {
@@ -1800,8 +1945,6 @@ body {
 .hero-title {
   max-width: 100%;
   font-size: clamp(3.5rem, 6.4vw, 6.35rem);
-  line-height: 0.91;
-  letter-spacing: -0.07em;
   text-wrap: auto;
 }
 
@@ -2037,6 +2180,7 @@ h3 {
 
   .hero-title {
     font-size: clamp(3.15rem, 9vw, 5rem);
+    line-height: 1.1;
   }
 
   .hero-visual-card--budget,
@@ -2055,7 +2199,6 @@ h3 {
 
   .hero-title {
     font-size: clamp(2.55rem, 11.5vw, 4rem);
-    line-height: 0.98;
   }
 
   .hero-visual {
@@ -2145,8 +2288,6 @@ body {
   width: 100%;
   max-width: 100%;
   font-size: clamp(3.25rem, 6.05vw, 5.65rem);
-  line-height: 0.94;
-  letter-spacing: -0.066em;
   text-wrap: auto;
 }
 
@@ -2332,12 +2473,13 @@ body {
 @media (max-width: 1080px) {
   .hero-title {
     font-size: clamp(2.95rem, 5.65vw, 4.85rem);
+    line-height: 1.2;
   }
 }
 
 @media (max-width: 900px) {
-  .hero-title .title-desktop { display: none; }
-  .hero-title .title-mobile { display: block; }
+  .hero-title .title-desktop { display: block; }
+  .hero-title .title-mobile { display: none; }
 
   .hero-visual {
     grid-template-columns: 1fr;
@@ -2449,7 +2591,7 @@ body {
 .hero-title {
   font-size: clamp(3.1rem, 6vw, 6.15rem);
   line-height: 0.94;
-  letter-spacing: -0.067em;
+  letter-spacing: -0.037em;
   max-width: 100%;
   text-wrap: balance;
 }
@@ -2641,7 +2783,7 @@ body {
 
   .hero-title {
     font-size: clamp(2.55rem, 11vw, 4.05rem);
-    line-height: 0.98;
+    line-height: 1;
   }
 
   .hero-visual {
@@ -2703,7 +2845,6 @@ body {
   max-width: min(100%, 72rem);
   font-size: clamp(3.35rem, 7.2vw, 7rem);
   line-height: 0.92;
-  letter-spacing: -0.07em;
   text-wrap: balance;
   overflow-wrap: normal;
   word-break: normal;
@@ -2781,6 +2922,7 @@ body {
   .hero-title {
     font-size: clamp(3.05rem, 8.2vw, 5.8rem);
     max-width: min(100%, 64rem);
+    line-height: 1.1;
   }
 
   .hero-visual {
@@ -2807,7 +2949,7 @@ body {
 
   .hero-title {
     font-size: clamp(2.55rem, 11.5vw, 4.1rem);
-    line-height: 0.98;
+    line-height: 1.2;
     letter-spacing: -0.06em;
   }
 
