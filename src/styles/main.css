@@ -2084,6 +2084,10 @@ h3 {
   text-wrap: auto;
 }
 
+.h2-fazit{
+  font-size: clamp(3.1rem, 6vw, 3.7rem);
+}
+
 .visual-header h2,
 .section-header h2,
 .section-title--long {
