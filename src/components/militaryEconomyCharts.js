@@ -215,6 +215,49 @@ function getLegendElement() {
   return document.getElementById('military-legend');
 }
 
+const ALL_REGION_VISIBLE_LIMIT = 10;
+
+function createLegendButton(country) {
+  const series = militaryChart.series.find((item) => item.name === country);
+  if (!series) return null;
+
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'legend-item';
+  button.setAttribute('aria-pressed', String(series.visible));
+  if (!series.visible) button.classList.add('is-disabled');
+
+  const swatch = document.createElement('span');
+  swatch.className = 'legend-swatch';
+  swatch.style.background = series.color;
+
+  const label = document.createElement('span');
+  label.className = 'legend-label';
+  label.textContent = country;
+
+  button.append(swatch, label);
+  button.addEventListener('click', () => {
+    const nextVisible = !series.visible;
+    series.setVisible(nextVisible, true);
+    button.classList.toggle('is-disabled', !nextVisible);
+    button.setAttribute('aria-pressed', String(nextVisible));
+  });
+
+  return button;
+}
+
+function createLegendList(countries) {
+  const list = document.createElement('div');
+  list.className = 'legend-items';
+
+  countries.forEach((country) => {
+    const button = createLegendButton(country);
+    if (button) list.appendChild(button);
+  });
+
+  return list;
+}
+
 function renderLegend(countries) {
   const legend = getLegendElement();
   if (!legend || !militaryChart) return;
@@ -227,39 +270,28 @@ function renderLegend(countries) {
     return;
   }
 
-  const list = document.createElement('div');
-  list.className = 'legend-items';
+  const isAllRegion = selectedRegion === 'all';
+  const visibleCountries = isAllRegion
+    ? selectedCountries.slice(0, ALL_REGION_VISIBLE_LIMIT)
+    : selectedCountries;
+  const remainingCountries = isAllRegion
+    ? selectedCountries.slice(ALL_REGION_VISIBLE_LIMIT)
+    : [];
 
-  selectedCountries.forEach((country) => {
-    const series = militaryChart.series.find((item) => item.name === country);
-    if (!series) return;
+  legend.appendChild(createLegendList(visibleCountries));
 
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'legend-item';
-    button.setAttribute('aria-pressed', String(series.visible));
-    if (!series.visible) button.classList.add('is-disabled');
+  if (remainingCountries.length > 0) {
+    const details = document.createElement('details');
+    details.className = 'legend-more';
 
-    const swatch = document.createElement('span');
-    swatch.className = 'legend-swatch';
-    swatch.style.background = series.color;
+    const summary = document.createElement('summary');
+    summary.className = 'legend-more-summary';
+    summary.textContent = '-> Weitere Länder anzeigen <-';
+    details.appendChild(summary);
 
-    const label = document.createElement('span');
-    label.className = 'legend-label';
-    label.textContent = country;
-
-    button.append(swatch, label);
-    button.addEventListener('click', () => {
-      const nextVisible = !series.visible;
-      series.setVisible(nextVisible, true);
-      button.classList.toggle('is-disabled', !nextVisible);
-      button.setAttribute('aria-pressed', String(nextVisible));
-    });
-
-    list.appendChild(button);
-  });
-
-  legend.appendChild(list);
+    details.appendChild(createLegendList(remainingCountries));
+    legend.appendChild(details);
+  }
 }
 
 function applyRegionVisibility(countries, redraw = true) {

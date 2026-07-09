@@ -228,7 +228,7 @@ p {
   height: clamp(360px, 58vw, 620px);
   overflow: hidden;
   background: transparent;
-  border: 0;
+  border: 2px black;
   border-radius: 0;
   box-shadow: none;
 }
@@ -236,7 +236,7 @@ p {
 /* Make map-card full-bleed inside visual sections (overrides section-shell constrains) */
 .visual-section > .map-card {
    position: relative;
-   left: 51%;
+   left: 50%;
    width: 98vw;
    max-width: 2000px;
    transform: translateX(-50%);
@@ -367,7 +367,7 @@ p {
 }
 
 .slider-ticks {
-  display: grid;
+  display: fex;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0.4rem;
   margin-top: 0.85rem;
@@ -606,6 +606,43 @@ p {
 
 .legend-label {
   white-space: nowrap;
+}
+
+.legend-more {
+  margin-top: 0.6rem;
+}
+
+.legend-more-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.1rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 68%, transparent);
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.88rem;
+  list-style: none;
+  transition: opacity 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.legend-more-summary::-webkit-details-marker {
+  display: none;
+}
+
+.legend-more-summary:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-line));
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+}
+
+.legend-more[open] .legend-more-summary {
+  margin-bottom: 0.6rem;
+}
+
+.legend-more .legend-items {
+  margin: 0;
 }
 
 .chart-empty {
@@ -2600,7 +2637,7 @@ body {
 .hero-title {
   font-size: clamp(3.1rem, 6vw, 6.15rem);
   line-height: 0.94;
-  letter-spacing: -0.037em;
+  letter-spacing: -0.03em;
   max-width: 100%;
   text-wrap: balance;
 }
@@ -2959,7 +2996,7 @@ body {
   .hero-title {
     font-size: clamp(2.55rem, 11.5vw, 4.1rem);
     line-height: 1.2;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.02em;
   }
 
   .hero-title .title-desktop { display: none; }
@@ -3003,4 +3040,3 @@ body {
     line-height: 1.32;
   }
 }
-
