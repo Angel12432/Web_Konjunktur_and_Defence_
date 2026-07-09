@@ -79,7 +79,6 @@ h3 {
   color: var(--color-text);
   font-family: var(--font-display);
   line-height: 1.05;
-  letter-spacing: -0.045em;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: manual;
@@ -88,8 +87,7 @@ h3 {
 
 h1 {
   font-size: clamp(2.65rem, 6.3vw, 5.25rem);
-  line-height: 0.96;
-  letter-spacing: -0.065em;
+  line-height: 1.2;
 }
 
 h2 {
@@ -99,7 +97,6 @@ h2 {
 h3 {
   font-size: clamp(1.15rem, 2.2vw, 1.5rem);
   line-height: 1.16;
-  letter-spacing: -0.025em;
 }
 
 p {
@@ -502,6 +499,7 @@ p {
   font-size: 0.85rem;
   color: var(--color-muted);
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
   font-style: italic;
 }
 
@@ -819,6 +817,7 @@ p {
 }
 
 .mannheimer-shell.is-open .mannheimer-print-viewport {
+  display:flex;
   pointer-events: auto;
 }
 
@@ -885,6 +884,7 @@ p {
 
   .section-note {
     max-width: 100%;
+    text-align: justify;
   }
 }
 
@@ -930,7 +930,6 @@ p {
   h1 {
     max-width: 100%;
     font-size: clamp(2.45rem, 11.5vw, 4.1rem);
-    line-height: 0.98;
   }
 
   h2 {
@@ -1177,10 +1176,7 @@ p {
 }
 
 .mannheimer-source {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0.2rem;
+  position: bottom;
   margin: 0 auto;
   pointer-events: none;
   text-align: left;
@@ -1317,6 +1313,7 @@ p {
 
   .source {
     text-align: left;
+    margin: 0.5rem;
   }
 
   .mannheimer-source {
@@ -1491,6 +1488,7 @@ p,
 .conclusion-content p {
   max-width: 100%;
   width: 100%;
+  text-align: justify;
 }
 
 .hero {
@@ -1530,7 +1528,6 @@ p,
 
 .hero-title {
   font-size: clamp(3.2rem, 6.2vw, 6.2rem);
-  line-height: 0.92;
 }
 
 .hero-visual {
@@ -1800,8 +1797,6 @@ body {
 .hero-title {
   max-width: 100%;
   font-size: clamp(3.5rem, 6.4vw, 6.35rem);
-  line-height: 0.91;
-  letter-spacing: -0.07em;
   text-wrap: auto;
 }
 
@@ -2037,6 +2032,7 @@ h3 {
 
   .hero-title {
     font-size: clamp(3.15rem, 9vw, 5rem);
+    line-height: 1.1;
   }
 
   .hero-visual-card--budget,
@@ -2055,7 +2051,6 @@ h3 {
 
   .hero-title {
     font-size: clamp(2.55rem, 11.5vw, 4rem);
-    line-height: 0.98;
   }
 
   .hero-visual {
@@ -2145,8 +2140,6 @@ body {
   width: 100%;
   max-width: 100%;
   font-size: clamp(3.25rem, 6.05vw, 5.65rem);
-  line-height: 0.94;
-  letter-spacing: -0.066em;
   text-wrap: auto;
 }
 
@@ -2332,12 +2325,13 @@ body {
 @media (max-width: 1080px) {
   .hero-title {
     font-size: clamp(2.95rem, 5.65vw, 4.85rem);
+    line-height: 1.2;
   }
 }
 
 @media (max-width: 900px) {
-  .hero-title .title-desktop { display: none; }
-  .hero-title .title-mobile { display: block; }
+  .hero-title .title-desktop { display: block; }
+  .hero-title .title-mobile { display: none; }
 
   .hero-visual {
     grid-template-columns: 1fr;
@@ -2641,7 +2635,7 @@ body {
 
   .hero-title {
     font-size: clamp(2.55rem, 11vw, 4.05rem);
-    line-height: 0.98;
+    line-height: 1;
   }
 
   .hero-visual {
@@ -2703,7 +2697,6 @@ body {
   max-width: min(100%, 72rem);
   font-size: clamp(3.35rem, 7.2vw, 7rem);
   line-height: 0.92;
-  letter-spacing: -0.07em;
   text-wrap: balance;
   overflow-wrap: normal;
   word-break: normal;
@@ -2781,6 +2774,7 @@ body {
   .hero-title {
     font-size: clamp(3.05rem, 8.2vw, 5.8rem);
     max-width: min(100%, 64rem);
+    line-height: 1.1;
   }
 
   .hero-visual {
@@ -2807,7 +2801,7 @@ body {
 
   .hero-title {
     font-size: clamp(2.55rem, 11.5vw, 4.1rem);
-    line-height: 0.98;
+    line-height: 1.2;
     letter-spacing: -0.06em;
   }
 
