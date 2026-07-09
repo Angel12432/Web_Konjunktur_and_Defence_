@@ -240,7 +240,7 @@ p {
 .visual-section > .map-card {
    position: relative;
    left: 51%;
-   width: 100vw;
+   width: 98vw;
    max-width: 2000px;
    transform: translateX(-50%);
   gap: 0.75rem;
@@ -1183,6 +1183,7 @@ p {
   bottom: 0.2rem;
   margin: 0 auto;
   pointer-events: none;
+  text-align: left;
 }
 
 .mobile-data-panel {
@@ -2582,6 +2583,7 @@ body {
   box-shadow: none !important;
 }
 
+
 .chart-card {
   padding: 0 !important;
 }
@@ -2747,6 +2749,33 @@ body {
 .hero-visual-card small {
   max-width: 42ch;
 }
+
+
+/*Animations*/
+
+.chart-animate {
+  --chart-anim-duration: 600ms; /* anpassen: 250ms / 800ms etc. */
+  transition: opacity var(--chart-anim-duration) cubic-bezier(.2,.9,.2,1),
+              transform var(--chart-anim-duration) cubic-bezier(.2,.9,.2,1);
+}
+.chart-animate:not([data-loaded="true"]) {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.chart-animate[data-loaded="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-animate {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
 
 @media (max-width: 1120px) {
   .hero-title {

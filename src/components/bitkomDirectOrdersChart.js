@@ -1,4 +1,4 @@
-import Highcharts from 'highcharts';
+import Highcharts, { offset } from 'highcharts';
 
 import { loadCsv, publicPath, toNumber } from '../lib/csv.js';
 import { baseChartOptions, chartColors } from '../lib/highchartsTheme.js';
@@ -73,8 +73,9 @@ function createOptions(data) {
         dataLabels: {
           enabled: true,
           format: '{point.y:.0f}%',
-          inside: true,
-          align: 'right',
+          inside: false,
+          align: 'left',
+          x: 8,
           style: {
             color: chartColors.text,
             fontWeight: 800,
@@ -126,6 +127,8 @@ function renderChart(rows) {
   const container = getContainer();
   if (!container) return;
 
+  container.classList.add('chart-animate');
+
   const data = normalizeRows(rows);
   if (!data.length) {
     container.innerHTML = '<p class="chart-empty">Keine Daten verfügbar.</p>';
@@ -140,6 +143,8 @@ function renderChart(rows) {
   const { options, seriesData } = createOptions(data);
   const animatedOptions = prepareViewportBarChart(CHART_ID, options, [seriesData]);
   chart = Highcharts.chart(CHART_ID, animatedOptions);
+  // mark as loaded so CSS transition plays
+  container.dataset.loaded = 'true';
   registerViewportBarChart(CHART_ID, chart);
 }
 

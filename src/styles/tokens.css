@@ -36,7 +36,7 @@
   --radius-card-sm: 18px;
   --page-max: 1180px;
   --page-pad: clamp(1rem, 4vw, 2rem);
-  --section-space: clamp(2.25rem, 6vw, 4.5rem);
+  --section-space: 2rem;
 
   --measure-copy: 100%;
   --measure-copy-wide: 100%;

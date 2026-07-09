@@ -33,8 +33,8 @@ const COUNTRY_LABEL_DE = {
   gb: 'Ver. Königreich', us: 'USA', ye: 'Jemen',
 };
 
-const DEFAULT_MAP_VIEW = {projection: { name: "Miller" }, center: [15, 42], zoom: 4.0}
-const MOBILE_MAP_VIEW = {projection: { name: "Miller" }, center: [15, 42], zoom: 4.0}
+const DEFAULT_MAP_VIEW = {projection: { name: "Miller" }, center: [15, 47], zoom: 4.3}
+const MOBILE_MAP_VIEW = {projection: { name: "Miller" }, center: [15, 47], zoom: 3.6}
 
 let aggregatedCache = null;
 let cleanupCurrentMap = null;

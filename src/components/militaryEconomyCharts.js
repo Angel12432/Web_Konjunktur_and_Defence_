@@ -3,6 +3,7 @@ import Highcharts from 'highcharts';
 import { loadCsv, publicPath, toNumber } from '../lib/csv.js';
 import { baseChartOptions, chartColors } from '../lib/highchartsTheme.js';
 import { formatMobileDatum, setMobileDataPanel } from '../lib/mobileDataPanel.js';
+import observeAndLoad from '../lib/observeAndLoad.js';
 
 const MILITARY_SPENDING_PATH = publicPath('data/military-spending.csv');
 const GERMANY_GDP_GROWTH_PATH = publicPath('data/germany-gdp-growth.csv');
@@ -303,7 +304,7 @@ function createMilitaryChart(rows) {
     },
     xAxis: {
       categories,
-      title: { text: null },
+      title: { text: 'Jahr' },
       tickmarkPlacement: 'on',
     },
     yAxis: {
@@ -402,7 +403,7 @@ function renderMacroAnnotation(chart, annotationIndex) {
 
   chart._macroAnnotationLabel?.destroy();
   chart._macroAnnotationLabel = chart.renderer.label(
-    '2024: Natoziel erstmals erreicht',
+    '2024: 2% Natoziel erstmals erreicht',
     chart.plotLeft + point.plotX -50,
     chart.plotTop + point.plotY - 30,
     undefined,
@@ -460,7 +461,9 @@ function createMacroChart(gdpRows, spendingRows) {
     },
     xAxis: { categories: years, title: { text: null } },
     yAxis: {
-      title: { text: '%' },
+      min: -5.0,
+      title: { text:null }
+      ,
       plotLines: [{ value: 0, color: chartColors.line, width: 1.5, zIndex: 2 }],
       labels: {
         formatter() { return `${formatPercent(this.value, 1)} %`; },
@@ -468,7 +471,6 @@ function createMacroChart(gdpRows, spendingRows) {
     },
     plotOptions: {
       series: {
-        animation: { duration: 900 },
         lineWidth: 2.6,
         marker: { enabled: true, radius: 3 },
         point: {
@@ -535,30 +537,39 @@ function installThemeListener() {
 }
 
 export async function initializeMilitaryEconomyCharts() {
-  const hasMilitaryChart = document.getElementById('military-spending-chart');
-  const hasMacroChart = document.getElementById('bip-military-chart');
-  if (!hasMilitaryChart && !hasMacroChart) return;
+  const militaryEl = document.getElementById('military-spending-chart');
+  const macroEl = document.getElementById('bip-military-chart');
+  if (!militaryEl && !macroEl) return;
+
+  if (militaryEl) militaryEl.classList.add('chart-animate');
+  if (macroEl) macroEl.classList.add('chart-animate');
 
   installThemeListener();
   installRegionFilter();
 
-  try {
-    const [spendingRows, gdpRows] = await Promise.all([
-      spendingRowsCache || loadCsv(MILITARY_SPENDING_PATH, { label: 'Militärausgaben-Daten' }),
-      gdpRowsCache || loadCsv(GERMANY_GDP_GROWTH_PATH, { label: 'BIP-Wachstumsdaten' }),
-    ]);
+  // use shared observeAndLoad helper
 
+  // loader for military chart — only needs spendingRows
+  const loadMilitary = async () => {
+    const spendingRows = spendingRowsCache || await loadCsv(MILITARY_SPENDING_PATH, { label: 'Militärausgaben-Daten' });
     spendingRowsCache = spendingRows;
-    gdpRowsCache = gdpRows;
-
     createMilitaryChart(spendingRows);
+  };
+
+  // loader for macro chart — needs both gdp and spending rows
+  const loadMacro = async () => {
+    const [gdpRows, spendingRows] = await Promise.all([
+      gdpRowsCache || loadCsv(GERMANY_GDP_GROWTH_PATH, { label: 'BIP-Wachstumsdaten' }),
+      spendingRowsCache || loadCsv(MILITARY_SPENDING_PATH, { label: 'Militärausgaben-Daten' }),
+    ]);
+    gdpRowsCache = gdpRows;
+    spendingRowsCache = spendingRows;
     createMacroChart(gdpRows, spendingRows);
-  } catch (error) {
-    console.error('Fehler beim Laden der makroökonomischen Charts:', error);
-    [hasMilitaryChart, hasMacroChart].filter(Boolean).forEach((element) => {
-      element.innerHTML = `<p class="chart-empty chart-empty--error">Fehler beim Laden der Daten: ${String(error.message ?? error)}</p>`;
-    });
-  }
+  };
+
+  // observe elements
+  observeAndLoad(militaryEl, loadMilitary, { threshold: 0.3 });
+  observeAndLoad(macroEl, loadMacro, { threshold: 0.3 });
 }
 
 export default initializeMilitaryEconomyCharts;
