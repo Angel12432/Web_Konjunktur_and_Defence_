@@ -86,7 +86,7 @@ export async function initializeDsrCountriesChart() {
           labels: { style: { color: chartColors.muted, fontSize: '12px' }, align: 'right' },
         },
         yAxis: { title: { text: 'DSR Risikokapital-Finanzierung (Milliarden USD)' } },
-        plotOptions: { column: { dataLabels: { enabled: true, format: '{point.y:.1f} Mrd. $' } } },
+        plotOptions: { column: { dataLabels: { enabled: true, format: '{point.y:.1f} Mrd. $', style: { color: chartColors.accentWarm } } } },
         series: [{ name: 'DSR Funding', data: fundingData, color: chartColors.accent }],
         tooltip: {
           headerFormat: '<b>{point.key}</b><br/>',
