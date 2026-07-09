@@ -40,7 +40,7 @@ function createOptions(data) {
     },
     title: { text: '' },
     subtitle: {
-      text: 'Anteil der befragten DefTech- und Dual-Use-Gründer:innen, Mehrfachnennung möglich.',
+      text: 'Frage: Wurdet ihr bereits durch die Bundeswehr direkt beauftragt?',
     },
     xAxis: {
       categories,
