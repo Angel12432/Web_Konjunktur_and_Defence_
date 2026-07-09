@@ -27,6 +27,7 @@ src/
     csv.js
     highchartsTheme.js
     mobileDataPanel.js
+    observeAndLoad.js
     viewportBarAnimation.js
   styles/
     main.css
@@ -52,11 +53,30 @@ public/
     vc-vertical-comparison.csv
 ```
 
-`src/styles/main.css` ist der zentrale CSS-Master für Layout, Komponenten, Charts, Mannheimer-Animation und Responsive-Regeln. `fonts.css` enthält nur die lokalen Font-Faces, `tokens.css` enthält die Design-Tokens. Die JavaScript-Komponenten enthalten keine großen Style-Blöcke.
+## Lokale Ressourcen und Sicherheit
 
-Alle Quellenangaben werden über die gemeinsame Klasse `.source` gesetzt und stehen unter den jeweiligen Grafiken bzw. Elementen. Die Mannheimer-Animation nutzt ebenfalls eine Quellenzeile unter der Animation.
+- Alle Fonts werden lokal eingebunden und ausgeliefert. Die Font-Dateien liegen unter `src/assets/fonts/Roboto/` und `src/assets/fonts/Merriweather_Sans/`.
+- `src/styles/fonts.css` definiert die lokalen `@font-face`-Regeln. Es gibt keine Abhängigkeit zu `fonts.googleapis.com` oder ähnlichen externen Diensten.
+- Die Kartenmodule werden lokal geladen: `src/components/worldMap.js` importiert `Highcharts` aus `highcharts/highmaps` und die Topologie aus `@highcharts/map-collection/custom/world.topo.json`.
+- Es gibt keinen Laufzeit-Request an externe Map-Server für die Kartendaten. Die Kartenlogik und Topologie sind Teil des Bundles.
+- Alle Daten werden aus CSV-Dateien geladen. Nichts ist für die Charts oder die Analyse hardcodiert.
 
-## Aktuelle Erzählstruktur
+## Datenquelle und CSV-Verarbeitung
+
+- `public/data/` enthält die CSV-Daten, die für alle Diagramme und die Karte verwendet werden.
+- `src/lib/csv.js` liest CSV-Dateien zur Laufzeit und wandelt Texte in Zahlen und strukturierte Objekte um.
+- `publicPath()` sorgt dafür, dass die CSV-Dateien im gebauten `dist/`-Output weiterhin per relativer URL erreichbar sind.
+- Die Charts lesen ihre Daten aus diesen CSV-Dateien, z. B. `dsr-chart.js`, `dsr_countries.js`, `militaryEconomyCharts.js`, `bitkomDirectOrdersChart.js` und `worldMap.js`.
+
+## Technik-Highlights
+
+- `src/lib/highchartsTheme.js` verwendet CSS-Design-Tokens aus `styles/tokens.css`, um Highcharts-Optionen konsistent für Light- und Dark-Mode zu erzeugen.
+- `styles/tokens.css` enthält Farbpalette, Abstände, Schatten, Radiuswerte sowie Light-/Dark-Mode-Varianten.
+- `styles/main.css` steuert Layout, Responsive-Verhalten, animierte Übergänge, Story-Navigation und visuelle Modifikationen für einzelne Abschnitte.
+- `components/themeToggle.js` bietet einen Theme-Umschalter, der `data-theme` auf der Wurzel setzt und `wkd:themechange` dispatcht.
+- Chart-Module registrieren auf `window` und aktualisieren sich selbst bei Theme-Wechseln.
+
+## Story-Struktur
 
 1. Hero-Section
 2. Konfliktlage und Weltkarte zu konfliktbedingten Todesfällen
@@ -69,16 +89,14 @@ Alle Quellenangaben werden über die gemeinsame Klasse `.source` gesetzt und ste
 9. Überleitung zu Start-ups und DSR-Finanzierung
 10. Start-up-/DSR-Marktentwicklung
 11. VC-DSR-Finanzierung nach Region und Deutschland-Einordnung
-12. Fazit: aktuell kein breiter Konjunkturboost
+12. Fazit
 
 ## Responsives Verhalten
 
-- Die Hero-Kästen wurden entfernt; die Hero-Section ist nun ein fokussierter Editorial-Einstieg.
-- Die kleine Abschnittsnavigation wird nur auf ausreichend großen Viewports eingeblendet. Auf schmalen oder vertikal kurzen Screens wird sie ausgeblendet, damit sie keinen Platz wegnimmt.
-- Karten- und Chart-Höhen sind mit Viewport-basierten Grenzen versehen, damit Window-Resizing und horizontale Mobile-Ansichten nicht unnötig viel Inhalt abschneiden.
-- Line-Charts behalten Tooltips, erhalten auf Mobile aber zusätzlich ein kompaktes Datenpanel unter dem Chart. So bleiben Werte auch ohne Desktop-Hover zugänglich.
-- Der Weltkartenbereich erhält eine dezente rote Hintergrundtönung als inhaltliche Stimmungsmarkierung.
-- Native Mobile-Tap-Highlights werden für interaktive Elemente entfernt, während `:focus-visible` für Tastaturbedienung erhalten bleibt.
+- Die Story-Navigation erscheint nur auf ausreichend großen Viewports; auf mobilen oder sehr engen Displays bleibt sie aus dem Weg.
+- Chart- und Kartenhöhen verwenden Viewport-abhängige Größen, um Layout-Brüche bei Resize und mobilen Ansichten zu verhindern.
+- Line-Charts behalten Tooltips, bieten für Mobile aber zusätzlich ein kompaktes Datenpanel (`src/lib/mobileDataPanel.js`).
+- Die UX nutzt `:focus-visible` statt nativer Tap-Highlights, sodass Tastatur- und Touch-Bedienung sauber getrennt bleiben.
 
 ## Lokale Entwicklung
 
@@ -98,7 +116,7 @@ npm run build
 npm run preview
 ```
 
-Der Build erzeugt `dist/`. Alle Browser-Daten liegen unter `public/data/` und werden dadurch automatisch nach `dist/data/` kopiert.
+Der Build erzeugt `dist/`. Alle Dateien aus `public/data/` werden automatisch nach `dist/data/` kopiert.
 
 ## Deployment auf GitHub Pages
 
@@ -118,18 +136,19 @@ Die GitHub-Actions-Workflow-Datei liegt unter:
 
 ## Architekturhinweise
 
-- `components/` enthält sichtbare Seitenelemente und deren Verhalten.
-- `components/storyNavigation.js` steuert die optionale Floating-Navigation inklusive aktiver Abschnittsmarkierung.
-- `lib/csv.js` enthält geteiltes CSV-Laden, Parsing und Zahlen-Normalisierung.
-- `lib/highchartsTheme.js` liest die CSS-Design-Tokens und zentralisiert wiederverwendbare Highcharts-Optionen.
-- `lib/mobileDataPanel.js` stellt kompakte mobile Datenpanels für Line-Charts bereit.
-- `lib/viewportBarAnimation.js` startet Balkendiagramme erst beim ersten Sichtbarwerden im Viewport. Die Balken wachsen von 0 auf ihren Zielwert und bleiben danach bis zum Reload im Endzustand.
-- `styles/fonts.css` definiert die lokal gehosteten Font-Dateien.
-- `styles/tokens.css` definiert Farbpalette, Light-/Dark-Tokens, Abstände, Radien, Schatten und Schrift-Stacks.
+- `components/` enthält sichtbare Seitenelemente und ihre Logik.
+- `components/storyNavigation.js` steuert die Floating-Navigation inklusive aktiver Abschnittsmarkierung.
+- `components/worldMap.js` erstellt die Highmaps-Karte mit lokalen Kartendaten und CSV-Input.
+- `lib/csv.js` enthält den CSV-Parser und `loadCsv()` für alle datengetriebenen Visualisierungen.
+- `lib/highchartsTheme.js` liest die CSS-Design-Tokens und erzeugt wiederverwendbare Highcharts-Grundoptionen.
+- `lib/mobileDataPanel.js` zeigt kompakte mobile Datenpanels für Line-Charts.
+- `lib/observeAndLoad.js` initialisiert Komponenten erst beim erstmaligen Sichtbarwerden im Viewport.
+- `styles/fonts.css` definiert die lokal gehosteten Schriftfamilien.
+- `styles/tokens.css` definiert Farbpalette, Light-/Dark-Tokens, Abstände, Radien und Schriftstacks.
 
 ## Wichtige Hinweise
 
-- `node_modules/` wird nicht versioniert und sollte nicht in ZIPs für Branches enthalten sein.
-- `dist/` wird lokal erzeugt, aber nicht als Quellcode benötigt.
-- Die Highcharts/Highmaps-Abhängigkeiten, lokalen Fonts und die Euro-Coin-Grafik sind relativ groß; ein Build kann deshalb eine Bundle-Size-Warnung ausgeben. Das ist für dieses Projekt erwartbar.
-- Die Font-Dateien liegen unter `src/assets/fonts/` und werden beim Vite-Build von der eigenen Website ausgeliefert. In DevTools → Network sollten keine Requests an `fonts.googleapis.com` oder `fonts.gstatic.com` auftauchen.
+- `node_modules/` wird nicht versioniert.
+- `dist/` wird lokal erzeugt und sollte nicht als Quellcode committed werden.
+- Die Schriftdateien, die lokale Topologie und die Chart-Assets werden aus dem Projektbundle ausgeliefert, nicht per externem CDN.
+- Alle CSV-Daten werden zur Laufzeit eingelesen, so dass die Visualisierungen nicht auf fest kodierte Werte angewiesen sind.
