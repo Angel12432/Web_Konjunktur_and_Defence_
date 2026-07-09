@@ -1,5 +1,5 @@
 import './styles/main.css';
-import './lib/Theme.js';
+import { initializeThemeFeatures } from './lib/Theme.js';
 
 import { initializeWorldMap } from './components/worldMap.js';
 import { initializeVcCharts } from './components/vcCharts.js';
@@ -13,6 +13,7 @@ import { initializeStoryNavigation } from './components/storyNavigation.js';
 
 function startApp() {
   initializeThemeToggle();
+  initializeThemeFeatures();
   initializeStoryNavigation();
   initializeWorldMap();
   initializeVcCharts();

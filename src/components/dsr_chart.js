@@ -113,7 +113,7 @@ export async function initializeDsrChart() {
       renderDsrMobilePanel(percentageData[percentageData.length - 1], years[years.length - 1]);
 
       if (!window.dsrChartListener) {
-        document.addEventListener('wkd:themechange', () => {
+        window.addEventListener('wkd:themechange', () => {
           if (chart) {
             chart.update(Highcharts.merge(baseChartOptions(), options), true);
           }

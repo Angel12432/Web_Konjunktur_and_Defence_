@@ -14,7 +14,7 @@
 <body>
   <nav class="story-nav" aria-label="Abschnittsnavigation">
     <a href="#konfliktlage">Konfliktlage</a>
-    <a href="#verteidigungsausgaben">Ausgaben</a>
+    <a href="#verteidigungsausgaben">Staatliche Ausgaben</a>
     <a href="#bip-wachstum">BIP</a>
     <a href="#multiplikator">Multiplikator</a>
     <a href="#startups">Start-ups</a>
@@ -68,7 +68,7 @@
     </section>
 
 
-    <section class="section-shell visual-section visual-section--conflict" aria-labelledby="worldmap-title">
+    <section id="konfliktlage" class="section-shell visual-section visual-section--conflict" aria-labelledby="worldmap-title">
       <header class="section-header visual-header">
         <p class="eyebrow">Globale Konfliktlage</p>
         <h2 id="worldmap-title" class="text-danger">Globale Konflikte nehmen zu</h2>
@@ -148,6 +148,7 @@
           <option value="top5eu">Top 5 EU</option>
           <option value="eu">EU</option>
           <option value="nato">NATO</option>
+          <option value="nato-east">NATO-Ostflanke</option>
           <option value="europe">Europa</option>
           <option value="asia">Asien</option>
           <option value="northamerica">Nordamerika</option>
@@ -176,8 +177,8 @@
         Besonders Staaten an der NATO-Ostflanke haben ihre Ausgaben massiv erhöht. Spitzenreiter ist hier Polen mit
         Defence-Ausgaben von <b>4,5 Prozent</b> des BIPs.
         Für die Konjunkturfrage reicht es nicht, steigende Verteidigungsausgaben isoliert zu betrachten.
-        Die neue Mindestquote der NATO von 3,5 Prozent, die im Juni 2025 beschlossen wurde, wird derzeit von den
-        wenigsten Mitgliederstaaten erreicht.</p>
+        Die neue Mindestquote der NATO von 3,5 Prozent, die im Juni 2025 beschlossen wurde, wurde im Jahr 2025 lediglich 
+        von zwei Mitgliedern, Polen und Litauen, erreicht. Das 2 Prozent-Ziel allerdings von 16 der 30 im Datensatz erfassten NATO-Länder.</p>
       <p>Die entscheidende Frage ist, ob die gestiegenen Ausgaben auch einen Effekt auf die gesamtwirtschaftliche
         Leistungskraft eines Landes haben.
         Dieses Phänomen soll am Beispiel Deutschlands näher betrachtet werden. </p>
@@ -269,7 +270,7 @@
         das Investitionsfeld für Start-ups aus dem Bereich Defence, Security und Resilience (DSR).</p>
     </section>
 
-    <section class="section-shell visual-section" aria-labelledby="dsr-total-title">
+    <section id="startups" class="section-shell visual-section" aria-labelledby="dsr-total-title">
       <header class="section-header visual-header">
         <div>
           <p class="eyebrow">Blick auf Start-ups</p>
@@ -277,12 +278,13 @@
             Defence, Security und Resilience (DSR) mit der gesamten Risikokapitalfinanzierung in Europa</h2>
         </div>
         <p class="section-note">Die Zeitreihe zeigt, wie stark Risikokapitalfinanzierung von DSR im Verhältnis zum
-          gesamten europäischen VC-Markt wächst.</p>
+          gesamten europäischen Venture Capital-Markt wächst.</p>
       </header>
       <div class="chart-grid chart-grid--single-centered">
         <div id="dsr-chart" class="chart-card"></div>
       </div>
       <div id="dsr-mobile-data" class="mobile-data-panel" aria-live="polite"></div>
+      <p class="source">Quelle: <cite>NATO Innovation Fund 2026</cite></p>
       <p class="section-note">DSR ist eine übergeordnete Kategorie. Sie umfasst Defense, Security and Resilience.
         Der größte Teil dieses Wachstums der letzten Jahre ist auf Start-ups zurückzuführen, die sich mit
         Herausforderungen
@@ -290,7 +292,6 @@
         Risikokapitalfinanzierung (VC) des DSR-Sektors in Europa von 2020 bis 2025 fast mehr als vervierfacht,
         während die Gesamtrisikofinanzierung aller Sektoren zusammen im gleichen Zeitraum um knapp 50% gesunken ist.
       </p>
-      <p class="source">Quelle: <cite>NATO Innovation Fund 2026</cite></p>
     </section>
 
     <section class="section-shell visual-section" aria-labelledby="dsr-countries-title">

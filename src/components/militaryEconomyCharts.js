@@ -15,6 +15,7 @@ const REGION_GROUPS = {
   top5eu: ['Deutschland', 'Frankreich', 'Italien', 'Spanien', 'Polen'],
   eu: ['Belgien', 'Bulgarien', 'Dänemark', 'Deutschland', 'Estland', 'Finnland', 'Frankreich', 'Griechenland', 'Irland', 'Italien', 'Kroatien', 'Lettland', 'Litauen', 'Luxemburg', 'Malta', 'Niederlande', 'Österreich', 'Polen', 'Portugal', 'Rumänien', 'Schweden', 'Slowakei', 'Slowenien', 'Spanien', 'Tschechien', 'Ungarn', 'Zypern'],
   nato: ['Albanien', 'Belgien', 'Bulgarien', 'Dänemark', 'Deutschland', 'Estland', 'Finnland', 'Frankreich', 'Griechenland', 'Island', 'Italien', 'Kanada', 'Lettland', 'Litauen', 'Luxemburg', 'Montenegro', 'Niederlande', 'Nordmazedonien', 'Norwegen', 'Polen', 'Portugal', 'Rumänien', 'Slowakei', 'Slowenien', 'Spanien', 'Tschechien', 'Türkei', 'Ungarn', 'Vereinigtes Königreich', 'Vereinigte Staaten'],
+  'nato-east': ['Estland', 'Lettland', 'Litauen', 'Polen', 'Slowakei', 'Ungarn', 'Rumänien'],
   europe: ['Deutschland', 'Frankreich', 'Italien', 'Spanien', 'Portugal', 'Niederlande', 'Belgien', 'Luxemburg', 'Österreich', 'Schweiz', 'Dänemark', 'Schweden', 'Norwegen', 'Finnland', 'Polen', 'Tschechien', 'Slowakei', 'Ungarn', 'Rumänien', 'Bulgarien', 'Griechenland', 'Kroatien', 'Serbien', 'Slowenien', 'Bosnien und Herzegowina', 'Montenegro', 'Nordmazedonien', 'Albanien', 'Irland', 'Vereinigtes Königreich', 'Island', 'Ukraine', 'Belarus', 'Litauen', 'Lettland', 'Estland', 'Moldau', 'Russland'],
   asia: ['China', 'Japan', 'Südkorea', 'Nordkorea', 'Indien', 'Pakistan', 'Bangladesch', 'Sri Lanka', 'Nepal', 'Bhutan', 'Afghanistan', 'Iran', 'Irak', 'Türkei', 'Saudi-Arabien', 'Vereinigte Arabische Emirate', 'Katar', 'Kuwait', 'Oman', 'Israel', 'Jordanien', 'Syrien', 'Libanon', 'Indonesien', 'Malaysia', 'Thailand', 'Vietnam', 'Philippinen', 'Singapur', 'Myanmar', 'Kambodscha', 'Laos', 'Mongolei', 'Kasachstan'],
   northamerica: ['Kanada', 'Vereinigte Staaten', 'Mexiko'],
@@ -98,7 +99,10 @@ const COUNTRY_TRANSLATIONS = {
 };
 
 const COUNTRY_COLORS = [
-  '#7fb6d8', '#d9a441', '#df5f63', '#63b98a', '#9d7be0', '#e98f55', '#58b8a8', '#c77d99', '#88a85d', '#74a2e0',
+  '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
+  '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
+  '#393b79', '#637939', '#8c6d31', '#843c39', '#7b4173',
+  '#3182bd', '#e6550d', '#31a354', '#756bb1', '#636363',
 ];
 
 let spendingRowsCache = null;
@@ -287,12 +291,17 @@ function createMilitaryChart(rows) {
   }
 
   const selectedCountries = getCountriesForRegion(selectedRegion, countries);
+  const regionColorMap = new Map(selectedCountries.map((country, index) => [
+    country,
+    COUNTRY_COLORS[index % COUNTRY_COLORS.length],
+  ]));
+
   const series = countries.map((country, index) => ({
     name: country,
     data: categories.map((year) => countryMap.get(country)?.get(year) ?? null),
     visible: selectedCountries.includes(country),
     showInLegend: false,
-    color: COUNTRY_COLORS[index % COUNTRY_COLORS.length],
+    color: regionColorMap.get(country) || COUNTRY_COLORS[index % COUNTRY_COLORS.length],
     marker: { enabled: false },
   }));
 
@@ -402,10 +411,16 @@ function renderMacroAnnotation(chart, annotationIndex) {
   if (!point || !Number.isFinite(point.plotX) || !Number.isFinite(point.plotY)) return;
 
   chart._macroAnnotationLabel?.destroy();
+
+  const text = '2024: 2% Natoziel erstmals erreicht';
+  const isNarrow = chart.chartWidth <= 620;
+  const initialX = chart.plotLeft + point.plotX + (isNarrow ? 20 : -50);
+  const initialY = chart.plotTop + point.plotY + (isNarrow ? -40 : -30);
+
   chart._macroAnnotationLabel = chart.renderer.label(
-    '2024: 2% Natoziel erstmals erreicht',
-    chart.plotLeft + point.plotX -50,
-    chart.plotTop + point.plotY - 30,
+    text,
+    initialX,
+    initialY,
     undefined,
     undefined,
     undefined,
@@ -414,10 +429,22 @@ function renderMacroAnnotation(chart, annotationIndex) {
     .css({
       color: chartColors.muted,
       fontWeight: '600',
-      fontSize: '0.85rem',
+      fontSize: isNarrow ? '0.78rem' : '0.85rem',
+      whiteSpace: 'nowrap',
     })
     .attr({ zIndex: 5 })
     .add();
+
+  const labelBBox = chart._macroAnnotationLabel.getBBox();
+  const minX = chart.plotLeft + 8;
+  const maxX = chart.plotLeft + chart.plotWidth - labelBBox.width - 8;
+  const minY = chart.plotTop + 8;
+  const maxY = chart.plotTop + chart.plotHeight - labelBBox.height - 8;
+
+  const finalX = Math.min(Math.max(initialX, minX), Math.max(minX, maxX));
+  const finalY = Math.min(Math.max(initialY, minY), Math.max(minY, maxY));
+
+  chart._macroAnnotationLabel.attr({ x: finalX, y: finalY });
 }
 
 function createMacroChart(gdpRows, spendingRows) {

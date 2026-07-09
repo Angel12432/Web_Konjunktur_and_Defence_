@@ -103,7 +103,7 @@ export async function initializeDsrCountriesChart() {
       chart = Highcharts.chart('dsr-countries-chart', options);
 
       if (!window.dsrCountriesChartListener) {
-        document.addEventListener('wkd:themechange', () => {
+        window.addEventListener('wkd:themechange', () => {
           if (chart) chart.update(Highcharts.merge(columnChartOptions(), options), true);
         });
         window.dsrCountriesChartListener = true;

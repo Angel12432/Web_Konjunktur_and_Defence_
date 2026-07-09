@@ -73,6 +73,7 @@
     --hero-gradient-2: rgba(155, 106, 31, 0.18);
     --body-gradient: linear-gradient(180deg, #f7f3ec 0%, #e9e2d7 100%);
     --panel-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(248, 242, 232, 0.96));
+    --chart-background: rgba(255, 255, 255, 0);
     --map-low: #f7e8b4;
     --map-mid-low: #d99a36;
     --map-mid: #c06431;
@@ -108,6 +109,7 @@
   --hero-gradient-2: rgba(155, 106, 31, 0.18);
   --body-gradient: linear-gradient(180deg, #f7f3ec 0%, #e9e2d7 100%);
   --panel-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(248, 242, 232, 0.96));
+  --chart-background: rgba(255, 255, 255, 0);
   --map-low: #f7e8b4;
   --map-mid-low: #d99a36;
   --map-mid: #c06431;
@@ -119,4 +121,5 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
+  --fazit-bg: rgb(24, 6, 102);
 }

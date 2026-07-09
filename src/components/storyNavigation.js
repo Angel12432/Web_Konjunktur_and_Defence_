@@ -14,6 +14,31 @@ export function initializeStoryNavigation() {
 
   if (!links.length || !sections.length) return;
 
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'story-nav__toggle';
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-label', 'Story-Navigation öffnen');
+
+  const icon = document.createElement('span');
+  icon.className = 'story-nav__icon';
+  toggle.appendChild(icon);
+
+  nav.prepend(toggle);
+
+  const setExpanded = (expanded) => {
+    nav.classList.toggle('story-nav--open', expanded);
+    toggle.setAttribute('aria-expanded', expanded.toString());
+  };
+
+  toggle.addEventListener('click', () => {
+    setExpanded(!nav.classList.contains('story-nav--open'));
+  });
+
+  links.forEach((link) => {
+    link.addEventListener('click', () => setExpanded(false));
+  });
+
   const setActive = (id) => {
     links.forEach((link) => {
       const active = link.getAttribute('href') === `#${id}`;
