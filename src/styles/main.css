@@ -2133,7 +2133,7 @@ h3 {
 }
 
 .h2-fazit{
-  font-size: clamp(3.1rem, 6vw, 3.7rem);
+  font-size: clamp(2.8rem, 6vw, 3.7rem);
 }
 
 .visual-header h2,
@@ -2234,6 +2234,8 @@ h3 {
   .hero-visual-card strong {
     font-size: clamp(1.25rem, 7vw, 1.85rem);
   }
+
+
 }
 
 /* ===== QA FIX 2026-07-06: non-overlapping hero + vertical conflict gradient ===== */
@@ -2961,5 +2963,12 @@ body {
 
   .hero-visual-card small {
     line-height: 1.32;
+  }
+
+}
+
+@media (max-width: 680px){
+  .fazit{
+    font-size: 1.15rem;
   }
 }
