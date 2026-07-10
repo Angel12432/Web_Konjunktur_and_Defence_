@@ -2133,7 +2133,7 @@ h3 {
 }
 
 .h2-fazit{
-  font-size: clamp(2.8rem, 6vw, 3.7rem);
+  font-size: clamp(2.2rem, 6vw, 3.7rem);
 }
 
 .visual-header h2,
@@ -2784,9 +2784,7 @@ body {
     font-size: clamp(2.9rem, 5.5vw, 4.9rem);
   }
 
-  .hero-visual-card small {
-    display: none;
-  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2969,6 +2967,6 @@ body {
 
 @media (max-width: 680px){
   .fazit{
-    font-size: 1.15rem;
+    font-size: 1.06rem;
   }
 }
