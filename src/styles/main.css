@@ -216,6 +216,7 @@ p {
 }
 
 .slider-panel {
+  --slider-thumb-size: 24px;
   background: var(--panel-gradient);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-card);
@@ -336,7 +337,9 @@ p {
 
 #jahrSlider {
   --slider-progress: 0%;
-  width: 100%;
+  display: block;
+  width: calc(100% - var(--slider-thumb-size));
+  margin-inline: calc(var(--slider-thumb-size) / 2);
   height: 8px;
   border-radius: 999px;
   outline: none;
@@ -348,8 +351,8 @@ p {
 
 #jahrSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 24px;
-  height: 24px;
+  width: var(--slider-thumb-size);
+  height: var(--slider-thumb-size);
   border-radius: 50%;
   background: var(--color-text);
   border: 3px solid var(--color-danger);
@@ -358,8 +361,8 @@ p {
 }
 
 #jahrSlider::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
+  width: var(--slider-thumb-size);
+  height: var(--slider-thumb-size);
   border-radius: 50%;
   background: var(--color-text);
   border: 3px solid var(--color-danger);
@@ -367,36 +370,76 @@ p {
 }
 
 .slider-ticks {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 0.4rem;
-  margin-top: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.5rem;
+  width: calc(100% - var(--slider-thumb-size));
+  margin: 0.85rem calc(var(--slider-thumb-size) / 2) 0;
+  padding: 0;
 }
 
 .slider-tick {
+  flex: 1 1 0%;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  background: none;
-  border: 1px solid transparent;
+  background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  border: 1px solid var(--color-line);
   border-radius: 999px;
-  padding: 0.45rem 0.25rem;
-  font-size: clamp(0.78rem, 2.5vw, 0.95rem);
+  padding: 0.5rem 0.6rem;
+  font-size: clamp(0.78rem, 2.5vw, 0.92rem);
+  font-weight: 600;
+  line-height: 1;
   color: var(--color-muted);
   cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
   user-select: none;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-text) 10%, transparent);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease,
+    box-shadow 0.2s ease, transform 0.15s ease;
 }
 
 .slider-tick:hover {
   color: var(--color-soft);
-  border-color: var(--color-line);
-  background: color-mix(in srgb, var(--color-text) 5%, transparent);
+  border-color: color-mix(in srgb, var(--color-danger) 45%, var(--color-line));
+  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px color-mix(in srgb, var(--color-text) 12%, transparent);
+}
+
+.slider-tick:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-text) 10%, transparent);
+}
+
+.slider-tick:focus-visible {
+  outline: 2px solid var(--color-danger);
+  outline-offset: 2px;
 }
 
 .slider-tick.is-active {
   color: var(--color-text);
   font-weight: 700;
   border-color: var(--color-danger);
-  background: color-mix(in srgb, var(--color-danger) 10%, transparent);
+  background: color-mix(in srgb, var(--color-danger) 16%, transparent);
+  box-shadow: 0 2px 7px color-mix(in srgb, var(--color-danger) 28%, transparent);
+}
+
+@media (max-width: 680px) {
+  .slider-panel {
+    --slider-thumb-size: 20px;
+  }
+
+  .slider-ticks {
+    gap: 0.3rem;
+  }
+
+  .slider-tick {
+    padding: 0.42rem 0.3rem;
+    font-size: clamp(0.7rem, 3.1vw, 0.82rem);
+  }
 }
 
 
@@ -606,6 +649,43 @@ p {
 
 .legend-label {
   white-space: nowrap;
+}
+
+.legend-more {
+  margin-top: 0.6rem;
+}
+
+.legend-more-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.1rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 68%, transparent);
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.88rem;
+  list-style: none;
+  transition: opacity 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.legend-more-summary::-webkit-details-marker {
+  display: none;
+}
+
+.legend-more-summary:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-line));
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+}
+
+.legend-more[open] .legend-more-summary {
+  margin-bottom: 0.6rem;
+}
+
+.legend-more .legend-items {
+  margin: 0;
 }
 
 .chart-empty {
@@ -962,10 +1042,6 @@ p {
   .slider-header {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .slider-ticks {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .chart-card {
@@ -1516,7 +1592,7 @@ section#fazit {
 }
 
 .fazit {
-  font-size: 1.6rem;
+  font-size: 1.35rem;
 }
 
 section#fazit::before {
@@ -1811,24 +1887,6 @@ p,
   opacity: 1;
 }
 
-#jahrSlider {
-  --slider-thumb-size: 24px;
-  width: calc(100% - var(--slider-thumb-size));
-  margin-inline: calc(var(--slider-thumb-size) / 2);
-}
-
-.slider-ticks {
-  display: flex;
-  justify-content: space-between;
-  gap: 0;
-  padding-inline: calc(24px / 2);
-}
-
-.slider-tick {
-  flex: 0 0 auto;
-  min-width: 4.4rem;
-}
-
 #playButton svg {
   display: none !important;
 }
@@ -1885,16 +1943,6 @@ p,
 
   .hero-core strong {
     font-size: clamp(2.8rem, 15vw, 4rem);
-  }
-
-  .slider-ticks {
-    padding-inline: calc(20px / 2);
-  }
-
-  .slider-tick {
-    min-width: auto;
-    padding-inline: 0.15rem;
-    font-size: clamp(0.72rem, 3.2vw, 0.82rem);
   }
 }
 
@@ -2084,6 +2132,10 @@ h3 {
   text-wrap: auto;
 }
 
+.h2-fazit{
+  font-size: clamp(2.8rem, 6vw, 3.7rem);
+}
+
 .visual-header h2,
 .section-header h2,
 .section-title--long {
@@ -2115,42 +2167,6 @@ h3 {
   font-size: clamp(1.85rem, 3.2vw, 2.85rem);
   line-height: 1.08;
 }
-
-/* Range/tick alignment: year labels are placed at the exact same track percentages as the thumb. */
-.slider-panel {
-  --slider-thumb-size: 24px;
-}
-
-#jahrSlider {
-  display: block;
-  width: calc(100% - var(--slider-thumb-size));
-  margin-inline: calc(var(--slider-thumb-size) / 2);
-}
-
-.slider-ticks {
-  position: relative;
-  display: block;
-  width: calc(100% - var(--slider-thumb-size));
-  height: 2.15rem;
-  margin: 0.85rem calc(var(--slider-thumb-size) / 2) 0;
-  padding: 0;
-}
-
-.slider-tick {
-  position: absolute;
-  top: 0;
-  min-width: 0;
-  width: max-content;
-  transform: translateX(-50%);
-  padding: 0.42rem 0.5rem;
-}
-
-.slider-tick:nth-child(1) { left: 0%; }
-.slider-tick:nth-child(2) { left: 20%; }
-.slider-tick:nth-child(3) { left: 40%; }
-.slider-tick:nth-child(4) { left: 60%; }
-.slider-tick:nth-child(5) { left: 80%; }
-.slider-tick:nth-child(6) { left: 100%; }
 
 /* Play/pause icon state must be controlled by class + hidden attribute only. */
 #playButton svg[hidden] {
@@ -2219,14 +2235,7 @@ h3 {
     font-size: clamp(1.25rem, 7vw, 1.85rem);
   }
 
-  .slider-panel {
-    --slider-thumb-size: 20px;
-  }
 
-  .slider-tick {
-    padding-inline: 0.22rem;
-    font-size: clamp(0.69rem, 3.1vw, 0.82rem);
-  }
 }
 
 /* ===== QA FIX 2026-07-06: non-overlapping hero + vertical conflict gradient ===== */
@@ -2433,42 +2442,6 @@ body {
   letter-spacing: -0.048em;
 }
 
-/* Slider/tick alignment: same effective track width for range and labels. */
-.slider-panel {
-  --slider-thumb-size: 24px;
-}
-
-#jahrSlider {
-  display: block;
-  width: calc(100% - var(--slider-thumb-size));
-  margin-inline: calc(var(--slider-thumb-size) / 2);
-}
-
-.slider-ticks {
-  position: relative;
-  display: block;
-  width: calc(100% - var(--slider-thumb-size));
-  height: 2.25rem;
-  margin: 0.85rem calc(var(--slider-thumb-size) / 2) 0;
-  padding: 0;
-}
-
-.slider-tick {
-  position: absolute;
-  top: 0;
-  min-width: 0;
-  width: max-content;
-  transform: translateX(-50%);
-  padding: 0.42rem 0.5rem;
-}
-
-.slider-tick:nth-child(1) { left: 0%; }
-.slider-tick:nth-child(2) { left: 20%; }
-.slider-tick:nth-child(3) { left: 40%; }
-.slider-tick:nth-child(4) { left: 60%; }
-.slider-tick:nth-child(5) { left: 80%; }
-.slider-tick:nth-child(6) { left: 100%; }
-
 #playButton svg[hidden] { display: none !important; }
 #playButton:not(.is-playing) #playIcon:not([hidden]) { display: block !important; }
 #playButton.is-playing #pauseIcon:not([hidden]) { display: block !important; }
@@ -2512,13 +2485,6 @@ body {
 
   .hero .lead {
     font-size: 1rem;
-  }
-
-  .slider-panel { --slider-thumb-size: 20px; }
-
-  .slider-tick {
-    padding-inline: 0.2rem;
-    font-size: clamp(0.68rem, 3vw, 0.82rem);
   }
 }
 
@@ -2998,5 +2964,11 @@ body {
   .hero-visual-card small {
     line-height: 1.32;
   }
+
 }
 
+@media (max-width: 680px){
+  .fazit{
+    font-size: 1.15rem;
+  }
+}

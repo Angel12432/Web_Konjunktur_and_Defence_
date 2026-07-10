@@ -2,7 +2,7 @@ import euroCoin from '../assets/euro-coin.png';
 
 const DEFAULTS = {
   title: '1 Euro rein -\nnur die Hälfte wieder raus.',
-  body: 'Laut einer Studie der Uni Mannheim liegt der kurzfristige Multiplikator deutscher Militärausgaben bei maximal 0,5 %. Das heißt: Zusätzliche Rüstungsausgaben wirken ökonomisch deutlich schwächer als Investitionen in Infrastruktur oder Bildung. Es ist nicht möglich eine präzise Aussage zu den langfristigen Auswirkungen zu treffen und Investitionen in das Militär sind makroökoniomisch risikoreich.',
+  body: 'Laut einer Studie der Uni Mannheim liegt der kurzfristige Multiplikator deutscher Militärausgaben bei maximal 50 %. Das heißt: Zusätzliche Rüstungsausgaben wirken ökonomisch deutlich schwächer als Investitionen in Infrastruktur oder Bildung. Es ist nicht möglich eine präzise Aussage zu den langfristigen Auswirkungen zu treffen und Investitionen in das Militär sind makroökoniomisch risikoreich.',
   kicker: '',
   source: 'Krebs, T., Kaczmarczyk, P. (2025). Wirtschaftliche Auswirkungen von Militärausgaben in Deutschland. Universität Mannheim.',
   coinImage: euroCoin,
