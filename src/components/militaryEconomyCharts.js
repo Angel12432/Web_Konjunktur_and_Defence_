@@ -444,7 +444,7 @@ function renderMacroAnnotation(chart, annotationIndex) {
 
   chart._macroAnnotationLabel?.destroy();
 
-  const text = '2024: 2% Natoziel erstmals erreicht';
+  const text = '2024: 2% NATO-Ziel erstmals erreicht';
   const isNarrow = chart.chartWidth <= 620;
   const initialX = chart.plotLeft + point.plotX + (isNarrow ? 20 : -50);
   const initialY = chart.plotTop + point.plotY + (isNarrow ? -40 : -30);
